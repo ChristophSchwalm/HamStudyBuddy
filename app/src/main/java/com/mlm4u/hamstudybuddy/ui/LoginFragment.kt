@@ -6,16 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.mlm4u.hamstudybuddy.R
+import com.mlm4u.hamstudybuddy.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment() {
 
+    private lateinit var vb: FragmentLoginBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login, container, false)
+    ): View {
+        vb = FragmentLoginBinding.inflate(layoutInflater)
+        return vb.root
     }
 
 }

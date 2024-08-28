@@ -6,15 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.mlm4u.hamstudybuddy.R
+import com.mlm4u.hamstudybuddy.databinding.FragmentBootcampBinding
 
 class BootcampFragment : Fragment() {
+
+    private lateinit var vb: FragmentBootcampBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_bootcamp, container, false)
+    ): View {
+        vb = FragmentBootcampBinding.inflate(layoutInflater)
+        return vb.root
     }
 
 }

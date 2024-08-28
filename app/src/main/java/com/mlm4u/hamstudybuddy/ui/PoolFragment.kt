@@ -6,15 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.mlm4u.hamstudybuddy.R
+import com.mlm4u.hamstudybuddy.databinding.FragmentPoolBinding
 
 class PoolFragment : Fragment() {
+
+    private lateinit var vb: FragmentPoolBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_pool, container, false)
+    ): View {
+        vb = FragmentPoolBinding.inflate(layoutInflater)
+        return vb.root
     }
 
 }
