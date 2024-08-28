@@ -1,4 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@android:drawable/btn_dialog"
+        android:title="Home" />
+    <item
+        android:id="@+id/gameFragment"
+        android:icon="@android:drawable/btn_dialog"
+        android:title="Game" />
+    <item
+        android:id="@+id/bootcampFragment"
+        android:icon="@android:drawable/btn_dialog"
+        android:title="BootCamp" />
+    <item
+        android:id="@+id/poolFragment"
+        android:icon="@android:drawable/btn_dialog"
+        android:title="Pool" />
+    <item
+        android:id="@+id/settingsFragment"
+        android:icon="@android:drawable/btn_dialog"
+        android:title="Settings" />
 </menu>

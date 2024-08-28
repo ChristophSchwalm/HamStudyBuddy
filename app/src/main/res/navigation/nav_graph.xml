@@ -35,4 +35,24 @@
             android:id="@+id/action_registerFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.mlm4u.hamstudybuddy.ui.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/bootcampFragment"
+        android:name="com.mlm4u.hamstudybuddy.ui.BootcampFragment"
+        android:label="fragment_bootcamp"
+        tools:layout="@layout/fragment_bootcamp" />
+    <fragment
+        android:id="@+id/poolFragment"
+        android:name="com.mlm4u.hamstudybuddy.ui.PoolFragment"
+        android:label="fragment_question_pool"
+        tools:layout="@layout/fragment_pool" />
+    <fragment
+        android:id="@+id/gameFragment"
+        android:name="com.mlm4u.hamstudybuddy.ui.GameFragment"
+        android:label="fragment_game"
+        tools:layout="@layout/fragment_game" />
 </navigation>
