@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "535043367814",
+    "project_id": "hamstudybuddy",
+    "storage_bucket": "hamstudybuddy.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:535043367814:android:51d91d2a2a94689b1ac207",
+        "android_client_info": {
+          "package_name": "com.mlm4u.hamstudybuddy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOgn_Rh7asaPTkp9vlrfTgz6UcXa0YLvo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

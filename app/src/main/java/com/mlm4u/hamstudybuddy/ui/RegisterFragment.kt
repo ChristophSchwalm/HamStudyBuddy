@@ -5,12 +5,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.mlm4u.hamstudybuddy.R
+import com.mlm4u.hamstudybuddy.data.viewModel.AuthenticationViewModel
 import com.mlm4u.hamstudybuddy.databinding.FragmentRegisterBinding
 
 class RegisterFragment : Fragment() {
 
     private lateinit var vb: FragmentRegisterBinding
+    private val authenticationViewModel: AuthenticationViewModel by activityViewModels()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -20,4 +26,25 @@ class RegisterFragment : Fragment() {
         return vb.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        authenticationViewModel.currentUser.observe(viewLifecycleOwner){
+            it?.let {
+                findNavController().navigate(R.id.action_registerFragment_to_homeFragment)
+            }
+        }
+
+        vb.btRegister.setOnClickListener{
+            val email = vb.teEmail.text.toString()
+            val password = vb.tePassword.text.toString()
+            val passwordRepeated = vb.tePassword2.text.toString()
+            if (password == passwordRepeated) {
+                authenticationViewModel.register(email, password)
+                findNavController().navigate(R.id.action_registerFragment_to_homeFragment)
+            } else {
+                Toast.makeText(context, "Passwörter stimmen nicht überein", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
 }
