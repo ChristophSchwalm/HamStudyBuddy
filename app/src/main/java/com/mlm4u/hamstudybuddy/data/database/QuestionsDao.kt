@@ -15,7 +15,7 @@ interface QuestionsDao {
     @Query("SELECT * FROM table_questions")
     fun getAllQuestions(): LiveData<List<Questions>>
 
-    @Query("SELECT * FROM table_questions WHERE classQuestion = :classQuestion AND ready4Game = 0 GROUP BY titleQuestion")
+    @Query("SELECT * FROM table_questions WHERE classQuestion = :classQuestion AND ready4Game = 0 GROUP BY titleQuestion ORDER BY number")
     fun getAllTitle(classQuestion: String): LiveData<List<Questions>>
 
     @Query("SELECT * FROM table_questions WHERE classQuestion = :classQuestion AND titleQuestion = :selectedTitle AND ready4Game = 0")
