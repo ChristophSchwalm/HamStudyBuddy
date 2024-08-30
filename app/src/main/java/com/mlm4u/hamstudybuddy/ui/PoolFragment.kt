@@ -7,8 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.mlm4u.hamstudybuddy.R
-import com.mlm4u.hamstudybuddy.adapter.TitleAdapter
+import com.mlm4u.hamstudybuddy.adapter.PoolAdapter
 import com.mlm4u.hamstudybuddy.data.viewModel.SharedViewModel
 import com.mlm4u.hamstudybuddy.databinding.FragmentPoolBinding
 
@@ -16,7 +15,7 @@ class PoolFragment : Fragment() {
 
     private lateinit var vb: FragmentPoolBinding
     private val sharedViewModel: SharedViewModel by activityViewModels()
-    private lateinit var adapter: TitleAdapter
+    private lateinit var adapter: PoolAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,9 +29,9 @@ class PoolFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         sharedViewModel.titleList.observe(viewLifecycleOwner){
-            adapter = TitleAdapter(it, sharedViewModel)
-            vb.rvTitle.adapter = adapter
-            vb.rvTitle.layoutManager = LinearLayoutManager(requireContext())
+            adapter = PoolAdapter(it, sharedViewModel)
+            vb.rvPool.adapter = adapter
+            vb.rvPool.layoutManager = LinearLayoutManager(requireContext())
         }
 
     }

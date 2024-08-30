@@ -27,7 +27,8 @@ class MainActivity : AppCompatActivity() {
         vb = ActivityMainBinding.inflate(layoutInflater)
         setContentView(vb.root)
 
-        window.statusBarColor = ContextCompat.getColor(this, R.color.white)
+        window.statusBarColor = ContextCompat.getColor(this, R.color.black)
+        vb.bottomNavigationView.itemIconTintList = null
 
         val navHost = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         val navController = navHost.navController
@@ -37,10 +38,10 @@ class MainActivity : AppCompatActivity() {
         vb.bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.bootcampFragment -> {
-                    val navOptions = NavOptions.Builder()
+                   /* val navOptions = NavOptions.Builder()
                         .setPopUpTo(R.id.bootcampFragment, true)
-                        .build()
-                    navController.navigate(R.id.bootcampFragment, null, navOptions)
+                        .build()*/
+                    navController.navigate(R.id.bootcampFragment, null)
                     true
                 }
 

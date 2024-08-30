@@ -3,22 +3,22 @@
 
     <item
         android:id="@+id/homeFragment"
-        android:icon="@android:drawable/btn_dialog"
+        android:icon="@drawable/home"
         android:title="Home" />
     <item
         android:id="@+id/gameFragment"
-        android:icon="@android:drawable/btn_dialog"
+        android:icon="@drawable/game"
         android:title="Game" />
     <item
         android:id="@+id/bootcampFragment"
-        android:icon="@android:drawable/btn_dialog"
+        android:icon="@drawable/bootcamp"
         android:title="BootCamp" />
     <item
         android:id="@+id/poolFragment"
-        android:icon="@android:drawable/btn_dialog"
+        android:icon="@drawable/questionpool"
         android:title="Pool" />
     <item
         android:id="@+id/settingsFragment"
-        android:icon="@android:drawable/btn_dialog"
+        android:icon="@drawable/settings"
         android:title="Settings" />
 </menu>

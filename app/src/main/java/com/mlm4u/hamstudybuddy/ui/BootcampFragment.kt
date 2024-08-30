@@ -1,10 +1,14 @@
 package com.mlm4u.hamstudybuddy.ui
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebResourceRequest
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import com.mlm4u.hamstudybuddy.R
 import com.mlm4u.hamstudybuddy.databinding.FragmentBootcampBinding
 
@@ -20,4 +24,19 @@ class BootcampFragment : Fragment() {
         return vb.root
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val webView: WebView = vb.wvYoutube
+        webView.settings.javaScriptEnabled = true
+        webView.webViewClient = object : WebViewClient() {
+            @Deprecated("Deprecated in Java")
+            override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
+                view?.loadUrl(url!!)
+                return true
+            }
+        }
+        webView.loadUrl("https://www.youtube.com/playlist?list=PLDpWnjHk5ERbcgpLPUaU0iTsD-wrmfENk")
+    }
 }
