@@ -28,10 +28,11 @@ class PoolFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        sharedViewModel.titleList.observe(viewLifecycleOwner){
-            adapter = PoolAdapter(it, sharedViewModel)
+        vb.rvPool.layoutManager = LinearLayoutManager(requireContext())
+
+        sharedViewModel.allTitle.observe(viewLifecycleOwner) { allTitle ->
+            adapter = PoolAdapter(allTitle, sharedViewModel)
             vb.rvPool.adapter = adapter
-            vb.rvPool.layoutManager = LinearLayoutManager(requireContext())
         }
 
     }

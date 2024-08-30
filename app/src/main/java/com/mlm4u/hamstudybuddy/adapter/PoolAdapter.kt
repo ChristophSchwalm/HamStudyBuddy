@@ -2,7 +2,10 @@ package com.mlm4u.hamstudybuddy.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.lifecycle.LiveData
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.mlm4u.hamstudybuddy.R
 import com.mlm4u.hamstudybuddy.data.database.Questions
 import com.mlm4u.hamstudybuddy.data.viewModel.SharedViewModel
 import com.mlm4u.hamstudybuddy.databinding.PoolViewBinding
@@ -27,6 +30,11 @@ class PoolAdapter(
         val title = dataset[position]
 
         holder.binding.tvTitle.text = title.titleQuestion
+
+        holder.binding.cvTitle.setOnClickListener {
+            viewModel.changeSelectedTitle(title.titleQuestion)
+            holder.itemView.findNavController().navigate(R.id.questionFragment)
+        }
     }
 
 }
