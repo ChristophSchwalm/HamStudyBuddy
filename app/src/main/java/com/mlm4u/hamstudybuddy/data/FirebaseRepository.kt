@@ -58,22 +58,25 @@ class FirebaseRepository {
     }
 
 
-    suspend fun getUserSettings(): LiveData<String> {
-        val userSettings = MutableLiveData<String>()
-        val user = withContext(Dispatchers.IO) { firebaseAuth.currentUser }
-        user?.let {
-            val documentReference = firebaseFirestore
+    suspend fun getUserSettings(): Map<String, Any>? {
+        return try {
+            val userId = firebaseAuth.currentUser?.uid ?: return null
+            val documentSnapshot = firebaseFirestore
                 .collection("USER_SETTINGS")
-                .document(user.uid)
-            try {
-                val documentSnapshot = documentReference.get().await()
-                userSettings.value = documentSnapshot.getString("USER_CLASS")
-            } catch (e: Exception) {
-                // Fehlerbehandlung
-                userSettings.value = null
+                .document(userId)
+                .get()
+                .await()
+
+            if (documentSnapshot.exists()) {
+                documentSnapshot.data
+            } else {
+                null
             }
+        } catch (e: Exception) {
+            // Fehlerbehandlung, z.B. Loggen des Fehlers
+            Log.e("getUserSettings", "Fehler beim Abrufen der Einstellungen", e)
+            null
         }
-        return userSettings
     }
 
 

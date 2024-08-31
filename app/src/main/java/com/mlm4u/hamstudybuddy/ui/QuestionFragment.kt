@@ -37,8 +37,9 @@ class QuestionFragment : Fragment() {
         snapHelper.attachToRecyclerView(vb.rvQuestions)
 
         // Beobachte die LiveData
-        //val questions = sharedViewModel.questionsByTitle
-        //vb.rvQuestions.adapter = QuestionAdapter(questions, sharedViewModel)
-
+        sharedViewModel.questionsByTitle.observe(viewLifecycleOwner) { questionsByTitle ->
+            adapter = QuestionAdapter(questionsByTitle, sharedViewModel)
+            vb.rvQuestions.adapter = adapter
+        }
     }
 }

@@ -11,6 +11,7 @@ import com.mlm4u.hamstudybuddy.data.Repository
 import com.mlm4u.hamstudybuddy.data.database.Questions
 import com.mlm4u.hamstudybuddy.data.database.QuestionsDatabase.Companion.getDatabase
 import kotlinx.coroutines.launch
+import okhttp3.internal.threadName
 
 class SharedViewModel(
     application: Application
@@ -23,9 +24,7 @@ class SharedViewModel(
 
     val currentUser = firebaseRepository.currentUser
 
-
-
-    private val _userClass = MutableLiveData<String>("1")
+    private val _userClass = MutableLiveData<String>("")
     val userClass: LiveData<String>
         get() = _userClass
 
@@ -33,42 +32,57 @@ class SharedViewModel(
     val selectedTitle: LiveData<String>
         get() = _selectedTitle
 
-    val allTitle: LiveData<List<Questions>> = userClass.switchMap { userClass ->
-        repository.getAllTitle(userClass)
+    val allTitle: LiveData<List<Questions>> = userClass.switchMap { it ->
+        repository.getAllTitle(it)
     }
 
-    val questionsByTitle: LiveData<List<Questions>> = selectedTitle.switchMap { title ->
-        userClass.switchMap { userClass ->
-            repository.getQuestionsByTitle(userClass, title)
-        }
-    }
-
-
-    fun getAllTitle() {
-        //_allTitle.value = repository.getAllTitle("1")
-    }
-
-    fun getQuestionsByTitle(){
+    val questionsByTitle: LiveData<List<Questions>> = selectedTitle.switchMap { it ->
         repository.getQuestionsByTitle(userClass.value.toString(), selectedTitle.value.toString())
     }
 
-    suspend fun insertQuestions(questions: List<Questions>){
+    fun getQuestionsByTitle() {
+        repository.getQuestionsByTitle(userClass.value.toString(), selectedTitle.value.toString())
+    }
+
+    suspend fun insertQuestions(questions: List<Questions>) {
         repository.insertQuestions(questions)
     }
 
-
-
-    fun changeSelectedTitle(newQuestionTitle: String){
+    fun changeSelectedTitle(newQuestionTitle: String) {
         viewModelScope.launch {
             _selectedTitle.value = newQuestionTitle
         }
     }
 
+    fun changeUserClass(newUserClass: String) {
+        viewModelScope.launch {
+            _userClass.value = newUserClass
+        }
+    }
 
 
+//**************************************************************************************************
+//Firebase
 
+    suspend fun getUserSettings(): String? {
+        val userSettings = firebaseRepository.getUserSettings()
+        if (userSettings != null) {
+            _userClass.value = userSettings["UserClass"] as? String
+            val name = userSettings["Name"] as? String
+            // Verwende die Werte userClass und name
+            return name
+        } else {
+            // Handle den Fall, dass keine User Settings gefunden wurden
+            return null
+        }
 
+    }
 
-
-
+    fun saveUserSettings(name: String) {
+        firebaseRepository.saveUserSettings(name, userClass.value.toString())
+    }
 }
+
+
+
+
