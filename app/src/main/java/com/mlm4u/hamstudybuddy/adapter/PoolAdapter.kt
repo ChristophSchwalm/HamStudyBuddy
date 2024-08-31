@@ -12,7 +12,7 @@ import com.mlm4u.hamstudybuddy.databinding.PoolViewBinding
 
 class PoolAdapter(
     private val dataset: List<Questions>,
-    private val viewModel: SharedViewModel
+    private val sharedViewModel: SharedViewModel
 ) : RecyclerView.Adapter<PoolAdapter.PoolViewHolder>(){
 
     inner class PoolViewHolder(val binding: PoolViewBinding) : RecyclerView.ViewHolder(binding.root)
@@ -32,7 +32,7 @@ class PoolAdapter(
         holder.binding.tvTitle.text = title.titleQuestion
 
         holder.binding.cvTitle.setOnClickListener {
-            viewModel.changeSelectedTitle(title.titleQuestion)
+            sharedViewModel.changeSelectedTitle(title.titleQuestion)
             holder.itemView.findNavController().navigate(R.id.questionFragment)
         }
     }

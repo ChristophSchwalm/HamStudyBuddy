@@ -12,7 +12,7 @@ import com.mlm4u.hamstudybuddy.databinding.QuestionViewBinding
 
 class QuestionAdapter(
     private val dataset: List<Questions>,
-    private val viewModel: SharedViewModel
+    private val sharedViewModel: SharedViewModel
 ) : RecyclerView.Adapter<QuestionAdapter.QuestionViewHolder>(){
 
     inner class QuestionViewHolder(val binding: QuestionViewBinding) : RecyclerView.ViewHolder(binding.root)
@@ -44,9 +44,9 @@ class QuestionAdapter(
         holder.binding.cvAnswerC.setOnClickListener{ checkAnswer(holder.binding.tvAnswerC.text.toString(), item, holder) }
         holder.binding.cvAnswerD.setOnClickListener{ checkAnswer(holder.binding.tvAnswerD.text.toString(), item, holder) }
 
-/*        holder.binding.cvReadyForGame.setOnClickListener{
-            viewModel.setReady4Game(item.number)
-        }*/
+        holder.binding.cvReadyForGame.setOnClickListener{
+            sharedViewModel.setReady4Game(item.number)
+        }
 
     }
 

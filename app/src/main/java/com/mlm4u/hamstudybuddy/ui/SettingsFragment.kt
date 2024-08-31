@@ -40,6 +40,11 @@ class SettingsFragment : Fragment() {
                 "3" -> vb.rbClassA.isChecked = true
             }
         }
+        viewLifecycleOwner.lifecycleScope.launch{
+            val version = sharedViewModel.getVersion()
+            vb.tvVersionNumber.setText(version.version.toString())
+        }
+
 
         vb.rgKlassen.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId){

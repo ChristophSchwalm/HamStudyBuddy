@@ -10,6 +10,9 @@ import com.mlm4u.hamstudybuddy.data.FirebaseRepository
 import com.mlm4u.hamstudybuddy.data.Repository
 import com.mlm4u.hamstudybuddy.data.database.Questions
 import com.mlm4u.hamstudybuddy.data.database.QuestionsDatabase.Companion.getDatabase
+import com.mlm4u.hamstudybuddy.data.model.VersionResponse
+import com.mlm4u.hamstudybuddy.data.remote.QuestionApi
+import com.mlm4u.hamstudybuddy.data.remote.QuestionRemoteApi
 import kotlinx.coroutines.launch
 import okhttp3.internal.threadName
 
@@ -21,6 +24,7 @@ class SharedViewModel(
     private val database = getDatabase(application)
     private val repository = Repository(database)
     private val firebaseRepository = FirebaseRepository()
+    private val api = QuestionApi
 
     val currentUser = firebaseRepository.currentUser
 
@@ -60,6 +64,12 @@ class SharedViewModel(
         }
     }
 
+    fun setReady4Game(number: String){
+        viewModelScope.launch {
+            repository.setReady4Game(number)
+        }
+    }
+
 
 //**************************************************************************************************
 //Firebase
@@ -80,6 +90,14 @@ class SharedViewModel(
 
     fun saveUserSettings(name: String) {
         firebaseRepository.saveUserSettings(name, userClass.value.toString())
+    }
+
+
+//**************************************************************************************************
+//Api
+
+    suspend fun getVersion() : VersionResponse {
+        return api.retrofitService.getVersion()
     }
 }
 

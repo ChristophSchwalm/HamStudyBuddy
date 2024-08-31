@@ -18,7 +18,8 @@ interface QuestionsDao {
     @Query("SELECT * FROM table_questions")
     fun getAllQuestions(): LiveData<List<Questions>>
 
-
+    @Query("UPDATE table_questions SET ready4Game = 1 WHERE number = :number")
+    suspend fun setReady4Game(number: String)
 
     @Query("SELECT * FROM table_questions WHERE classQuestion = :classQuestion AND titleQuestion = :selectedTitle AND ready4Game = 0")
     fun getQuestionsByTitle(classQuestion: String, selectedTitle: String): LiveData<List<Questions>>

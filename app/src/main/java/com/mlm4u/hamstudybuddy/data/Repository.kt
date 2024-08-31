@@ -26,4 +26,8 @@ class Repository (
     fun titleList(userClass: String) : LiveData<List<Questions>> {
         return database.QuestionsDao.getAllTitle(userClass)
     }
+
+    suspend fun setReady4Game(number: String) {
+        database.QuestionsDao.setReady4Game(number)
+    }
 }
