@@ -10,6 +10,7 @@ import com.mlm4u.hamstudybuddy.data.FirebaseRepository
 import com.mlm4u.hamstudybuddy.data.Repository
 import com.mlm4u.hamstudybuddy.data.database.Questions
 import com.mlm4u.hamstudybuddy.data.database.QuestionsDatabase.Companion.getDatabase
+import com.mlm4u.hamstudybuddy.data.model.Root
 import com.mlm4u.hamstudybuddy.data.model.VersionResponse
 import com.mlm4u.hamstudybuddy.data.remote.QuestionApi
 import com.mlm4u.hamstudybuddy.data.remote.QuestionRemoteApi
@@ -25,6 +26,18 @@ class SharedViewModel(
     private val repository = Repository(database)
     private val firebaseRepository = FirebaseRepository()
     private val api = QuestionApi
+
+    init {
+        viewModelScope.launch {
+            val userSettings = getUserSettings()
+            if (userSettings != null) {
+                _userClass.value = userSettings["UserClass"] as? String
+            } else {
+                _userClass.value = "0" // Standardwert, falls keine Einstellungen gefunden wurden
+            }
+        }
+    }
+
 
     val currentUser = firebaseRepository.currentUser
 
@@ -74,13 +87,13 @@ class SharedViewModel(
 //**************************************************************************************************
 //Firebase
 
-    suspend fun getUserSettings(): String? {
+    suspend fun getUserSettings(): Map<String, Any>? {
         val userSettings = firebaseRepository.getUserSettings()
         if (userSettings != null) {
             _userClass.value = userSettings["UserClass"] as? String
             val name = userSettings["Name"] as? String
             // Verwende die Werte userClass und name
-            return name
+            return userSettings
         } else {
             // Handle den Fall, dass keine User Settings gefunden wurden
             return null
@@ -96,8 +109,12 @@ class SharedViewModel(
 //**************************************************************************************************
 //Api
 
-    suspend fun getVersion() : VersionResponse {
-        return api.retrofitService.getVersion()
+    suspend fun getVersionApi() : VersionResponse {
+        return api.retrofitService.getVersionApi()
+    }
+
+    suspend fun getQuestionsApi() : Root {
+        return api.retrofitService.getQuestionsApi()
     }
 }
 

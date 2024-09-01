@@ -51,9 +51,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-
-        Log.d("MainActivity", "${sharedViewModel.currentUser}")
-
     }
 
 }

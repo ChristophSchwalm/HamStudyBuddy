@@ -34,7 +34,7 @@ class SettingsFragment : Fragment() {
         // Starten einer Coroutine
         viewLifecycleOwner.lifecycleScope.launch {
             val userSettings = sharedViewModel.getUserSettings()
-            vb.teName.setText(userSettings)
+            vb.teName.setText(userSettings?.get("Name") as? String)
         }
 
         sharedViewModel.userClass.observe(viewLifecycleOwner){
@@ -44,8 +44,8 @@ class SettingsFragment : Fragment() {
                 "3" -> vb.rbClassA.isChecked = true
             }
         }
-        viewLifecycleOwner.lifecycleScope.launch{
-            val version = sharedViewModel.getVersion()
+        lifecycleScope.launch{
+            val version = sharedViewModel.getVersionApi()
             vb.tvVersionNumber.setText(version.version.toString())
         }
 
@@ -69,42 +69,22 @@ class SettingsFragment : Fragment() {
     }
 
     private fun api () {
-        Log.d("MainActivity", "onCreate called")
         lifecycleScope.launch {
-            Log.d("MainActivity", "lifecycleScope.launch called")
             try {
-                val questionRemoteApi = QuestionApi.retrofitService
-                Log.d("MainActivity", "QuestionRemoteApi created")
-                val data: Root = questionRemoteApi.getQuestions()
-
-                Log.d("MainActivity", "Data: $data")
+                val data: Root = sharedViewModel.getQuestionsApi()
                 data.let {
                     // Alle Questions aus den JSON-Daten extrahieren
-
                     val allQuestions = it.getAllQuestions()
-                    Log.d("MainActivity", "Anzahl der Fragen: ${allQuestions.size}")
                     // Die Questions in UserQuestions umwandeln
                     val gameQuestions: List<Questions> = allQuestions.map { question ->
                         question.toUserQuestion()
                     }
-
                     // Die Fragen in die Datenbank einfügen
-                    Log.d("MainActivity", "Vor Insert:")
                     sharedViewModel.insertQuestions(gameQuestions)
-                    Log.d("MainActivity", "Nach Insert:")
                 }
             } catch (e: Exception) {
                 // Fehlerbehandlung, z. B. Anzeige einer Fehlermeldung
                 Log.e("MainActivity", "Fehler Api -> Room: ${e.message}")
-            }
-        }
-
-        lifecycleScope.launch {
-            try {
-                val version = QuestionApi.retrofitService.getVersion()
-                Log.d("MainActivity", "Version: ${version.version}")
-            } catch (e: Exception) {
-                Log.e("MainActivity", "VersiongCheck Error: ${e.message}")
             }
         }
     }

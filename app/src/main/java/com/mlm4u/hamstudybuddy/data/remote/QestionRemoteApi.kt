@@ -34,10 +34,10 @@ private val retrofit = Retrofit.Builder()
 interface QuestionRemoteApi {
 
     @GET("hamstudybuddy/fragenkatalog3b.json")
-    suspend fun getQuestions(): Root
+    suspend fun getQuestionsApi(): Root
 
     @GET("hamstuddybuddy/version.json")
-    suspend fun getVersion(): VersionResponse
+    suspend fun getVersionApi(): VersionResponse
 }
 
 object QuestionApi {

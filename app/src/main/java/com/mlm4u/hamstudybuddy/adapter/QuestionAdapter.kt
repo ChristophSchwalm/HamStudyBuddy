@@ -26,6 +26,16 @@ class QuestionAdapter(
         return dataset.size
     }
 
+    override fun onViewRecycled(holder: QuestionViewHolder) {
+        super.onViewRecycled(holder)
+
+        holder.binding.cvReadyForGame.visibility = View.GONE
+        holder.binding.cvAnswerA.setCardBackgroundColor(ContextCompat.getColor(holder.itemView.context, R.color.white))
+        holder.binding.cvAnswerB.setCardBackgroundColor(ContextCompat.getColor(holder.itemView.context, R.color.white))
+        holder.binding.cvAnswerC.setCardBackgroundColor(ContextCompat.getColor(holder.itemView.context, R.color.white))
+        holder.binding.cvAnswerD.setCardBackgroundColor(ContextCompat.getColor(holder.itemView.context, R.color.white))
+    }
+
     override fun onBindViewHolder(holder: QuestionViewHolder, position: Int) {
         val item = dataset[position]
 
