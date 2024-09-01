@@ -1,5 +1,6 @@
 package com.mlm4u.hamstudybuddy
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
@@ -8,6 +9,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.navOptions
 import androidx.navigation.ui.setupWithNavController
 import com.mlm4u.hamstudybuddy.data.database.Questions
 import com.mlm4u.hamstudybuddy.data.model.Root
@@ -33,24 +35,9 @@ class MainActivity : AppCompatActivity() {
         val navHost = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         val navController = navHost.navController
         vb.bottomNavigationView.setupWithNavController(navController)
+        vb.bottomNavigationView.setBackgroundColor(Color.TRANSPARENT)
 
 
-        vb.bottomNavigationView.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.bootcampFragment -> {
-                   /* val navOptions = NavOptions.Builder()
-                        .setPopUpTo(R.id.bootcampFragment, true)
-                        .build()*/
-                    navController.navigate(R.id.bootcampFragment, null)
-                    true
-                }
-
-                else -> {
-                    navController.navigate(item.itemId)
-                true
-                }
-            }
-        }
     }
 
 }

@@ -46,7 +46,7 @@ class SettingsFragment : Fragment() {
         }
         lifecycleScope.launch{
             val version = sharedViewModel.getVersionApi()
-            vb.tvVersionNumber.setText(version.version.toString())
+            vb.tvVersionNumber.setText("Version: " + version.version.toString())
         }
 
 

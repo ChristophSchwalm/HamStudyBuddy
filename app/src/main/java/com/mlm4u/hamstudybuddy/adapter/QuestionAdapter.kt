@@ -1,5 +1,6 @@
 package com.mlm4u.hamstudybuddy.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,6 +31,7 @@ class QuestionAdapter(
         super.onViewRecycled(holder)
 
         holder.binding.cvReadyForGame.visibility = View.GONE
+        holder.binding.imageView2.visibility = View.GONE
         holder.binding.cvAnswerA.setCardBackgroundColor(ContextCompat.getColor(holder.itemView.context, R.color.white))
         holder.binding.cvAnswerB.setCardBackgroundColor(ContextCompat.getColor(holder.itemView.context, R.color.white))
         holder.binding.cvAnswerC.setCardBackgroundColor(ContextCompat.getColor(holder.itemView.context, R.color.white))
@@ -40,6 +42,25 @@ class QuestionAdapter(
         val item = dataset[position]
 
         holder.binding.tvQuestion.text = item.question
+        Log.d("QuestionAdapter", "Question: ${item.question}")
+        if (item.pictureQuestion != null) {
+            val drawableName = item.pictureQuestion.toLowerCase()
+            Log.d("QuestionAdapter", "Nach if drawableName: $drawableName")
+            val pictureQuestion = holder.itemView.context.resources.getIdentifier(
+                drawableName,
+                "drawable",
+                holder.itemView.context.packageName
+            )
+            if (pictureQuestion != 0) {
+                // Drawable im ImageView setzen
+                holder.binding.imageView2.setImageResource(pictureQuestion)
+                holder.binding.imageView2.visibility = View.VISIBLE
+            } else {
+                // Optional: Fallback, wenn das Drawable nicht gefunden wird
+                holder.binding.imageView2.visibility = View.GONE
+            }
+        }
+
 
         val answers = listOf(item.answerA, item.answerB, item.answerC, item.answerD)
         val shuffledAnswers = answers.shuffled()
