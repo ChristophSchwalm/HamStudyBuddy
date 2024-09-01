@@ -2,14 +2,12 @@ package com.mlm4u.hamstudybuddy.ui
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import com.mlm4u.hamstudybuddy.R
+import androidx.fragment.app.Fragment
 import com.mlm4u.hamstudybuddy.databinding.FragmentBootcampBinding
 
 class BootcampFragment : Fragment() {

@@ -13,9 +13,7 @@ import com.mlm4u.hamstudybuddy.data.database.QuestionsDatabase.Companion.getData
 import com.mlm4u.hamstudybuddy.data.model.Root
 import com.mlm4u.hamstudybuddy.data.model.VersionResponse
 import com.mlm4u.hamstudybuddy.data.remote.QuestionApi
-import com.mlm4u.hamstudybuddy.data.remote.QuestionRemoteApi
 import kotlinx.coroutines.launch
-import okhttp3.internal.threadName
 
 class SharedViewModel(
     application: Application

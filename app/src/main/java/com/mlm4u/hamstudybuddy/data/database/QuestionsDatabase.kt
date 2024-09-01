@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 
 @Database(entities = [Questions::class], version = 1)
 abstract class QuestionsDatabase : RoomDatabase() {
-    abstract val QuestionsDao : QuestionsDao
+    abstract val questionsDao : QuestionsDao
 
     companion object {private lateinit var database: QuestionsDatabase
 

@@ -2,7 +2,6 @@ package com.mlm4u.hamstudybuddy.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.lifecycle.LiveData
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.mlm4u.hamstudybuddy.R
