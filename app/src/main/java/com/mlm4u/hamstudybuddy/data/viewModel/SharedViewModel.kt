@@ -26,18 +26,6 @@ class SharedViewModel(
     private val firebaseRepository = FirebaseRepository()
     private val api = QuestionApi
 
-    init {
-        viewModelScope.launch {
-            val userSettings = getUserSettings()
-            if (userSettings != null) {
-                _userClass.value = userSettings["UserClass"] as? String
-            } else {
-                _userClass.value = "0" // Standardwert, falls keine Einstellungen gefunden wurden
-            }
-        }
-    }
-
-
     val currentUser = firebaseRepository.currentUser
 
     private val _userClass = MutableLiveData<String>("")
@@ -90,7 +78,7 @@ class SharedViewModel(
         val userSettings = firebaseRepository.getUserSettings()
         if (userSettings != null) {
             _userClass.value = userSettings["UserClass"] as? String
-            val name = userSettings["Name"] as? String
+            userSettings["Name"] as? String
             // Verwende die Werte userClass und name
             return userSettings
         } else {
@@ -108,8 +96,8 @@ class SharedViewModel(
 //**************************************************************************************************
 //Api
 
-    suspend fun getVersionApi() : VersionResponse {
-        return api.retrofitService.getVersionApi()
+    suspend fun getVersionApi(): Double { // Rückgabetyp Double hinzugefügt
+        return api.retrofitService.getVersionApi().version // Wert zurückgeben
     }
 
     fun getQuestionsApi() {
@@ -131,8 +119,6 @@ class SharedViewModel(
                 Log.e("MainActivity", "Fehler Api -> Room: ${e.message}")
             }
         }
-
-        //return api.retrofitService.getQuestionsApi()
     }
 }
 

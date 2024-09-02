@@ -8,8 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
-import com.mlm4u.hamstudybuddy.data.database.Questions
-import com.mlm4u.hamstudybuddy.data.model.Root
 import com.mlm4u.hamstudybuddy.data.viewModel.SharedViewModel
 import com.mlm4u.hamstudybuddy.databinding.FragmentSettingsBinding
 import kotlinx.coroutines.launch
@@ -43,10 +41,12 @@ class SettingsFragment : Fragment() {
                 "3" -> vb.rbClassA.isChecked = true
             }
         }
-        lifecycleScope.launch{
-            val version = sharedViewModel.getVersionApi()
-            vb.tvVersionNumber.setText("Version: " + version.version.toString())
-        }
+
+/*        lifecycleScope.launch{
+            Log.d("Version", sharedViewModel.getVersionApi().toString())
+            vb.tvVersionNumber.text = sharedViewModel.getVersionApi().toString()
+        }*/
+
 
 
         vb.rgKlassen.setOnCheckedChangeListener { _, checkedId ->

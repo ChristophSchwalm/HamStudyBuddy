@@ -29,7 +29,7 @@ class PoolFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         vb.rvPool.layoutManager = LinearLayoutManager(requireContext())
-
+        adapter = PoolAdapter(sharedViewModel.allTitle.value ?: emptyList(), sharedViewModel)
 
         sharedViewModel.allTitle.observe(viewLifecycleOwner) { allTitle ->
             adapter = PoolAdapter(allTitle, sharedViewModel)
