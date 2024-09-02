@@ -1,6 +1,7 @@
 package com.mlm4u.hamstudybuddy.data.viewModel
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -111,8 +112,27 @@ class SharedViewModel(
         return api.retrofitService.getVersionApi()
     }
 
-    suspend fun getQuestionsApi() : Root {
-        return api.retrofitService.getQuestionsApi()
+    fun getQuestionsApi() {
+        viewModelScope.launch {
+            try {
+                val data: Root = api.retrofitService.getQuestionsApi()
+                data.let {
+                    // Alle Questions aus den JSON-Daten extrahieren
+                    val allQuestions = it.getAllQuestions()
+                    // Die Questions in UserQuestions umwandeln
+                    val gameQuestions: List<Questions> = allQuestions.map { question ->
+                        question.toUserQuestion()
+                    }
+                    // Die Fragen in die Datenbank einfügen
+                    repository.insertQuestions(gameQuestions)
+                }
+            } catch (e: Exception) {
+                // Fehlerbehandlung, z. B. Anzeige einer Fehlermeldung
+                Log.e("MainActivity", "Fehler Api -> Room: ${e.message}")
+            }
+        }
+
+        //return api.retrofitService.getQuestionsApi()
     }
 }
 

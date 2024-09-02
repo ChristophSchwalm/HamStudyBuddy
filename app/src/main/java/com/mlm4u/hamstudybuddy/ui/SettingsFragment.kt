@@ -62,29 +62,9 @@ class SettingsFragment : Fragment() {
         }
 
         vb.btUpdate.setOnClickListener{
-            api()
+            sharedViewModel.getQuestionsApi()
         }
 
     }
 
-    private fun api () {
-        lifecycleScope.launch {
-            try {
-                val data: Root = sharedViewModel.getQuestionsApi()
-                data.let {
-                    // Alle Questions aus den JSON-Daten extrahieren
-                    val allQuestions = it.getAllQuestions()
-                    // Die Questions in UserQuestions umwandeln
-                    val gameQuestions: List<Questions> = allQuestions.map { question ->
-                        question.toUserQuestion()
-                    }
-                    // Die Fragen in die Datenbank einfügen
-                    sharedViewModel.insertQuestions(gameQuestions)
-                }
-            } catch (e: Exception) {
-                // Fehlerbehandlung, z. B. Anzeige einer Fehlermeldung
-                Log.e("MainActivity", "Fehler Api -> Room: ${e.message}")
-            }
-        }
-    }
 }
