@@ -49,7 +49,11 @@
         android:id="@+id/poolFragment"
         android:name="com.mlm4u.hamstudybuddy.ui.PoolFragment"
         android:label="fragment_question_pool"
-        tools:layout="@layout/fragment_pool" />
+        tools:layout="@layout/fragment_pool" >
+        <action
+            android:id="@+id/action_poolFragment_to_questionFragment"
+            app:destination="@id/questionFragment" />
+    </fragment>
     <fragment
         android:id="@+id/gameFragment"
         android:name="com.mlm4u.hamstudybuddy.ui.GameFragment"
@@ -59,5 +63,9 @@
         android:id="@+id/questionFragment"
         android:name="com.mlm4u.hamstudybuddy.ui.QuestionFragment"
         android:label="fragment_question"
-        tools:layout="@layout/fragment_question" />
+        tools:layout="@layout/fragment_question" >
+        <action
+            android:id="@+id/action_questionFragment_to_poolFragment"
+            app:destination="@id/poolFragment" />
+    </fragment>
 </navigation>

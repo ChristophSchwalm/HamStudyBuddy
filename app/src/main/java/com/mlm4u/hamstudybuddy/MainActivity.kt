@@ -2,9 +2,11 @@ package com.mlm4u.hamstudybuddy
 
 import android.graphics.Color
 import android.os.Bundle
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.mlm4u.hamstudybuddy.data.viewModel.SharedViewModel
@@ -19,17 +21,26 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         vb = ActivityMainBinding.inflate(layoutInflater)
         setContentView(vb.root)
-
+        handleOnBackPressed()
         window.statusBarColor = ContextCompat.getColor(this, R.color.black)
 
         val navHost = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         val navController = navHost.navController
-
         vb.bottomNavigationView.setupWithNavController(navController)
         vb.bottomNavigationView.itemIconTintList = null
         vb.bottomNavigationView.setBackgroundColor(Color.TRANSPARENT)
 
 
+
     }
 
+
+
+    private fun handleOnBackPressed() {
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                vb.fragmentContainerView.findNavController().navigateUp() }
+        }
+        onBackPressedDispatcher.addCallback(callback)
+    }
 }

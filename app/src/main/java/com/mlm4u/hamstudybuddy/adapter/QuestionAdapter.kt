@@ -42,10 +42,8 @@ class QuestionAdapter(
         val item = dataset[position]
 
         holder.binding.tvQuestion.text = item.question
-        Log.d("QuestionAdapter", "Question: ${item.question}")
         if (item.pictureQuestion != null) {
-            val drawableName = item.pictureQuestion.toLowerCase()
-            Log.d("QuestionAdapter", "Nach if drawableName: $drawableName")
+            val drawableName = item.pictureQuestion.lowercase()
             val pictureQuestion = holder.itemView.context.resources.getIdentifier(
                 drawableName,
                 "drawable",
