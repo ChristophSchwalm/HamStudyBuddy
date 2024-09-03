@@ -28,6 +28,10 @@ class SharedViewModel(
 
     val currentUser = firebaseRepository.currentUser
 
+    private val _version = MutableLiveData<Double>(0.0)
+    val version: LiveData<Double>
+        get() = _version
+
     private val _userClass = MutableLiveData<String>("")
     val userClass: LiveData<String>
         get() = _userClass
@@ -35,6 +39,10 @@ class SharedViewModel(
     private val _selectedTitle = MutableLiveData<String>()
     val selectedTitle: LiveData<String>
         get() = _selectedTitle
+
+    init {
+        getVersionApi()
+    }
 
     val allTitle: LiveData<List<Questions>> = userClass.switchMap { it ->
         repository.getAllTitle(it)
@@ -96,8 +104,11 @@ class SharedViewModel(
 //**************************************************************************************************
 //Api
 
-    suspend fun getVersionApi(): Double { // Rückgabetyp Double hinzugefügt
-        return api.retrofitService.getVersionApi().version // Wert zurückgeben
+
+    fun getVersionApi(){
+        viewModelScope.launch {
+            _version.value = api.retrofitService.getVersionApi().version // Wert zurückgeben
+        }
     }
 
     fun getQuestionsApi() {

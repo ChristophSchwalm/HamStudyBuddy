@@ -29,7 +29,7 @@ class SettingsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Starten einer Coroutine
-        viewLifecycleOwner.lifecycleScope.launch {
+        lifecycleScope.launch {
             val userSettings = sharedViewModel.getUserSettings()
             vb.teName.setText(userSettings?.get("Name") as? String)
         }
@@ -42,12 +42,9 @@ class SettingsFragment : Fragment() {
             }
         }
 
-/*        lifecycleScope.launch{
-            Log.d("Version", sharedViewModel.getVersionApi().toString())
-            vb.tvVersionNumber.text = sharedViewModel.getVersionApi().toString()
-        }*/
-
-
+        sharedViewModel.version.observe(viewLifecycleOwner){
+            vb.tvVersionNumber.text = it.toString()
+        }
 
         vb.rgKlassen.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId){

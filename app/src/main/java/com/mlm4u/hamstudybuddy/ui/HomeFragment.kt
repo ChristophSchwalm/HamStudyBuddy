@@ -34,7 +34,6 @@ class HomeFragment : Fragment() {
         bottomNavigationView.visibility = View.VISIBLE
 
         authenticationViewModel.currentUser.observe(viewLifecycleOwner){
-            Log.d("User", "${authenticationViewModel.currentUser}")
             if (it == null) {
                 findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
             }
