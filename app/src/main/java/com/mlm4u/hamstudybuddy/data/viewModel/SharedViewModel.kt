@@ -9,6 +9,7 @@ import androidx.lifecycle.switchMap
 import androidx.lifecycle.viewModelScope
 import com.mlm4u.hamstudybuddy.data.FirebaseRepository
 import com.mlm4u.hamstudybuddy.data.Repository
+import com.mlm4u.hamstudybuddy.data.database.GameQuestions
 import com.mlm4u.hamstudybuddy.data.database.Questions
 import com.mlm4u.hamstudybuddy.data.database.QuestionsDatabase.Companion.getDatabase
 import com.mlm4u.hamstudybuddy.data.model.Root
@@ -77,7 +78,14 @@ class SharedViewModel(
             repository.setReady4Game(number)
         }
     }
+//**************************************************************************************************
+//GameQuestions
 
+    fun insertGameQuestion(gameQuestions: Questions){
+        viewModelScope.launch {
+            repository.insertGameQuestion(gameQuestions)
+        }
+    }
 
 //**************************************************************************************************
 //Firebase

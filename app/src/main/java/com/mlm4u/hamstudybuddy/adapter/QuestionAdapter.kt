@@ -1,11 +1,13 @@
 package com.mlm4u.hamstudybuddy.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.mlm4u.hamstudybuddy.R
+import com.mlm4u.hamstudybuddy.data.database.GameQuestions
 import com.mlm4u.hamstudybuddy.data.database.Questions
 import com.mlm4u.hamstudybuddy.data.viewModel.SharedViewModel
 import com.mlm4u.hamstudybuddy.databinding.QuestionViewBinding
@@ -74,6 +76,8 @@ class QuestionAdapter(
 
         holder.binding.cvReadyForGame.setOnClickListener{
             sharedViewModel.setReady4Game(item.number)
+            sharedViewModel.insertGameQuestion(item)
+            Log.d("R4G", item.number)
         }
 
     }

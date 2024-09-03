@@ -1,6 +1,8 @@
 package com.mlm4u.hamstudybuddy.data
 
+import android.util.Log
 import androidx.lifecycle.LiveData
+import com.mlm4u.hamstudybuddy.data.database.GameQuestions
 import com.mlm4u.hamstudybuddy.data.database.Questions
 import com.mlm4u.hamstudybuddy.data.database.QuestionsDatabase
 
@@ -28,5 +30,13 @@ class Repository (
 
     suspend fun setReady4Game(number: String) {
         database.questionsDao.setReady4Game(number)
+        Log.d("R4G", "Go for Dao $number")
+    }
+
+//**************************************************************************************************
+//GameQuestionDao
+
+    suspend fun insertGameQuestion(gameQuestions: Questions) {
+        database.gameQuestionsDao.insertGameQuestion(gameQuestions)
     }
 }
