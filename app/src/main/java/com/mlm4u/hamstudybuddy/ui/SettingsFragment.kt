@@ -46,6 +46,8 @@ class SettingsFragment : Fragment() {
             vb.tvVersionNumber.text = it.toString()
         }
 
+        vb.tvQuestionsInDB.text = sharedViewModel.countQuestions().toString()
+
         vb.rgKlassen.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId){
                 vb.rbClassN.id -> {sharedViewModel.changeUserClass("1")}

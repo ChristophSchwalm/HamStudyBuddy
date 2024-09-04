@@ -33,6 +33,7 @@ class PoolFragment : Fragment() {
         sharedViewModel.allTitle.observe(viewLifecycleOwner) { allTitle ->
             adapter = PoolAdapter(allTitle, sharedViewModel)
             vb.rvPool.adapter = adapter
+
         }
 
     }

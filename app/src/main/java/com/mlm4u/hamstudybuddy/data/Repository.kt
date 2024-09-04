@@ -30,13 +30,16 @@ class Repository (
 
     suspend fun setReady4Game(number: String) {
         database.questionsDao.setReady4Game(number)
-        Log.d("R4G", "Go for Dao $number")
+    }
+
+    suspend fun countQuestions(): Int {
+        return database.questionsDao.countQuestions()
     }
 
 //**************************************************************************************************
 //GameQuestionDao
 
-    suspend fun insertGameQuestion(gameQuestions: Questions) {
+    suspend fun insertGameQuestion(gameQuestions: GameQuestions) {
         database.gameQuestionsDao.insertGameQuestion(gameQuestions)
     }
 }

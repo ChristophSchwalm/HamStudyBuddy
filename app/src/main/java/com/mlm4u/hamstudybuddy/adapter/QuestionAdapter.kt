@@ -77,7 +77,6 @@ class QuestionAdapter(
         holder.binding.cvReadyForGame.setOnClickListener{
             sharedViewModel.setReady4Game(item.number)
             sharedViewModel.insertGameQuestion(item)
-            Log.d("R4G", item.number)
         }
 
     }

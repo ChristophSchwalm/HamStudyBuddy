@@ -29,6 +29,7 @@ class SharedViewModel(
 
     val currentUser = firebaseRepository.currentUser
 
+
     private val _version = MutableLiveData<Double>(0.0)
     val version: LiveData<Double>
         get() = _version
@@ -78,11 +79,34 @@ class SharedViewModel(
             repository.setReady4Game(number)
         }
     }
+
+    fun countQuestions() {
+        viewModelScope.launch {
+            repository.countQuestions()
+        }
+    }
+
+
 //**************************************************************************************************
 //GameQuestions
 
-    fun insertGameQuestion(gameQuestions: Questions){
+    fun insertGameQuestion(question: Questions){
         viewModelScope.launch {
+            val gameQuestions = GameQuestions(
+                number = question.number,
+                classQuestion = question.classQuestion,
+                titleQuestion = question.titleQuestion,
+                question = question.question,
+                answerA = question.answerA,
+                answerB = question.answerB,
+                answerC = question.answerC,
+                answerD = question.answerD,
+                pictureQuestion = question.pictureQuestion,
+                pictureA = question.pictureA,
+                pictureB = question.pictureB,
+                pictureC = question.pictureC,
+                pictureD = question.pictureD,
+            )
             repository.insertGameQuestion(gameQuestions)
         }
     }

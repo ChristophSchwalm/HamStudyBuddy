@@ -23,4 +23,7 @@ interface QuestionsDao {
 
     @Query("SELECT * FROM table_questions WHERE classQuestion = :classQuestion AND titleQuestion = :selectedTitle AND ready4Game = 0")
     fun getQuestionsByTitle(classQuestion: String, selectedTitle: String): LiveData<List<Questions>>
+
+    @Query("SELECT COUNT(*) FROM table_questions")
+    suspend fun countQuestions(): Int
 }

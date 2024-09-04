@@ -8,5 +8,5 @@ import androidx.room.OnConflictStrategy
 interface GameQuestionsDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertGameQuestion(gameQuestions: Questions)
+    suspend fun insertGameQuestion(gameQuestions: GameQuestions)
 }
