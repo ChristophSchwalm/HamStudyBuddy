@@ -11,6 +11,7 @@ class Repository (
 ) {
 
     //val titleList: LiveData<List<Questions>> = database.QuestionsDao.getAllTitle("1")
+    val getAllGameQuestions = database.gameQuestionsDao.getAllGameQuestions()
 
     suspend fun insertQuestions(questions: List<Questions>) {
         database.questionsDao.insertAll(questions)
@@ -32,8 +33,12 @@ class Repository (
         database.questionsDao.setReady4Game(number)
     }
 
-    suspend fun countQuestions(): Int {
-        return database.questionsDao.countQuestions()
+    suspend fun countQuestions(classQuestion: String): Int {
+        return database.questionsDao.countQuestions(classQuestion)
+    }
+
+    suspend fun deleteNumber(number: String) {
+        database.questionsDao.deleteNumber(number)
     }
 
 //**************************************************************************************************
@@ -41,5 +46,13 @@ class Repository (
 
     suspend fun insertGameQuestion(gameQuestions: GameQuestions) {
         database.gameQuestionsDao.insertGameQuestion(gameQuestions)
+    }
+
+    suspend fun countGameQuestions(): Int {
+        return database.gameQuestionsDao.countGameQuestions()
+    }
+
+    fun getAllGameQuestions() : LiveData<List<GameQuestions>> {
+        return database.gameQuestionsDao.getAllGameQuestions()
     }
 }

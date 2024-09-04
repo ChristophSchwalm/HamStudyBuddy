@@ -75,7 +75,7 @@ class QuestionAdapter(
         holder.binding.cvAnswerD.setOnClickListener{ checkAnswer(holder.binding.tvAnswerD.text.toString(), item, holder) }
 
         holder.binding.cvReadyForGame.setOnClickListener{
-            sharedViewModel.setReady4Game(item.number)
+            sharedViewModel.deleteNumber(item.number)
             sharedViewModel.insertGameQuestion(item)
         }
 

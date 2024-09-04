@@ -153,7 +153,7 @@
                         android:textAlignment="center" />
 
                     <TextView
-                        android:id="@+id/textView9"
+                        android:id="@+id/tvGameQuestions"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Questions in Game"

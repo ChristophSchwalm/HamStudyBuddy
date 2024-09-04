@@ -1,5 +1,6 @@
 package com.mlm4u.hamstudybuddy.ui
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -25,6 +26,7 @@ class SettingsFragment : Fragment() {
         return vb.root
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -40,13 +42,16 @@ class SettingsFragment : Fragment() {
                 "2" -> vb.rbClassE.isChecked = true
                 "3" -> vb.rbClassA.isChecked = true
             }
+            countQuestions()
         }
 
         sharedViewModel.version.observe(viewLifecycleOwner){
             vb.tvVersionNumber.text = it.toString()
         }
 
-        vb.tvQuestionsInDB.text = sharedViewModel.countQuestions().toString()
+
+
+
 
         vb.rgKlassen.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId){
@@ -66,4 +71,13 @@ class SettingsFragment : Fragment() {
 
     }
 
+    fun countQuestions(){
+
+        sharedViewModel.countQuestions {
+            vb.tvQuestionsInDB.text = it.toString()
+        }
+        sharedViewModel.countGameQuestions {
+            vb.tvGameQuestions.text = it.toString()
+        }
+    }
 }

@@ -13,7 +13,6 @@ import com.mlm4u.hamstudybuddy.data.database.GameQuestions
 import com.mlm4u.hamstudybuddy.data.database.Questions
 import com.mlm4u.hamstudybuddy.data.database.QuestionsDatabase.Companion.getDatabase
 import com.mlm4u.hamstudybuddy.data.model.Root
-import com.mlm4u.hamstudybuddy.data.model.VersionResponse
 import com.mlm4u.hamstudybuddy.data.remote.QuestionApi
 import kotlinx.coroutines.launch
 
@@ -29,8 +28,7 @@ class SharedViewModel(
 
     val currentUser = firebaseRepository.currentUser
 
-
-    private val _version = MutableLiveData<Double>(0.0)
+    private val _version = MutableLiveData(0.0)
     val version: LiveData<Double>
         get() = _version
 
@@ -42,6 +40,9 @@ class SharedViewModel(
     val selectedTitle: LiveData<String>
         get() = _selectedTitle
 
+    val allGameQuestions: LiveData<List<GameQuestions>>
+        get() = repository.getAllGameQuestions
+
     init {
         getVersionApi()
     }
@@ -51,10 +52,6 @@ class SharedViewModel(
     }
 
     val questionsByTitle: LiveData<List<Questions>> = selectedTitle.switchMap { it ->
-        repository.getQuestionsByTitle(userClass.value.toString(), selectedTitle.value.toString())
-    }
-
-    fun getQuestionsByTitle() {
         repository.getQuestionsByTitle(userClass.value.toString(), selectedTitle.value.toString())
     }
 
@@ -74,15 +71,17 @@ class SharedViewModel(
         }
     }
 
-    fun setReady4Game(number: String){
+    //Closure <- anschauen !!!
+    fun countQuestions(onCompletion: (Int) -> (Unit)) {
         viewModelScope.launch {
-            repository.setReady4Game(number)
+            val result = repository.countQuestions(_userClass.value.toString())
+            onCompletion(result)
         }
     }
 
-    fun countQuestions() {
+    fun deleteNumber(number: String) {
         viewModelScope.launch {
-            repository.countQuestions()
+            repository.deleteNumber(number)
         }
     }
 
@@ -108,6 +107,14 @@ class SharedViewModel(
                 pictureD = question.pictureD,
             )
             repository.insertGameQuestion(gameQuestions)
+        }
+    }
+
+    //Closure <- anschauen !!!
+    fun countGameQuestions(onCompletion: (Int) -> (Unit)) {
+        viewModelScope.launch {
+            val result = repository.countGameQuestions()
+            onCompletion(result)
         }
     }
 

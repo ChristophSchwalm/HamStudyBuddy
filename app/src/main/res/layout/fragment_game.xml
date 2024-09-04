@@ -10,16 +10,91 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Game"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvGameQuestion"
+            android:layout_width="300dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="32dp"
+            app:cardCornerRadius="10dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.5" />
+            app:layout_constraintTop_toTopOf="parent" >
+
+            <TextView
+                android:id="@+id/tvGameQuestion"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Game Question"
+                android:textAlignment="center" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvA"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/cvC"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                android:id="@+id/tvGameAswerA"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Game Answer A" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvB"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/cvD"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:id="@+id/tvGameAnswerB"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Game Answer B" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvC"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" >
+
+            <TextView
+                android:id="@+id/tvGameAnswerC"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Game Answer C" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvD"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" >
+
+            <TextView
+                android:id="@+id/tvGameAswerD"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Game Answer D" />
+        </androidx.cardview.widget.CardView>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
