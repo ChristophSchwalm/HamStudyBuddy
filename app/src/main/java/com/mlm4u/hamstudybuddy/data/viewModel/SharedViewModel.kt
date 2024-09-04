@@ -45,6 +45,7 @@ class SharedViewModel(
 
     init {
         getVersionApi()
+
     }
 
     val allTitle: LiveData<List<Questions>> = userClass.switchMap { it ->
@@ -113,7 +114,7 @@ class SharedViewModel(
     //Closure <- anschauen !!!
     fun countGameQuestions(onCompletion: (Int) -> (Unit)) {
         viewModelScope.launch {
-            val result = repository.countGameQuestions()
+            val result = repository.countGameQuestions(_userClass.value.toString())
             onCompletion(result)
         }
     }
