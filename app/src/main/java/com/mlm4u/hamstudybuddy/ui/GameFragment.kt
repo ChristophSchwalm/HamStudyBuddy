@@ -25,22 +25,17 @@ class GameFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val questions = sharedViewModel.allGameQuestions.value?.get(1)
+        sharedViewModel.allGameQuestions.observe(viewLifecycleOwner) { gameQuestions ->
+            if (gameQuestions.isNotEmpty()) {
+                val questions = gameQuestions[0]
+                vb.tvGameQuestion.text = questions.question
+                vb.tvGameAswerA.text = questions.answerA
+                vb.tvGameAnswerB.text = questions.answerB
+                vb.tvGameAnswerC.text = questions.answerC
+                vb.tvGameAswerD.text = questions.answerD
 
-        if (questions != null) {
-            vb.tvGameQuestion.text = questions.question
+            }
         }
-        if (questions != null) {
-            vb.tvGameAswerA.text = questions.answerA
-        }
-        if (questions != null) {
-            vb.tvGameAnswerB.text = questions.answerB
-        }
-        if (questions != null) {
-            vb.tvGameAnswerC.text = questions.answerC
-        }
-        if (questions != null) {
-            vb.tvGameAswerD.text = questions.answerD
-        }
+
     }
 }

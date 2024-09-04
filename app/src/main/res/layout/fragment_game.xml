@@ -14,87 +14,110 @@
             android:id="@+id/cvGameQuestion"
             android:layout_width="300dp"
             android:layout_height="200dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             app:cardCornerRadius="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" >
+            app:layout_constraintTop_toBottomOf="@+id/tableLayout">
 
             <TextView
                 android:id="@+id/tvGameQuestion"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="8dp"
                 android:text="Game Question"
                 android:textAlignment="center" />
         </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cvA"
+        <TableLayout
+            android:id="@+id/tableLayout"
             android:layout_width="wrap_content"
-            android:layout_height="100dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginBottom="16dp"
-            app:cardCornerRadius="10dp"
-            app:layout_constraintBottom_toTopOf="@+id/cvC"
-            app:layout_constraintStart_toStartOf="parent">
+            android:layout_height="wrap_content"
+            android:stretchColumns="*">
 
-            <TextView
-                android:id="@+id/tvGameAswerA"
+            <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Game Answer A" />
-        </androidx.cardview.widget.CardView>
+                android:layout_height="match_parent">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cvB"
-            android:layout_width="wrap_content"
-            android:layout_height="100dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            app:cardCornerRadius="10dp"
-            app:layout_constraintBottom_toTopOf="@+id/cvD"
-            app:layout_constraintEnd_toEndOf="parent">
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cvA"
+                    android:layout_width="150dp"
+                    android:layout_height="100dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginBottom="16dp"
+                    app:cardCornerRadius="10dp">
 
-            <TextView
-                android:id="@+id/tvGameAnswerB"
+                    <TextView
+                        android:id="@+id/tvGameAswerA"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="8dp"
+                        android:text="Game Answer A"
+                        android:textAlignment="center" />
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cvB"
+                    android:layout_width="150dp"
+                    android:layout_height="100dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    app:cardCornerRadius="10dp">
+
+                    <TextView
+                        android:id="@+id/tvGameAnswerB"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="8dp"
+                        android:text="Game Answer B"
+                        android:textAlignment="center" />
+                </androidx.cardview.widget.CardView>
+
+            </TableRow>
+
+            <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Game Answer B" />
-        </androidx.cardview.widget.CardView>
+                android:layout_height="match_parent">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cvC"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginBottom="16dp"
-            app:cardCornerRadius="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" >
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cvC"
+                    android:layout_width="150dp"
+                    android:layout_height="100dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginBottom="16dp"
+                    app:cardCornerRadius="10dp">
 
-            <TextView
-                android:id="@+id/tvGameAnswerC"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Game Answer C" />
-        </androidx.cardview.widget.CardView>
+                    <TextView
+                        android:id="@+id/tvGameAnswerC"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="8dp"
+                        android:text="Game Answer C"
+                        android:textAlignment="center" />
+                </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cvD"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            app:cardCornerRadius="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" >
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cvD"
+                    android:layout_width="150dp"
+                    android:layout_height="100dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    app:cardCornerRadius="10dp">
 
-            <TextView
-                android:id="@+id/tvGameAswerD"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Game Answer D" />
-        </androidx.cardview.widget.CardView>
+                    <TextView
+                        android:id="@+id/tvGameAswerD"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="8dp"
+                        android:text="Game Answer D"
+                        android:textAlignment="center" />
+                </androidx.cardview.widget.CardView>
+
+            </TableRow>
+
+        </TableLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </FrameLayout>
