@@ -27,14 +27,18 @@ class GameFragment : Fragment() {
 
         sharedViewModel.allGameQuestions.observe(viewLifecycleOwner) { gameQuestions ->
             if (gameQuestions.isNotEmpty()) {
-                val questions = gameQuestions[0]
-                vb.tvGameQuestion.text = questions.question
-                vb.tvGameAswerA.text = questions.answerA
-                vb.tvGameAnswerB.text = questions.answerB
-                vb.tvGameAnswerC.text = questions.answerC
-                vb.tvGameAswerD.text = questions.answerD
+                val questionsSize = gameQuestions.size
+
+                vb.tvQuestionSize.text = "Du spielst mit $questionsSize Fragen"
+                val randomQuestion = gameQuestions.random()
+                vb.tvGameQuestion.text = randomQuestion.question
+                vb.tvGameAnswerA.text = randomQuestion.answerA
+                vb.tvGameAnswerB.text = randomQuestion.answerB
+                vb.tvGameAnswerC.text = randomQuestion.answerC
+                vb.tvGameAnswerD.text = randomQuestion.answerD
             }
         }
+
 
     }
 }

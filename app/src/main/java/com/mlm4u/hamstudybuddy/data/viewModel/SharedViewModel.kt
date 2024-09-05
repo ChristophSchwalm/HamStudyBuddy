@@ -41,7 +41,7 @@ class SharedViewModel(
         get() = _selectedTitle
 
     val allGameQuestions: LiveData<List<GameQuestions>>
-        get() = repository.getAllGameQuestions
+        get() = repository.getAllGameQuestions(_userClass.value.toString())
 
     init {
         getVersionApi()

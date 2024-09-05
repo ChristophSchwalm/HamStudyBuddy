@@ -11,7 +11,7 @@ class Repository (
 ) {
 
     //val titleList: LiveData<List<Questions>> = database.QuestionsDao.getAllTitle("1")
-    val getAllGameQuestions = database.gameQuestionsDao.getAllGameQuestions()
+    val getAllGameQuestions = database.gameQuestionsDao.getAllGameQuestions("")
 
     suspend fun insertQuestions(questions: List<Questions>) {
         database.questionsDao.insertAll(questions)
@@ -52,7 +52,7 @@ class Repository (
         return database.gameQuestionsDao.countGameQuestions(classQuestion)
     }
 
-    fun getAllGameQuestions() : LiveData<List<GameQuestions>> {
-        return database.gameQuestionsDao.getAllGameQuestions()
+    fun getAllGameQuestions(classQuestion: String) : LiveData<List<GameQuestions>> {
+        return database.gameQuestionsDao.getAllGameQuestions(classQuestion)
     }
 }
