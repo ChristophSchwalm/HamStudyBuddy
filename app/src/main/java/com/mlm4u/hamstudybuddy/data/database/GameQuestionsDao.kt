@@ -5,6 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 
 @Dao
 interface GameQuestionsDao {
@@ -15,6 +16,9 @@ interface GameQuestionsDao {
     @Query("SELECT COUNT(*) FROM game_questions WHERE classQuestion = :classQuestion")
     suspend fun countGameQuestions(classQuestion: String): Int
 
-    @Query("SELECT * FROM game_questions WHERE classQuestion = :classQuestion")
+    @Query("SELECT * FROM game_questions WHERE classQuestion = :classQuestion AND gameCorrectAnswer = 0")
     fun getAllGameQuestions(classQuestion: String): LiveData<List<GameQuestions>>
+
+    @Update
+    suspend fun updateGameQuestion(gameQuestions: GameQuestions)
 }

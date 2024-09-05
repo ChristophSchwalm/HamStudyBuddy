@@ -1,9 +1,11 @@
 package com.mlm4u.hamstudybuddy.ui
 
+import com.mlm4u.hamstudybuddy.R
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.mlm4u.hamstudybuddy.data.viewModel.SharedViewModel
@@ -27,18 +29,72 @@ class GameFragment : Fragment() {
 
         sharedViewModel.allGameQuestions.observe(viewLifecycleOwner) { gameQuestions ->
             if (gameQuestions.isNotEmpty()) {
-                val questionsSize = gameQuestions.size
 
-                vb.tvQuestionSize.text = "Du spielst mit $questionsSize Fragen"
-                val randomQuestion = gameQuestions.random()
-                vb.tvGameQuestion.text = randomQuestion.question
-                vb.tvGameAnswerA.text = randomQuestion.answerA
-                vb.tvGameAnswerB.text = randomQuestion.answerB
-                vb.tvGameAnswerC.text = randomQuestion.answerC
-                vb.tvGameAnswerD.text = randomQuestion.answerD
+                vb.tvQuestionSize.text = "Du spielst mit ${sharedViewModel.allGameQuestions.value?.size} Fragen"
+                sharedViewModel.setGameQuestion(gameQuestions.random())
+                val answers = listOf(
+                    sharedViewModel.gameQuestion.value?.answerA,
+                    sharedViewModel.gameQuestion.value?.answerB,
+                    sharedViewModel.gameQuestion.value?.answerC,
+                    sharedViewModel.gameQuestion.value?.answerD
+                )
+                val shuffledAnswers = answers.shuffled()
+
+                vb.tvGameQuestion.text = sharedViewModel.gameQuestion.value?.question
+                vb.tvGameAnswerA.text = shuffledAnswers[0]
+                vb.tvGameAnswerB.text = shuffledAnswers[1]
+                vb.tvGameAnswerC.text = shuffledAnswers[2]
+                vb.tvGameAnswerD.text = shuffledAnswers[3]
+
             }
         }
 
+        vb.cvGameAnswerA.setOnClickListener {
+            checkAnswer(vb.tvGameAnswerA.text.toString())
+        }
+        vb.cvGameAnswerB.setOnClickListener {
+            checkAnswer(vb.tvGameAnswerB.text.toString())
+        }
+        vb.cvGameAnswerC.setOnClickListener {
+            checkAnswer(vb.tvGameAnswerC.text.toString())
+        }
+        vb.cvGameAnswerD.setOnClickListener {
+            checkAnswer(vb.tvGameAnswerD.text.toString())
+        }
+
+    }
+
+    fun checkAnswer(answer: String) {
+        val correctAnswer = sharedViewModel.gameQuestion.value?.answerA
+        val isCorrectAnswer = answer == correctAnswer
+
+        val cardBackgroundColor = if (isCorrectAnswer) {
+            ContextCompat.getColor(requireContext(), R.color.green)
+        } else {
+            ContextCompat.getColor(requireContext(), R.color.red)
+        }
+
+        when (answer) {
+            vb.tvGameAnswerA.text.toString() -> vb.cvGameAnswerA.setCardBackgroundColor(
+                cardBackgroundColor
+            )
+
+            vb.tvGameAnswerB.text.toString() -> vb.cvGameAnswerB.setCardBackgroundColor(
+                cardBackgroundColor
+            )
+
+            vb.tvGameAnswerC.text.toString() -> vb.cvGameAnswerC.setCardBackgroundColor(
+                cardBackgroundColor
+            )
+
+            vb.tvGameAnswerD.text.toString() -> vb.cvGameAnswerD.setCardBackgroundColor(
+                cardBackgroundColor
+            )
+        }
+
+        if (isCorrectAnswer) {
+            sharedViewModel.addCorrectFlag()
+        }
 
     }
 }

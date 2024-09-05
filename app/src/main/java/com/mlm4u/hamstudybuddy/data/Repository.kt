@@ -55,4 +55,8 @@ class Repository (
     fun getAllGameQuestions(classQuestion: String) : LiveData<List<GameQuestions>> {
         return database.gameQuestionsDao.getAllGameQuestions(classQuestion)
     }
+
+    suspend fun updateGameQuestion(gameQuestions: GameQuestions) {
+        database.gameQuestionsDao.updateGameQuestion(gameQuestions)
+    }
 }

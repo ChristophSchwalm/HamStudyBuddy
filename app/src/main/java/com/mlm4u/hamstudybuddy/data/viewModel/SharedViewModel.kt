@@ -43,6 +43,10 @@ class SharedViewModel(
     val allGameQuestions: LiveData<List<GameQuestions>>
         get() = repository.getAllGameQuestions(_userClass.value.toString())
 
+    private var _gameQuestion = MutableLiveData<GameQuestions>()
+    val gameQuestion: LiveData<GameQuestions>
+        get() = _gameQuestion
+
     init {
         getVersionApi()
 
@@ -119,6 +123,19 @@ class SharedViewModel(
         }
     }
 
+    fun setGameQuestion(questions: GameQuestions) {
+        viewModelScope.launch {
+            _gameQuestion.value = questions
+        }
+    }
+
+    fun addCorrectFlag() {
+        _gameQuestion.value?.gameCorrectAnswer = true
+        viewModelScope.launch {
+            _gameQuestion.value?.let { repository.updateGameQuestion(it) }
+        }
+    }
+
 //**************************************************************************************************
 //Firebase
 
@@ -171,6 +188,9 @@ class SharedViewModel(
             }
         }
     }
+
+
+
 }
 
 
