@@ -28,6 +28,7 @@ class SharedViewModel(
 
     val currentUser = firebaseRepository.currentUser
 
+
     private val _version = MutableLiveData(0.0)
     val version: LiveData<Double>
         get() = _version

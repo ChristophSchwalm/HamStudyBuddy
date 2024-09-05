@@ -2,6 +2,7 @@ package com.mlm4u.hamstudybuddy.ui
 
 import com.mlm4u.hamstudybuddy.R
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +17,7 @@ class GameFragment : Fragment() {
     private lateinit var vb: FragmentGameBinding
     private val sharedViewModel: SharedViewModel by activityViewModels()
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -27,11 +29,18 @@ class GameFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        Log.d("GameFragment", "sharedViewModel.userclass: ${sharedViewModel.userClass.value.toString()}")
+        if (sharedViewModel.gameQuestion.value == null) {
+            vb.tvGameQuestion.text = "Es gibt noch keine Fragen im Game!"
+            vb.tvQuestionSize.text = ""
+        } else {
+        }
+
         sharedViewModel.allGameQuestions.observe(viewLifecycleOwner) { gameQuestions ->
             if (gameQuestions.isNotEmpty()) {
 
-                vb.tvQuestionSize.text = "Du spielst mit ${sharedViewModel.allGameQuestions.value?.size} Fragen"
                 sharedViewModel.setGameQuestion(gameQuestions.random())
+                vb.tvQuestionSize.text = "Du spielst mit ${sharedViewModel.allGameQuestions.value?.size} Fragen"
                 val answers = listOf(
                     sharedViewModel.gameQuestion.value?.answerA,
                     sharedViewModel.gameQuestion.value?.answerB,
