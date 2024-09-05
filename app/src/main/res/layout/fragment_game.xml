@@ -12,29 +12,37 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cvGameQuestion"
-            android:layout_width="300dp"
+            android:layout_width="0dp"
             android:layout_height="200dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
             app:cardCornerRadius="10dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tableLayout">
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:id="@+id/tvGameQuestion"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="8dp"
+                android:gravity="center"
                 android:text="Game Question"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textStyle="bold" />
         </androidx.cardview.widget.CardView>
 
         <TableLayout
             android:id="@+id/tableLayout"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:stretchColumns="*">
+            android:stretchColumns="*"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent">
 
             <TableRow
                 android:layout_width="match_parent"
@@ -42,9 +50,11 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cvA"
-                    android:layout_width="150dp"
-                    android:layout_height="100dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="200dp"
                     android:layout_marginStart="16dp"
+                    android:layout_marginEnd="4dp"
                     android:layout_marginBottom="16dp"
                     app:cardCornerRadius="10dp">
 
@@ -53,14 +63,18 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="8dp"
+                        android:gravity="center"
                         android:text="Game Answer A"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cvB"
-                    android:layout_width="150dp"
-                    android:layout_height="100dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="200dp"
+                    android:layout_marginStart="4dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
                     app:cardCornerRadius="10dp">
@@ -70,8 +84,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="8dp"
+                        android:gravity="center"
                         android:text="Game Answer B"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
                 </androidx.cardview.widget.CardView>
 
             </TableRow>
@@ -82,9 +98,11 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cvC"
-                    android:layout_width="150dp"
-                    android:layout_height="100dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="200dp"
                     android:layout_marginStart="16dp"
+                    android:layout_marginEnd="4dp"
                     android:layout_marginBottom="16dp"
                     app:cardCornerRadius="10dp">
 
@@ -93,14 +111,18 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="8dp"
+                        android:gravity="center"
                         android:text="Game Answer C"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cvD"
-                    android:layout_width="150dp"
-                    android:layout_height="100dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="200dp"
+                    android:layout_marginStart="4dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
                     app:cardCornerRadius="10dp">
@@ -110,8 +132,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="8dp"
+                        android:gravity="center"
                         android:text="Game Answer D"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
                 </androidx.cardview.widget.CardView>
 
             </TableRow>

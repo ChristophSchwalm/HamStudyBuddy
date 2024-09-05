@@ -33,7 +33,6 @@ class GameFragment : Fragment() {
                 vb.tvGameAnswerB.text = questions.answerB
                 vb.tvGameAnswerC.text = questions.answerC
                 vb.tvGameAswerD.text = questions.answerD
-
             }
         }
 
