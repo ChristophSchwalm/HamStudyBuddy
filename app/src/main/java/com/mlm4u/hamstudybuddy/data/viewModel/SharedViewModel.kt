@@ -41,19 +41,17 @@ class SharedViewModel(
     val selectedTitle: LiveData<String>
         get() = _selectedTitle
 
-    init {
-        getVersionApi()
-        getUserSettings()
-    }
-
-    val allGameQuestions: LiveData<List<GameQuestions>>
-        get () = repository.getAllGameQuestions(_userClass.value.toString())
-
     private var _gameQuestion = MutableLiveData<GameQuestions>()
     val gameQuestion: LiveData<GameQuestions>
         get() = _gameQuestion
 
+    private val _allGameQuestions = MutableLiveData<List<GameQuestions>>()
+    val allGameQuestions: List<GameQuestions>? = _allGameQuestions.value
 
+    init {
+        getVersionApi()
+        getUserSettings()
+    }
 
 
     val allTitle: LiveData<List<Questions>> = userClass.switchMap { it ->
@@ -140,6 +138,12 @@ class SharedViewModel(
         }
     }
 
+    fun allGameQuestions() {
+        viewModelScope.launch {
+            _allGameQuestions.value = repository.allGameQuestions(_userClass.value.toString())
+        }
+    }
+
 //**************************************************************************************************
 //Firebase
 
@@ -149,6 +153,7 @@ class SharedViewModel(
             if (userSettings != null) {
                 _userClass.value = userSettings["UserClass"] as? String
                 userSettings["Name"] as? String
+                allGameQuestions()
                 // Verwende die Werte userClass und name
                 //return userSettings
             } else {

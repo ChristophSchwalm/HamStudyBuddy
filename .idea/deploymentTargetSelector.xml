@@ -4,10 +4,10 @@
     <selectionStates>
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2024-09-06T11:07:29.202633800Z">
+        <DropdownSelection timestamp="2024-09-06T11:27:41.256173500Z">
           <Target type="DEFAULT_BOOT">
             <handle>
-              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\chris\.android\avd\RedMi_A3_API_34.avd" />
+              <DeviceId pluginId="PhysicalDevice" identifier="serial=59A6U4IJ9HVSFMSC" />
             </handle>
           </Target>
         </DropdownSelection>
