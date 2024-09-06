@@ -30,11 +30,11 @@ class SettingsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Starten einer Coroutine
-        lifecycleScope.launch {
-            val userSettings = sharedViewModel.getUserSettings()
-            vb.teName.setText(userSettings?.get("Name") as? String)
-        }
+//        // Starten einer Coroutine
+//        lifecycleScope.launch {
+//            val userSettings = sharedViewModel.getUserSettings()
+//            vb.teName.setText(userSettings?.get("Name") as? String)
+//        }
 
         sharedViewModel.userClass.observe(viewLifecycleOwner){
             when(it){

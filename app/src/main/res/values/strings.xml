@@ -2,11 +2,14 @@
     <string name="app_name">HamStudyBuddy</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="Teil2">Bereite dich optimal auf deine Amateurfunkprüfung vor! Mit unserer App hast du alle Werkzeuge zur Hand, um erfolgreich deine Prüfung zu meistern. Egal, ob du gerade erst anfängst oder bereits tief in die Materie eingetaucht bist – unsere interaktiven Lernmodule, Übungsfragen und Erklärungen helfen dir, das nötige Wissen Schritt für Schritt zu erarbeiten.</string>
-    <string name="Teil4"><![CDATA[Strukturiertes Lernen: Alle wichtigen Themengebiete übersichtlich aufbereitet.
-Übungsfragen & Tests: Teste dein Wissen mit originalgetreuen Prüfungsfragen.
-Lernfortschritt verfolgen: Behalte deinen Fortschritt im Blick und erkenne, wo du noch üben solltest.
-Starte jetzt und erobere die Funkwellen!]]></string>
-    <string name="Teil3">Warum HamStudyBuddy?</string>
+    <string name="Teil2">Bist du bereit, die Funkwellen zu erobern und vielleicht sogar die Welt zu retten? Mit unserer App bereitest du dich optimal auf deine Amateurfunkprüfung vor – und das ist nicht nur nützlich, sondern könnte dir auch mal den Hintern retten!
+
+Stell dir vor: Ein Stromausfall legt das Handynetz lahm, und die nächste Katastrophe lässt nicht lange auf sich warten – oder, wer weiß, vielleicht steht sogar eine Zombie-Apokalypse vor der Tür (ja, du lachst jetzt, aber wer weiß!). </string>
+    <string name="Teil4">In solchen Momenten bist du der Held mit dem Funkgerät in der Hand, bereit, den Kontakt zur Außenwelt zu halten und wichtige Informationen zu senden und zu empfangen.
+
+Unsere App hat alles, was du brauchst: interaktive Lernmodule, die dir spielerisch die Welt des Amateurfunks näherbringen, und Prüfungsfragen, mit denen du dein Wissen auf die Probe stellst. Du kannst deinen Lernfortschritt verfolgen und genau sehen, in welchen Bereichen du dich noch verbessern kannst.
+
+Und das Beste daran? Du musst kein Technik-Genie sein, um damit durchzustarten! Wir machen es einfach und unterhaltsam. Egal, ob du gerade erst anfängst oder schon mitten im Thema steckst – mit uns wird das Lernen zum Spaß. Also, worauf wartest du? Starte jetzt und werde zum Funk-Hero, der im Ernstfall die Welt (oder zumindest seine Nachbarschaft) rettet!</string>
+    <string name="Teil3"></string>
     <string name="Teil1">Willkommen zu\nHamStudyBuddy!</string>
 </resources>

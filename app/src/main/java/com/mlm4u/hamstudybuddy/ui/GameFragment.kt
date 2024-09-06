@@ -1,8 +1,8 @@
 package com.mlm4u.hamstudybuddy.ui
 
+import android.annotation.SuppressLint
 import com.mlm4u.hamstudybuddy.R
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.mlm4u.hamstudybuddy.data.viewModel.SharedViewModel
 import com.mlm4u.hamstudybuddy.databinding.FragmentGameBinding
+import java.util.Timer
+import kotlin.concurrent.timerTask
 
 class GameFragment : Fragment() {
 
@@ -29,18 +31,17 @@ class GameFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        Log.d("GameFragment", "sharedViewModel.userclass: ${sharedViewModel.userClass.value.toString()}")
         if (sharedViewModel.gameQuestion.value == null) {
             vb.tvGameQuestion.text = "Es gibt noch keine Fragen im Game!"
             vb.tvQuestionSize.text = ""
-        } else {
         }
 
         sharedViewModel.allGameQuestions.observe(viewLifecycleOwner) { gameQuestions ->
             if (gameQuestions.isNotEmpty()) {
-
+                resetView()
+                val qSize = gameQuestions.size
                 sharedViewModel.setGameQuestion(gameQuestions.random())
-                vb.tvQuestionSize.text = "Du spielst mit ${sharedViewModel.allGameQuestions.value?.size} Fragen"
+                vb.tvQuestionSize.text = "Du spielst mit ${qSize} Fragen"
                 val answers = listOf(
                     sharedViewModel.gameQuestion.value?.answerA,
                     sharedViewModel.gameQuestion.value?.answerB,
@@ -73,6 +74,13 @@ class GameFragment : Fragment() {
 
     }
 
+    private fun resetView() {
+        vb.cvGameAnswerA.setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.white))
+        vb.cvGameAnswerB.setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.white))
+        vb.cvGameAnswerC.setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.white))
+        vb.cvGameAnswerD.setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.white))
+    }
+
     fun checkAnswer(answer: String) {
         val correctAnswer = sharedViewModel.gameQuestion.value?.answerA
         val isCorrectAnswer = answer == correctAnswer
@@ -84,25 +92,37 @@ class GameFragment : Fragment() {
         }
 
         when (answer) {
-            vb.tvGameAnswerA.text.toString() -> vb.cvGameAnswerA.setCardBackgroundColor(
-                cardBackgroundColor
-            )
+            vb.tvGameAnswerA.text.toString() -> {
+                vb.cvGameAnswerA.setCardBackgroundColor(
+                    cardBackgroundColor
+                )
 
-            vb.tvGameAnswerB.text.toString() -> vb.cvGameAnswerB.setCardBackgroundColor(
-                cardBackgroundColor
-            )
+            }
+            vb.tvGameAnswerB.text.toString() -> {
+                vb.cvGameAnswerB.setCardBackgroundColor(
+                    cardBackgroundColor
+                )
 
-            vb.tvGameAnswerC.text.toString() -> vb.cvGameAnswerC.setCardBackgroundColor(
-                cardBackgroundColor
-            )
+            }
+            vb.tvGameAnswerC.text.toString() -> {
+                vb.cvGameAnswerC.setCardBackgroundColor(
+                    cardBackgroundColor
+                )
 
-            vb.tvGameAnswerD.text.toString() -> vb.cvGameAnswerD.setCardBackgroundColor(
-                cardBackgroundColor
-            )
+            }
+            vb.tvGameAnswerD.text.toString() -> {
+                vb.cvGameAnswerD.setCardBackgroundColor(
+                    cardBackgroundColor
+                )
+
+            }
         }
 
         if (isCorrectAnswer) {
-            sharedViewModel.addCorrectFlag()
+            Timer().schedule(timerTask {
+                sharedViewModel.addCorrectFlag()
+            },3000)
+
         }
 
     }

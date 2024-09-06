@@ -33,7 +33,7 @@ class SharedViewModel(
     val version: LiveData<Double>
         get() = _version
 
-    private val _userClass = MutableLiveData<String>("")
+    private val _userClass = MutableLiveData<String>("0")
     val userClass: LiveData<String>
         get() = _userClass
 
@@ -41,17 +41,20 @@ class SharedViewModel(
     val selectedTitle: LiveData<String>
         get() = _selectedTitle
 
+    init {
+        getVersionApi()
+        getUserSettings()
+    }
+
     val allGameQuestions: LiveData<List<GameQuestions>>
-        get() = repository.getAllGameQuestions(_userClass.value.toString())
+        get () = repository.getAllGameQuestions(_userClass.value.toString())
 
     private var _gameQuestion = MutableLiveData<GameQuestions>()
     val gameQuestion: LiveData<GameQuestions>
         get() = _gameQuestion
 
-    init {
-        getVersionApi()
 
-    }
+
 
     val allTitle: LiveData<List<Questions>> = userClass.switchMap { it ->
         repository.getAllTitle(it)
@@ -140,18 +143,19 @@ class SharedViewModel(
 //**************************************************************************************************
 //Firebase
 
-    suspend fun getUserSettings(): Map<String, Any>? {
-        val userSettings = firebaseRepository.getUserSettings()
-        if (userSettings != null) {
-            _userClass.value = userSettings["UserClass"] as? String
-            userSettings["Name"] as? String
-            // Verwende die Werte userClass und name
-            return userSettings
-        } else {
-            // Handle den Fall, dass keine User Settings gefunden wurden
-            return null
+    fun getUserSettings() {
+        viewModelScope.launch {
+            val userSettings = firebaseRepository.getUserSettings()
+            if (userSettings != null) {
+                _userClass.value = userSettings["UserClass"] as? String
+                userSettings["Name"] as? String
+                // Verwende die Werte userClass und name
+                //return userSettings
+            } else {
+                // Handle den Fall, dass keine User Settings gefunden wurden
+                //return null
+            }
         }
-
     }
 
     fun saveUserSettings(name: String) {
