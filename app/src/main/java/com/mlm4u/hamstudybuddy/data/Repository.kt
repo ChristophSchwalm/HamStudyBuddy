@@ -56,6 +56,10 @@ class Repository (
         return database.gameQuestionsDao.allGameQuestions(userClass)
     }
 
+    suspend fun resetGame() {
+        database.gameQuestionsDao.resetGame()
+    }
+
 
     suspend fun updateGameQuestion(gameQuestions: GameQuestions) {
         database.gameQuestionsDao.updateGameQuestion(gameQuestions)

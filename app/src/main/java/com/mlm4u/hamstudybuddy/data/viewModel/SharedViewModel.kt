@@ -154,6 +154,12 @@ class SharedViewModel(
         return result
     }
 
+    fun resetGame() {
+        viewModelScope.launch {
+            repository.resetGame()
+        }
+    }
+
 //**************************************************************************************************
 //Firebase
 

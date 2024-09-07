@@ -1,6 +1,5 @@
 package com.mlm4u.hamstudybuddy.ui
 
-import android.annotation.SuppressLint
 import com.mlm4u.hamstudybuddy.R
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -31,10 +30,10 @@ class GameFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (sharedViewModel.gameQuestion.value == null) {
-            vb.tvGameQuestion.text = "Es gibt noch keine Fragen im Game!"
-            vb.tvQuestionSize.text = ""
+        vb.btGameReset.setOnClickListener {
+            sharedViewModel.resetGame()
         }
+
 
         sharedViewModel.allGameQuestions().observe(viewLifecycleOwner) { gameQuestions ->
             if (gameQuestions.isNotEmpty()) {
@@ -56,25 +55,49 @@ class GameFragment : Fragment() {
                 vb.tvGameAnswerC.text = shuffledAnswers[2]
                 vb.tvGameAnswerD.text = shuffledAnswers[3]
 
+            } else {
+                vb.tvGameQuestion.text = "Es gibt noch keine Fragen im Game!"
+                vb.tvQuestionSize.text = ""
+                resetView()
             }
         }
 
         vb.cvGameAnswerA.setOnClickListener {
             checkAnswer(vb.tvGameAnswerA.text.toString())
+            vb.cvGameAnswerB.isClickable = false
+            vb.cvGameAnswerC.isClickable = false
+            vb.cvGameAnswerD.isClickable = false
         }
         vb.cvGameAnswerB.setOnClickListener {
             checkAnswer(vb.tvGameAnswerB.text.toString())
+            vb.cvGameAnswerA.isClickable = false
+            vb.cvGameAnswerC.isClickable = false
+            vb.cvGameAnswerD.isClickable = false
         }
         vb.cvGameAnswerC.setOnClickListener {
             checkAnswer(vb.tvGameAnswerC.text.toString())
+            vb.cvGameAnswerA.isClickable = false
+            vb.cvGameAnswerB.isClickable = false
+            vb.cvGameAnswerD.isClickable = false
         }
         vb.cvGameAnswerD.setOnClickListener {
             checkAnswer(vb.tvGameAnswerD.text.toString())
+            vb.cvGameAnswerA.isClickable = false
+            vb.cvGameAnswerB.isClickable = false
+            vb.cvGameAnswerC.isClickable = false
         }
 
     }
 
     private fun resetView() {
+        vb.tvGameAnswerA.text = ""
+        vb.tvGameAnswerB.text = ""
+        vb.tvGameAnswerC.text = ""
+        vb.tvGameAnswerD.text = ""
+        vb.cvGameAnswerA.isClickable = true
+        vb.cvGameAnswerB.isClickable = true
+        vb.cvGameAnswerC.isClickable = true
+        vb.cvGameAnswerD.isClickable = true
         vb.cvGameAnswerA.setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.white))
         vb.cvGameAnswerB.setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.white))
         vb.cvGameAnswerC.setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.white))
@@ -114,7 +137,6 @@ class GameFragment : Fragment() {
                 vb.cvGameAnswerD.setCardBackgroundColor(
                     cardBackgroundColor
                 )
-
             }
         }
 
