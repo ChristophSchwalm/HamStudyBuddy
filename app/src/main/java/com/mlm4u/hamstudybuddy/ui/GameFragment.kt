@@ -65,26 +65,38 @@ class GameFragment : Fragment() {
         vb.cvGameAnswerA.setOnClickListener {
             checkAnswer(vb.tvGameAnswerA.text.toString())
             vb.cvGameAnswerB.isClickable = false
+            vb.cvGameAnswerB.alpha = 0.5f
             vb.cvGameAnswerC.isClickable = false
+            vb.cvGameAnswerC.alpha = 0.5f
             vb.cvGameAnswerD.isClickable = false
+            vb.cvGameAnswerD.alpha = 0.5f
         }
         vb.cvGameAnswerB.setOnClickListener {
             checkAnswer(vb.tvGameAnswerB.text.toString())
             vb.cvGameAnswerA.isClickable = false
+            vb.cvGameAnswerA.alpha = 0.5f
             vb.cvGameAnswerC.isClickable = false
+            vb.cvGameAnswerC.alpha = 0.5f
             vb.cvGameAnswerD.isClickable = false
+            vb.cvGameAnswerD.alpha = 0.5f
         }
         vb.cvGameAnswerC.setOnClickListener {
             checkAnswer(vb.tvGameAnswerC.text.toString())
             vb.cvGameAnswerA.isClickable = false
+            vb.cvGameAnswerA.alpha = 0.5f
             vb.cvGameAnswerB.isClickable = false
+            vb.cvGameAnswerB.alpha = 0.5f
             vb.cvGameAnswerD.isClickable = false
+            vb.cvGameAnswerD.alpha = 0.5f
         }
         vb.cvGameAnswerD.setOnClickListener {
             checkAnswer(vb.tvGameAnswerD.text.toString())
             vb.cvGameAnswerA.isClickable = false
+            vb.cvGameAnswerA.alpha = 0.5f
             vb.cvGameAnswerB.isClickable = false
+            vb.cvGameAnswerB.alpha = 0.5f
             vb.cvGameAnswerC.isClickable = false
+            vb.cvGameAnswerC.alpha = 0.5f
         }
 
     }
@@ -98,6 +110,10 @@ class GameFragment : Fragment() {
         vb.cvGameAnswerB.isClickable = true
         vb.cvGameAnswerC.isClickable = true
         vb.cvGameAnswerD.isClickable = true
+        vb.cvGameAnswerA.alpha = 1f
+        vb.cvGameAnswerB.alpha = 1f
+        vb.cvGameAnswerC.alpha = 1f
+        vb.cvGameAnswerD.alpha = 1f
         vb.cvGameAnswerA.setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.white))
         vb.cvGameAnswerB.setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.white))
         vb.cvGameAnswerC.setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.white))
