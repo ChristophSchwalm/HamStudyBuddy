@@ -45,8 +45,6 @@ class SharedViewModel(
     val gameQuestion: LiveData<GameQuestions>
         get() = _gameQuestion
 
-    private val _allGameQuestions = MutableLiveData<List<GameQuestions>>()
-    val allGameQuestions: List<GameQuestions>? = _allGameQuestions.value
 
     init {
         getVersionApi()
@@ -138,10 +136,22 @@ class SharedViewModel(
         }
     }
 
-    fun allGameQuestions() {
+    fun allGameQuestions(): LiveData<List<GameQuestions>> {
+        val result = MutableLiveData<List<GameQuestions>>()
         viewModelScope.launch {
-            _allGameQuestions.value = repository.allGameQuestions(_userClass.value.toString())
+            repository.allGameQuestions(userClass.value ?: "default").observeForever { gameQuestions ->
+                if (gameQuestions != null) {
+                    result.postValue(gameQuestions)
+                    Log.d("ViewModel", "GameQuestions gefunden: ${gameQuestions.size}")
+                    Log.d("ViewModel", "GameQuestions gefunden userClass: ${userClass.value.toString()}")
+                } else {
+                    // Fehlerbehandlung: z.B. leere Liste setzen oder Fehlermeldung anzeigen
+                    result.postValue(emptyList())
+                    Log.e("ViewModel", "Keine GameQuestions gefunden")
+                }
+            }
         }
+        return result
     }
 
 //**************************************************************************************************
@@ -153,12 +163,11 @@ class SharedViewModel(
             if (userSettings != null) {
                 _userClass.value = userSettings["UserClass"] as? String
                 userSettings["Name"] as? String
+                // Rufe allGameQuestions erst auf, nachdem userClass geladen wurde
                 allGameQuestions()
-                // Verwende die Werte userClass und name
-                //return userSettings
+                Log.d("ViewModel", "UserSettings gefunden: ${userSettings["UserClass"]}")
             } else {
                 // Handle den Fall, dass keine User Settings gefunden wurden
-                //return null
             }
         }
     }
@@ -175,6 +184,7 @@ class SharedViewModel(
     fun getVersionApi(){
         viewModelScope.launch {
             _version.value = api.retrofitService.getVersionApi().version // Wert zurückgeben
+            Log.d("ViewModel", "Version: ${_version.value}")
         }
     }
 

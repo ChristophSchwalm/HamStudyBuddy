@@ -2,6 +2,7 @@ package com.mlm4u.hamstudybuddy.data
 
 import android.util.Log
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.mlm4u.hamstudybuddy.data.database.GameQuestions
 import com.mlm4u.hamstudybuddy.data.database.Questions
 import com.mlm4u.hamstudybuddy.data.database.QuestionsDatabase
@@ -9,6 +10,8 @@ import com.mlm4u.hamstudybuddy.data.database.QuestionsDatabase
 class Repository (
     private val database: QuestionsDatabase
 ) {
+
+
 
     suspend fun insertQuestions(questions: List<Questions>) {
         database.questionsDao.insertAll(questions)
@@ -49,8 +52,8 @@ class Repository (
         return database.gameQuestionsDao.countGameQuestions(classQuestion)
     }
 
-    suspend fun allGameQuestions(classQuestion: String): LiveData<List<GameQuestions>> {
-        return database.gameQuestionsDao.allGameQuestions(classQuestion)
+    suspend fun allGameQuestions(userClass: String): LiveData<List<GameQuestions>> {
+        return database.gameQuestionsDao.allGameQuestions(userClass)
     }
 
 

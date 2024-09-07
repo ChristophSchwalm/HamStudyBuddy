@@ -11,12 +11,14 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mlm4u.hamstudybuddy.MainActivity
 import com.mlm4u.hamstudybuddy.R
 import com.mlm4u.hamstudybuddy.data.viewModel.AuthenticationViewModel
+import com.mlm4u.hamstudybuddy.data.viewModel.SharedViewModel
 import com.mlm4u.hamstudybuddy.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
 
     private lateinit var vb: FragmentHomeBinding
     private val authenticationViewModel: AuthenticationViewModel by activityViewModels()
+    private val sharedViewModel: SharedViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,6 +30,8 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        sharedViewModel.getUserSettings()
 
         val bottomNavigationView = (activity as MainActivity).findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         bottomNavigationView.visibility = View.VISIBLE

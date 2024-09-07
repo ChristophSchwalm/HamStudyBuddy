@@ -36,7 +36,7 @@ class GameFragment : Fragment() {
             vb.tvQuestionSize.text = ""
         }
 
-        sharedViewModel.allGameQuestions.observe(viewLifecycleOwner) { gameQuestions ->
+        sharedViewModel.allGameQuestions().observe(viewLifecycleOwner) { gameQuestions ->
             if (gameQuestions.isNotEmpty()) {
                 resetView()
                 val qSize = gameQuestions.size
@@ -121,7 +121,7 @@ class GameFragment : Fragment() {
         if (isCorrectAnswer) {
             Timer().schedule(timerTask {
                 sharedViewModel.addCorrectFlag()
-            },3000)
+            }, 2000)
 
         }
 
