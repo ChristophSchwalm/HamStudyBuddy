@@ -28,6 +28,13 @@ class SharedViewModel(
 
     val currentUser = firebaseRepository.currentUser
 
+    private val _loading = MutableLiveData(false)
+    val loading: LiveData<Boolean>
+        get() = _loading
+
+    private val _userSettings = MutableLiveData<Map<String, Any>>()
+    val userSettings: LiveData<Map<String, Any>>
+        get() = _userSettings
 
     private val _version = MutableLiveData(0.0)
     val version: LiveData<Double>
@@ -96,6 +103,7 @@ class SharedViewModel(
 
     fun insertGameQuestion(question: Questions){
         viewModelScope.launch {
+            _loading.value = true
             val gameQuestions = GameQuestions(
                 number = question.number,
                 classQuestion = question.classQuestion,
@@ -112,6 +120,7 @@ class SharedViewModel(
                 pictureD = question.pictureD,
             )
             repository.insertGameQuestion(gameQuestions)
+            _loading.value = false
         }
     }
 
@@ -167,6 +176,7 @@ class SharedViewModel(
         viewModelScope.launch {
             val userSettings = firebaseRepository.getUserSettings()
             if (userSettings != null) {
+                _userSettings.value = userSettings!!
                 _userClass.value = userSettings["UserClass"] as? String
                 userSettings["Name"] as? String
                 // Rufe allGameQuestions erst auf, nachdem userClass geladen wurde
@@ -196,6 +206,7 @@ class SharedViewModel(
 
     fun getQuestionsApi() {
         viewModelScope.launch {
+            _loading.value = true
             try {
                 val data: Root = api.retrofitService.getQuestionsApi()
                 data.let {
@@ -212,6 +223,7 @@ class SharedViewModel(
                 // Fehlerbehandlung, z. B. Anzeige einer Fehlermeldung
                 Log.e("MainActivity", "Fehler Api -> Room: ${e.message}")
             }
+            _loading.value = false
         }
     }
 

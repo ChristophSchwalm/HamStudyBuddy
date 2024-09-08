@@ -1,17 +1,13 @@
 package com.mlm4u.hamstudybuddy.ui
 
-import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.lifecycleScope
 import com.mlm4u.hamstudybuddy.data.viewModel.SharedViewModel
 import com.mlm4u.hamstudybuddy.databinding.FragmentSettingsBinding
-import kotlinx.coroutines.launch
 
 class SettingsFragment : Fragment() {
 
@@ -26,15 +22,14 @@ class SettingsFragment : Fragment() {
         return vb.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        // Starten einer Coroutine
-//        lifecycleScope.launch {
-//            val userSettings = sharedViewModel.getUserSettings()
-//            vb.teName.setText(userSettings?.get("Name") as? String)
-//        }
+        sharedViewModel.loading.observe(viewLifecycleOwner){
+            vb.linearProgressIndicator.visibility = if (it) View.VISIBLE else View.GONE
+        }
+
+        vb.teName.setText(sharedViewModel.userSettings.value?.get("Name") as? String)
 
         sharedViewModel.userClass.observe(viewLifecycleOwner){
             when(it){
@@ -48,10 +43,6 @@ class SettingsFragment : Fragment() {
         sharedViewModel.version.observe(viewLifecycleOwner){
             vb.tvVersionNumber.text = it.toString()
         }
-
-
-
-
 
         vb.rgKlassen.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId){
