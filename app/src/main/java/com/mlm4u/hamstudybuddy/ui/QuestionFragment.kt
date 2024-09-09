@@ -2,6 +2,7 @@ package com.mlm4u.hamstudybuddy.ui
 
 import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,6 +41,7 @@ class QuestionFragment : Fragment() {
 
         // Beobachte die LiveData
         sharedViewModel.questionsByTitle.observe(viewLifecycleOwner) { questionsByTitle ->
+            Log.d("Adapter", "questionsByTitle geändert: $questionsByTitle")
             if (questionsByTitle.isNotEmpty()) {
             adapter = QuestionAdapter(questionsByTitle, sharedViewModel)
             vb.rvQuestions.adapter = adapter

@@ -1,5 +1,6 @@
 package com.mlm4u.hamstudybuddy.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
@@ -32,6 +33,7 @@ class PoolAdapter(
 
         holder.binding.cvTitle.setOnClickListener {
             sharedViewModel.changeSelectedTitle(title.titleQuestion)
+            Log.d("Adapter", "Title: ${title.titleQuestion}")
             holder.itemView.findNavController().navigate(R.id.questionFragment)
         }
     }
