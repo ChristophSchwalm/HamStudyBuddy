@@ -45,7 +45,7 @@ class QuestionFragment : Fragment() {
             if (questionsByTitle.isNotEmpty()) {
             adapter = QuestionAdapter(questionsByTitle, sharedViewModel)
             vb.rvQuestions.adapter = adapter
-        } else {
+            } else {
                 val builder = AlertDialog.Builder(requireContext())
                 builder.setTitle("Keine weitern Fragen!")
                 builder.setMessage("Klicke hier um zu den Titeln zurückzukehren")

@@ -31,7 +31,7 @@ class PoolFragment : Fragment() {
         vb.rvPool.layoutManager = LinearLayoutManager(requireContext())
 
         sharedViewModel.allTitle.observe(viewLifecycleOwner) { allTitle ->
-            adapter = PoolAdapter(allTitle, sharedViewModel)
+            adapter = PoolAdapter(allTitle, sharedViewModel, viewLifecycleOwner)
             vb.rvPool.adapter = adapter
 
         }

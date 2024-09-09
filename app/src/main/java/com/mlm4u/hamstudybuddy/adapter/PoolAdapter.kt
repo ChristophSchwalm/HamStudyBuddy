@@ -3,6 +3,7 @@ package com.mlm4u.hamstudybuddy.adapter
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.mlm4u.hamstudybuddy.R
@@ -12,7 +13,8 @@ import com.mlm4u.hamstudybuddy.databinding.PoolViewBinding
 
 class PoolAdapter(
     private val dataset: List<Questions>,
-    private val sharedViewModel: SharedViewModel
+    private val sharedViewModel: SharedViewModel,
+    private val lifecycleOwner: LifecycleOwner
 ) : RecyclerView.Adapter<PoolAdapter.PoolViewHolder>(){
 
     inner class PoolViewHolder(val binding: PoolViewBinding) : RecyclerView.ViewHolder(binding.root)
@@ -33,8 +35,12 @@ class PoolAdapter(
 
         holder.binding.cvTitle.setOnClickListener {
             sharedViewModel.changeSelectedTitle(title.titleQuestion)
-            Log.d("Adapter", "Title: ${title.titleQuestion}")
-            holder.itemView.findNavController().navigate(R.id.questionFragment)
+            sharedViewModel.questionsByTitle.observe(lifecycleOwner) { questionsByTitle ->
+                Log.d("Adapter", "questionsByTitle geändert: $questionsByTitle")
+                if (questionsByTitle.isNotEmpty()) {
+                    holder.itemView.findNavController().navigate(R.id.questionFragment)
+                }
+            }
         }
     }
 
