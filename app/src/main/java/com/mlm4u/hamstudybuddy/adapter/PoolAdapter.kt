@@ -36,12 +36,12 @@ class PoolAdapter(
         holder.binding.cvTitle.setOnClickListener {
             sharedViewModel.changeSelectedTitle(title.titleQuestion)
             sharedViewModel.questionsByTitle.observe(lifecycleOwner) { questionsByTitle ->
-                Log.d("Adapter", "questionsByTitle geändert: $questionsByTitle")
                 if (questionsByTitle.isNotEmpty()) {
                     holder.itemView.findNavController().navigate(R.id.questionFragment)
                 }
             }
         }
     }
-
 }
+
+

@@ -41,7 +41,6 @@ class QuestionFragment : Fragment() {
 
         // Beobachte die LiveData
         sharedViewModel.questionsByTitle.observe(viewLifecycleOwner) { questionsByTitle ->
-            Log.d("Adapter", "questionsByTitle geändert: $questionsByTitle")
             if (questionsByTitle.isNotEmpty()) {
             adapter = QuestionAdapter(questionsByTitle, sharedViewModel)
             vb.rvQuestions.adapter = adapter

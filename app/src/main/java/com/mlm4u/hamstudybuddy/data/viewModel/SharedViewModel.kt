@@ -7,8 +7,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.switchMap
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.Navigation.findNavController
-import com.mlm4u.hamstudybuddy.R
 import com.mlm4u.hamstudybuddy.data.FirebaseRepository
 import com.mlm4u.hamstudybuddy.data.Repository
 import com.mlm4u.hamstudybuddy.data.database.GameQuestions
@@ -74,9 +72,7 @@ class SharedViewModel(
     }
 
     fun changeSelectedTitle(newQuestionTitle: String) {
-        viewModelScope.launch {
             _selectedTitle.value = newQuestionTitle
-        }
     }
 
     fun changeUserClass(newUserClass: String) {
