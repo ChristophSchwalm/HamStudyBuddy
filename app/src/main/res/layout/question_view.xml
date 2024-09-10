@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:background="@drawable/hsbbg">
+    android:layout_height="match_parent">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvQuestionTitle"
@@ -15,7 +14,7 @@
         app:cardCornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline7">
+        app:layout_constraintTop_toTopOf="@+id/question330sp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -134,8 +133,6 @@
                         android:id="@+id/tvAnswerA"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
                         android:gravity="center_horizontal|center_vertical"
                         android:text="tvAnswerA"
                         android:textAlignment="center"
@@ -161,7 +158,8 @@
                 app:cardCornerRadius="10dp"
                 app:layout_constraintBottom_toTopOf="@+id/cvAnswerC"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cvAnswerA">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -172,8 +170,6 @@
                         android:id="@+id/tvAnswerB"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
                         android:gravity="center_horizontal|center_vertical"
                         android:text="tvAnswerB"
                         android:textSize="14sp"
@@ -199,7 +195,8 @@
                 app:cardCornerRadius="10dp"
                 app:layout_constraintBottom_toTopOf="@+id/cvAnswerD"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cvAnswerB">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -210,8 +207,6 @@
                         android:id="@+id/tvAnswerC"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
                         android:gravity="center_horizontal|center_vertical"
                         android:text="tvAnswerC"
                         android:textAlignment="center"
@@ -232,13 +227,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginBottom="32dp"
                 android:textAlignment="center"
                 app:cardCornerRadius="10dp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cvAnswerC">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -249,8 +244,6 @@
                         android:id="@+id/tvAnswerD"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
                         android:gravity="center_horizontal|center_vertical"
                         android:text="tvAnswerD"
                         android:textAlignment="center"
@@ -270,10 +263,10 @@
     </androidx.core.widget.NestedScrollView>
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline7"
+        android:id="@+id/question330sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.40" />
+        app:layout_constraintGuide_begin="330sp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
