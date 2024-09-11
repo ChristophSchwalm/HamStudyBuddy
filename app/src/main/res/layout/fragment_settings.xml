@@ -21,17 +21,17 @@
             app:trackThickness="10dp" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline4"
+            android:id="@+id/settings280sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="330sp" />
+            app:layout_constraintGuide_begin="280sp" />
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fillViewport="true"
-            app:layout_constraintTop_toTopOf="@+id/guideline4">
+            app:layout_constraintTop_toTopOf="@+id/settings280sp">
 
             <LinearLayout
                 android:layout_width="match_parent"

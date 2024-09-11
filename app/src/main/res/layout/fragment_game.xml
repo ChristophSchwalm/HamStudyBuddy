@@ -15,7 +15,7 @@
         app:cardCornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/game330sp">
+        app:layout_constraintTop_toTopOf="@+id/game280sp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -244,16 +244,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16sp"
-        android:layout_marginTop="260sp"
+        android:layout_marginTop="216dp"
         android:text="RESET"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/game330sp"
+        android:id="@+id/game280sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="330sp" />
+        app:layout_constraintGuide_begin="280sp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
