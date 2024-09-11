@@ -11,8 +11,6 @@ class Repository (
     private val database: QuestionsDatabase
 ) {
 
-
-
     suspend fun insertQuestions(questions: List<Questions>) {
         database.questionsDao.insertAll(questions)
     }

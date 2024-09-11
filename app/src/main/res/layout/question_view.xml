@@ -269,4 +269,14 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="280sp" />
 
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="match_parent"
+        android:layout_height="280sp"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/hsbbg" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
