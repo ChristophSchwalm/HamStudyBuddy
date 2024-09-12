@@ -10,32 +10,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="Registrierung"
-            android:textColor="#18FFFF"
-            android:textSize="60sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/teLayoutEmail"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
             app:boxBackgroundColor="#18FFFF"
             app:boxCornerRadiusBottomEnd="20dp"
             app:boxCornerRadiusBottomStart="20dp"
             app:boxCornerRadiusTopEnd="20dp"
             app:boxCornerRadiusTopStart="20dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2">
+            app:layout_constraintStart_toStartOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/teEmail"

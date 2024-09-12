@@ -96,5 +96,14 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_begin="400dp" />
 
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/hsbbg"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="10dp" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
