@@ -49,6 +49,7 @@ class GameFragment : Fragment() {
                 )
                 val shuffledAnswers = answers.shuffled()
 
+                vb.tvGameQuestionNumber.text = "Frage Nr.: ${sharedViewModel.gameQuestion.value?.number}"
                 vb.tvGameQuestion.text = sharedViewModel.gameQuestion.value?.question
                 vb.tvGameAnswerA.text = shuffledAnswers[0]
                 vb.tvGameAnswerB.text = shuffledAnswers[1]
