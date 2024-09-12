@@ -44,7 +44,7 @@
                 android:text="@string/Teil2"
                 android:textColor="#FFFFFF"
                 android:textColorLink="#F0CFCF"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -56,7 +56,7 @@
                 android:gravity="center_horizontal"
                 android:text="@string/Teil4"
                 android:textColor="#FFFFFF"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
