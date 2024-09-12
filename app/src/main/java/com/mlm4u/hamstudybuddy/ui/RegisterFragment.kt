@@ -46,5 +46,9 @@ class RegisterFragment : Fragment() {
                 Toast.makeText(context, "Passwörter stimmen nicht überein", Toast.LENGTH_SHORT).show()
             }
         }
+
+        vb.btBack.setOnClickListener{
+            findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+        }
     }
 }
