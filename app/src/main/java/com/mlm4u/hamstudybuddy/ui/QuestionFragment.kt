@@ -33,7 +33,8 @@ class QuestionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        vb.rvQuestions.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        vb.rvQuestions.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
         // Füge den SnapHelper hinzu, aber nur einmal
         val snapHelper = LinearSnapHelper()
@@ -42,8 +43,8 @@ class QuestionFragment : Fragment() {
         // Beobachte die LiveData
         sharedViewModel.questionsByTitle.observe(viewLifecycleOwner) { questionsByTitle ->
             if (questionsByTitle.isNotEmpty()) {
-            adapter = QuestionAdapter(questionsByTitle, sharedViewModel)
-            vb.rvQuestions.adapter = adapter
+                adapter = QuestionAdapter(questionsByTitle, sharedViewModel)
+                vb.rvQuestions.adapter = adapter
             } else {
                 val builder = AlertDialog.Builder(requireContext())
                 builder.setTitle("Keine weitern Fragen!")

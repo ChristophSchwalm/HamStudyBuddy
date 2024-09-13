@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.navigateUp
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mlm4u.hamstudybuddy.MainActivity
 import com.mlm4u.hamstudybuddy.R
@@ -33,16 +34,23 @@ class HomeFragment : Fragment() {
 
         sharedViewModel.getUserSettings()
 
-        val bottomNavigationView = (activity as MainActivity).findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+        val bottomNavigationView =
+            (activity as MainActivity).findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         bottomNavigationView.visibility = View.VISIBLE
 
-        authenticationViewModel.currentUser.observe(viewLifecycleOwner){
+        authenticationViewModel.currentUser.observe(viewLifecycleOwner) {
             if (it == null) {
                 findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
             }
         }
 
-        vb.btLogout.setOnClickListener{
+        sharedViewModel.userClass.observe(viewLifecycleOwner) {
+            if (it == "0") {
+                findNavController().navigate(R.id.action_homeFragment_to_onboardingFragment)
+            }
+        }
+
+        vb.btLogout.setOnClickListener {
             authenticationViewModel.logout()
         }
     }

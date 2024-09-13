@@ -18,7 +18,7 @@ import kotlinx.coroutines.launch
 
 class SharedViewModel(
     application: Application
-) :  AndroidViewModel(application) {
+) : AndroidViewModel(application) {
 
 
     private val database = getDatabase(application)
@@ -72,7 +72,7 @@ class SharedViewModel(
     }
 
     fun changeSelectedTitle(newQuestionTitle: String) {
-            _selectedTitle.value = newQuestionTitle
+        _selectedTitle.value = newQuestionTitle
     }
 
     fun changeUserClass(newUserClass: String) {
@@ -99,7 +99,7 @@ class SharedViewModel(
 //**************************************************************************************************
 //GameQuestions
 
-    fun insertGameQuestion(question: Questions){
+    fun insertGameQuestion(question: Questions) {
         viewModelScope.launch {
             _loading.value = true
             val gameQuestions = GameQuestions(
@@ -146,17 +146,21 @@ class SharedViewModel(
     fun allGameQuestions(): LiveData<List<GameQuestions>> {
         val result = MutableLiveData<List<GameQuestions>>()
         viewModelScope.launch {
-            repository.allGameQuestions(userClass.value ?: "default").observeForever { gameQuestions ->
-                if (gameQuestions != null) {
-                    result.postValue(gameQuestions)
-                    Log.d("ViewModel", "GameQuestions gefunden: ${gameQuestions.size}")
-                    Log.d("ViewModel", "GameQuestions gefunden userClass: ${userClass.value.toString()}")
-                } else {
-                    // Fehlerbehandlung: z.B. leere Liste setzen oder Fehlermeldung anzeigen
-                    result.postValue(emptyList())
-                    Log.e("ViewModel", "Keine GameQuestions gefunden")
+            repository.allGameQuestions(userClass.value ?: "default")
+                .observeForever { gameQuestions ->
+                    if (gameQuestions != null) {
+                        result.postValue(gameQuestions)
+                        Log.d("ViewModel", "GameQuestions gefunden: ${gameQuestions.size}")
+                        Log.d(
+                            "ViewModel",
+                            "GameQuestions gefunden userClass: ${userClass.value.toString()}"
+                        )
+                    } else {
+                        // Fehlerbehandlung: z.B. leere Liste setzen oder Fehlermeldung anzeigen
+                        result.postValue(emptyList())
+                        Log.e("ViewModel", "Keine GameQuestions gefunden")
+                    }
                 }
-            }
         }
         return result
     }
@@ -195,7 +199,7 @@ class SharedViewModel(
 //Api
 
 
-    fun getVersionApi(){
+    fun getVersionApi() {
         viewModelScope.launch {
             _version.value = api.retrofitService.getVersionApi().version // Wert zurückgeben
             Log.d("ViewModel", "Version: ${_version.value}")
@@ -224,7 +228,6 @@ class SharedViewModel(
             _loading.value = false
         }
     }
-
 
 
 }

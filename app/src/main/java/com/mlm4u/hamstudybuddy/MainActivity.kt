@@ -24,7 +24,8 @@ class MainActivity : AppCompatActivity() {
         handleOnBackPressed()
         window.statusBarColor = ContextCompat.getColor(this, R.color.black)
 
-        val navHost = supportFragmentManager.findFragmentById(fragmentContainerView) as NavHostFragment
+        val navHost =
+            supportFragmentManager.findFragmentById(fragmentContainerView) as NavHostFragment
         val navController: NavController = navHost.navController
         vb.bottomNavigationView.setupWithNavController(navController)
         vb.bottomNavigationView.itemIconTintList = null
@@ -34,9 +35,11 @@ class MainActivity : AppCompatActivity() {
     private fun handleOnBackPressed() {
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                vb.fragmentContainerView.findNavController().navigateUp() }
+                vb.fragmentContainerView.findNavController().navigateUp()
+            }
         }
         onBackPressedDispatcher.addCallback(callback)
+        
     }
-    
+
 }
