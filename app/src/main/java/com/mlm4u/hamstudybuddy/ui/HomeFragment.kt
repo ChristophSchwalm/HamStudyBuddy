@@ -41,12 +41,10 @@ class HomeFragment : Fragment() {
         authenticationViewModel.currentUser.observe(viewLifecycleOwner) {
             if (it == null) {
                 findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
-            }
-        }
-
-        sharedViewModel.userClass.observe(viewLifecycleOwner) {
-            if (it == "0") {
-                findNavController().navigate(R.id.action_homeFragment_to_onboardingFragment)
+            } else {
+                if (sharedViewModel.userClass.value == "0") {
+                    findNavController().navigate(R.id.onboardingFragment)
+                }
             }
         }
 

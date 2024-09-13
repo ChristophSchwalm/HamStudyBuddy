@@ -20,7 +20,6 @@ class SharedViewModel(
     application: Application
 ) : AndroidViewModel(application) {
 
-
     private val database = getDatabase(application)
     private val repository = Repository(database)
     private val firebaseRepository = FirebaseRepository()
@@ -52,12 +51,10 @@ class SharedViewModel(
     val gameQuestion: LiveData<GameQuestions>
         get() = _gameQuestion
 
-
     init {
         getVersionApi()
         getUserSettings()
     }
-
 
     val allTitle: LiveData<List<Questions>> = userClass.switchMap { it ->
         repository.getAllTitle(it)
@@ -198,7 +195,6 @@ class SharedViewModel(
 //**************************************************************************************************
 //Api
 
-
     fun getVersionApi() {
         viewModelScope.launch {
             _version.value = api.retrofitService.getVersionApi().version // Wert zurückgeben
@@ -228,8 +224,6 @@ class SharedViewModel(
             _loading.value = false
         }
     }
-
-
 }
 
 

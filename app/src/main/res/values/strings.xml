@@ -12,4 +12,8 @@ Unsere App hat alles, was du brauchst: interaktive Lernmodule, die dir spieleris
 Also, worauf wartest du? Starte jetzt und werde zum Funk-Hero, der im Ernstfall die Welt (oder zumindest seine Nachbarschaft) rettet!</string>
     <string name="Teil3"></string>
     <string name="Teil1">Willkommen zu\nHamStudyBuddy!</string>
+    <string name="onboarding_1">Du hast dich zum ersten mal in der App Angemeldet.
+    Bitte sag mir wie ich dich nennen soll?</string>
+    <string name="onboarding_2">Für welche Klasse möchtest du die Fragen lernen?</string>
+    <string name="onboarding_3">Alle Einstellungen kann du jederzeit unter Einstellungen ändern.</string>
 </resources>
