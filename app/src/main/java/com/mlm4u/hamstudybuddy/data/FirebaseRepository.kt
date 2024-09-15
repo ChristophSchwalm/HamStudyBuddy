@@ -72,7 +72,7 @@ class FirebaseRepository {
             }
         } catch (e: Exception) {
             // Fehlerbehandlung, z.B. Loggen des Fehlers
-            Log.e("getUserSettings", "Fehler beim Abrufen der Einstellungen", e)
+            Log.e("DEBUG", "Fehler beim Abrufen der Einstellungen", e)
             null
         }
     }

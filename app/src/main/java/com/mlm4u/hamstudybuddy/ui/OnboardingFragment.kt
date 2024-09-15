@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mlm4u.hamstudybuddy.MainActivity
 import com.mlm4u.hamstudybuddy.R
@@ -32,5 +33,21 @@ class OnboardingFragment : Fragment() {
         val bottomNavigationView =
             (activity as MainActivity).findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         bottomNavigationView.visibility = View.INVISIBLE
+
+        vb.rgOnboardingKlassen.setOnCheckedChangeListener { _, checkedId ->
+            when (checkedId){
+                vb.rbOnboardingClassN.id -> {sharedViewModel.changeUserClass("1")}
+                vb.rbOnboardingClassE.id -> {sharedViewModel.changeUserClass("2")}
+                vb.rbOnboardingClassA.id -> {sharedViewModel.changeUserClass("3")}
+            }
+        }
+
+        vb.btOnboardingSave.setOnClickListener {
+            sharedViewModel.saveUserSettings(vb.etName.text.toString())
+            findNavController().navigate(R.id.action_onboardingFragment_to_homeFragment)
+        }
+
+
+
     }
 }

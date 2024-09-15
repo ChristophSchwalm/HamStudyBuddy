@@ -172,15 +172,18 @@ class SharedViewModel(
 //Firebase
 
     fun getUserSettings() {
+        Log.d("DEBUG", "getUserSettings() called")
         viewModelScope.launch {
             val userSettings = firebaseRepository.getUserSettings()
+            Log.d("DEBUG", "getUserSettings() finished")
+            Log.d("DEBUG", "ViewModel userSettings: $userSettings")
             if (userSettings != null) {
                 _userSettings.value = userSettings!!
                 _userClass.value = userSettings["UserClass"] as? String
                 userSettings["Name"] as? String
                 // Rufe allGameQuestions erst auf, nachdem userClass geladen wurde
                 allGameQuestions()
-                Log.d("ViewModel", "UserSettings gefunden: ${userSettings["UserClass"]}")
+                Log.d("DEBUG", "ViewModel UserSettings gefunden: ${userSettings["UserClass"]}")
             } else {
                 // Handle den Fall, dass keine User Settings gefunden wurden
             }

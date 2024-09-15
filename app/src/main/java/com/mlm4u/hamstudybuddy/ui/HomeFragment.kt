@@ -1,6 +1,7 @@
 package com.mlm4u.hamstudybuddy.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -32,7 +33,6 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        sharedViewModel.getUserSettings()
 
         val bottomNavigationView =
             (activity as MainActivity).findViewById<BottomNavigationView>(R.id.bottomNavigationView)
@@ -40,10 +40,16 @@ class HomeFragment : Fragment() {
 
         authenticationViewModel.currentUser.observe(viewLifecycleOwner) {
             if (it == null) {
+                Log.d("DEBUG", "currentUser==0: ${sharedViewModel.currentUser.value.toString()}")
                 findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
             } else {
-                if (sharedViewModel.userClass.value == "0") {
-                    findNavController().navigate(R.id.onboardingFragment)
+                Log.d("DEBUG", "currentUser!=0: ${sharedViewModel.currentUser.value.toString()}")
+                sharedViewModel.userClass.observe(viewLifecycleOwner) {
+                    Log.d("DEBUG", "Vor der If-Abfrage: userClass: $it")
+                    if (sharedViewModel.userClass.value == "0") {
+                        Log.d("DEBUG", "Nach der If-Abfrage: userClass: ${sharedViewModel.userClass.value.toString()}")
+                        findNavController().navigate(R.id.onboardingFragment)
+                    }
                 }
             }
         }
