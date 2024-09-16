@@ -30,9 +30,6 @@ class GameFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        vb.btGameReset.setOnClickListener {
-            sharedViewModel.resetGame()
-        }
 
 
         sharedViewModel.allGameQuestions().observe(viewLifecycleOwner) { gameQuestions ->
@@ -49,7 +46,8 @@ class GameFragment : Fragment() {
                 )
                 val shuffledAnswers = answers.shuffled()
 
-                vb.tvGameQuestionNumber.text = "Frage Nr.: ${sharedViewModel.gameQuestion.value?.number}"
+                vb.tvGameQuestionNumber.text =
+                    "Frage Nr.: ${sharedViewModel.gameQuestion.value?.number}"
                 vb.tvGameQuestion.text = sharedViewModel.gameQuestion.value?.question
                 vb.tvGameAnswerA.text = shuffledAnswers[0]
                 vb.tvGameAnswerB.text = shuffledAnswers[1]
@@ -115,10 +113,30 @@ class GameFragment : Fragment() {
         vb.cvGameAnswerB.alpha = 1f
         vb.cvGameAnswerC.alpha = 1f
         vb.cvGameAnswerD.alpha = 1f
-        vb.cvGameAnswerA.setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.white))
-        vb.cvGameAnswerB.setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.white))
-        vb.cvGameAnswerC.setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.white))
-        vb.cvGameAnswerD.setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.white))
+        vb.cvGameAnswerA.setCardBackgroundColor(
+            ContextCompat.getColor(
+                requireContext(),
+                R.color.white
+            )
+        )
+        vb.cvGameAnswerB.setCardBackgroundColor(
+            ContextCompat.getColor(
+                requireContext(),
+                R.color.white
+            )
+        )
+        vb.cvGameAnswerC.setCardBackgroundColor(
+            ContextCompat.getColor(
+                requireContext(),
+                R.color.white
+            )
+        )
+        vb.cvGameAnswerD.setCardBackgroundColor(
+            ContextCompat.getColor(
+                requireContext(),
+                R.color.white
+            )
+        )
     }
 
     fun checkAnswer(answer: String) {
@@ -138,18 +156,21 @@ class GameFragment : Fragment() {
                 )
 
             }
+
             vb.tvGameAnswerB.text.toString() -> {
                 vb.cvGameAnswerB.setCardBackgroundColor(
                     cardBackgroundColor
                 )
 
             }
+
             vb.tvGameAnswerC.text.toString() -> {
                 vb.cvGameAnswerC.setCardBackgroundColor(
                     cardBackgroundColor
                 )
 
             }
+
             vb.tvGameAnswerD.text.toString() -> {
                 vb.cvGameAnswerD.setCardBackgroundColor(
                     cardBackgroundColor
@@ -160,6 +181,11 @@ class GameFragment : Fragment() {
         if (isCorrectAnswer) {
             Timer().schedule(timerTask {
                 sharedViewModel.addCorrectFlag()
+            }, 2000)
+
+        } else {
+            Timer().schedule(timerTask {
+                sharedViewModel.addWrongFlag()
             }, 2000)
 
         }

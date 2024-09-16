@@ -21,7 +21,7 @@ class GameQuestions(
     val pictureC: String? = null,
     val pictureD: String? = null,
 
-    var gameCorrectAnswer: Boolean = false
+    var gameCorrectAnswer: Boolean? = null
 
 
 )

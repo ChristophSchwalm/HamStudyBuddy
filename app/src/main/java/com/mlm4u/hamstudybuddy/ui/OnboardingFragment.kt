@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -35,18 +36,35 @@ class OnboardingFragment : Fragment() {
         bottomNavigationView.visibility = View.INVISIBLE
 
         vb.rgOnboardingKlassen.setOnCheckedChangeListener { _, checkedId ->
-            when (checkedId){
-                vb.rbOnboardingClassN.id -> {sharedViewModel.changeUserClass("1")}
-                vb.rbOnboardingClassE.id -> {sharedViewModel.changeUserClass("2")}
-                vb.rbOnboardingClassA.id -> {sharedViewModel.changeUserClass("3")}
+            when (checkedId) {
+                vb.rbOnboardingClassN.id -> {
+                    sharedViewModel.changeUserClass("1")
+                }
+
+                vb.rbOnboardingClassE.id -> {
+                    sharedViewModel.changeUserClass("2")
+                }
+
+                vb.rbOnboardingClassA.id -> {
+                    sharedViewModel.changeUserClass("3")
+                }
             }
         }
 
         vb.btOnboardingSave.setOnClickListener {
-            sharedViewModel.saveUserSettings(vb.etName.text.toString())
-            findNavController().navigate(R.id.action_onboardingFragment_to_homeFragment)
+            vb.btOnboardingSave.setOnClickListener {
+                if (vb.rgOnboardingKlassen.checkedRadioButtonId != -1) {
+                    sharedViewModel.saveUserSettings(vb.etName.text.toString())
+                    findNavController().navigate(R.id.action_onboardingFragment_to_homeFragment)
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        "Bitte wähle eine Klasse aus",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
         }
-
 
 
     }

@@ -1,6 +1,7 @@
 package com.mlm4u.hamstudybuddy.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,14 +26,17 @@ class SettingsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        sharedViewModel.loading.observe(viewLifecycleOwner){
+        sharedViewModel.loading.observe(viewLifecycleOwner) {
             vb.linearProgressIndicator.visibility = if (it) View.VISIBLE else View.GONE
         }
 
-        vb.teName.setText(sharedViewModel.userSettings.value?.get("Name") as? String)
+        sharedViewModel.userSettings.observe(viewLifecycleOwner) {
+            Log.d("CSChecker", "Im Observer: $it")
+            vb.teName.setText(it["Name"] as? String)
+        }
 
-        sharedViewModel.userClass.observe(viewLifecycleOwner){
-            when(it){
+        sharedViewModel.userClass.observe(viewLifecycleOwner) {
+            when (it) {
                 "1" -> vb.rbClassN.isChecked = true
                 "2" -> vb.rbClassE.isChecked = true
                 "3" -> vb.rbClassA.isChecked = true
@@ -40,15 +44,23 @@ class SettingsFragment : Fragment() {
             countQuestions()
         }
 
-        sharedViewModel.version.observe(viewLifecycleOwner){
-            vb.tvVersionNumber.text = it.toString()
+        sharedViewModel.version.observe(viewLifecycleOwner) {
+            vb.tvVersionNumber.text = "HamStudyBuddy Version $it"
         }
 
         vb.rgKlassen.setOnCheckedChangeListener { _, checkedId ->
-            when (checkedId){
-                vb.rbClassN.id -> {sharedViewModel.changeUserClass("1")}
-                vb.rbClassE.id -> {sharedViewModel.changeUserClass("2")}
-                vb.rbClassA.id -> {sharedViewModel.changeUserClass("3")}
+            when (checkedId) {
+                vb.rbClassN.id -> {
+                    sharedViewModel.changeUserClass("1")
+                }
+
+                vb.rbClassE.id -> {
+                    sharedViewModel.changeUserClass("2")
+                }
+
+                vb.rbClassA.id -> {
+                    sharedViewModel.changeUserClass("3")
+                }
             }
         }
 
@@ -56,19 +68,32 @@ class SettingsFragment : Fragment() {
             sharedViewModel.saveUserSettings(vb.teName.text.toString())
         }
 
-        vb.btUpdate.setOnClickListener{
+        vb.btUpdate.setOnClickListener {
             sharedViewModel.getQuestionsApi()
+        }
+
+        vb.btGameReset.setOnClickListener {
+            sharedViewModel.resetGame()
         }
 
     }
 
-    fun countQuestions(){
+    fun countQuestions() {
 
         sharedViewModel.countQuestions {
-            vb.tvQuestionsInDB.text = it.toString()
+            vb.tvQuestionsInDB.text = "Fragen in der Datenbank: $it"
         }
         sharedViewModel.countGameQuestions {
-            vb.tvGameQuestions.text = it.toString()
+            vb.tvGameQuestions.text = "Fragen im Spiel: $it"
         }
+
+        sharedViewModel.countRightAnswers {
+            vb.tvRightAnswers.text = "Richtige Antworten: $it"
+        }
+
+        sharedViewModel.countWrongAnswers {
+            vb.tvWrongAnswers.text = "Falsche Antworten: $it"
+        }
+
     }
 }

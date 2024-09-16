@@ -39,8 +39,8 @@ class SharedViewModel(
     val version: LiveData<Double>
         get() = _version
 
-    private val _userClass = MutableLiveData<String>(null)
-    val userClass: LiveData<String>
+    private val _userClass = MutableLiveData("")
+    val userClass: LiveData<String?>
         get() = _userClass
 
     private val _selectedTitle = MutableLiveData<String>()
@@ -52,12 +52,13 @@ class SharedViewModel(
         get() = _gameQuestion
 
     init {
+        Log.d("CSChecker", "SharedViewModel init")
         getVersionApi()
         getUserSettings()
     }
 
     val allTitle: LiveData<List<Questions>> = userClass.switchMap { it ->
-        repository.getAllTitle(it)
+        it?.let { repository.getAllTitle(it) }
     }
 
     val questionsByTitle: LiveData<List<Questions>> = selectedTitle.switchMap { it ->
@@ -127,6 +128,25 @@ class SharedViewModel(
         }
     }
 
+    fun countRightAnswers(onCompletion: (Int) -> (Unit)) {
+        viewModelScope.launch {
+            val result = repository.countRightAnswers(_userClass.value.toString())
+            result.observeForever {
+                onCompletion(it)
+            }
+        }
+    }
+
+    fun countWrongAnswers(onCompletion: (Int) -> (Unit)) {
+        viewModelScope.launch {
+            val result = repository.countWrongAnswers(_userClass.value.toString())
+            result.observeForever {
+                onCompletion(it)
+            }
+        }
+    }
+
+
     fun setGameQuestion(questions: GameQuestions) {
         viewModelScope.launch {
             _gameQuestion.value = questions
@@ -135,6 +155,13 @@ class SharedViewModel(
 
     fun addCorrectFlag() {
         _gameQuestion.value?.gameCorrectAnswer = true
+        viewModelScope.launch {
+            _gameQuestion.value?.let { repository.updateGameQuestion(it) }
+        }
+    }
+
+    fun addWrongFlag() {
+        _gameQuestion.value?.gameCorrectAnswer = false
         viewModelScope.launch {
             _gameQuestion.value?.let { repository.updateGameQuestion(it) }
         }
@@ -172,18 +199,18 @@ class SharedViewModel(
 //Firebase
 
     fun getUserSettings() {
-        Log.d("DEBUG", "getUserSettings() called")
+        Log.d("CSChecker", "getUserSettings() called")
         viewModelScope.launch {
             val userSettings = firebaseRepository.getUserSettings()
-            Log.d("DEBUG", "getUserSettings() finished")
-            Log.d("DEBUG", "ViewModel userSettings: $userSettings")
+            Log.d("CSChecker", "getUserSettings() finished")
+            Log.d("CSChecker", "ViewModel userSettings: $userSettings")
             if (userSettings != null) {
                 _userSettings.value = userSettings!!
                 _userClass.value = userSettings["UserClass"] as? String
                 userSettings["Name"] as? String
                 // Rufe allGameQuestions erst auf, nachdem userClass geladen wurde
                 allGameQuestions()
-                Log.d("DEBUG", "ViewModel UserSettings gefunden: ${userSettings["UserClass"]}")
+                Log.d("CSChecker", "ViewModel UserSettings gefunden: ${userSettings["UserClass"]}")
             } else {
                 // Handle den Fall, dass keine User Settings gefunden wurden
             }
@@ -192,6 +219,7 @@ class SharedViewModel(
 
     fun saveUserSettings(name: String) {
         firebaseRepository.saveUserSettings(name, userClass.value.toString())
+        getUserSettings()
     }
 
 
@@ -201,7 +229,7 @@ class SharedViewModel(
     fun getVersionApi() {
         viewModelScope.launch {
             _version.value = api.retrofitService.getVersionApi().version // Wert zurückgeben
-            Log.d("ViewModel", "Version: ${_version.value}")
+            Log.d("CSChecker", "Version: ${_version.value}")
         }
     }
 
@@ -222,12 +250,13 @@ class SharedViewModel(
                 }
             } catch (e: Exception) {
                 // Fehlerbehandlung, z. B. Anzeige einer Fehlermeldung
-                Log.e("MainActivity", "Fehler Api -> Room: ${e.message}")
+                Log.e("CSChecker", "Fehler Api -> Room: ${e.message}")
             }
             _loading.value = false
         }
     }
 }
+
 
 
 

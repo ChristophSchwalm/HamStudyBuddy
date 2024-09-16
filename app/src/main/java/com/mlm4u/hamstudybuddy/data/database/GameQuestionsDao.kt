@@ -17,10 +17,16 @@ interface GameQuestionsDao {
     @Query("SELECT COUNT(*) FROM game_questions WHERE classQuestion = :classQuestion")
     suspend fun countGameQuestions(classQuestion: String): Int
 
-    @Query("SELECT * FROM game_questions WHERE classQuestion = :classQuestion AND gameCorrectAnswer = 0")
+    @Query("SELECT COUNT(*) FROM game_questions WHERE classQuestion = :classQuestion AND gameCorrectAnswer = 0")
+    fun countWrongAnswers(classQuestion: String): LiveData<Int>
+
+    @Query("SELECT COUNT(*) FROM game_questions WHERE classQuestion = :classQuestion AND gameCorrectAnswer = 1")
+    fun countRightAnswers(classQuestion: String): LiveData<Int>
+
+    @Query("SELECT * FROM game_questions WHERE classQuestion = :classQuestion AND gameCorrectAnswer is null")
     fun allGameQuestions(classQuestion: String): LiveData<List<GameQuestions>>
 
-    @Query("UPDATE game_questions SET gameCorrectAnswer = 0")
+    @Query("UPDATE game_questions SET gameCorrectAnswer = null")
     suspend fun resetGame()
 
     @Update
