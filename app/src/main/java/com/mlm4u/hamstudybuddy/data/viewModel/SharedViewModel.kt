@@ -39,7 +39,7 @@ class SharedViewModel(
     val version: LiveData<Double>
         get() = _version
 
-    private val _userClass = MutableLiveData<String>("0")
+    private val _userClass = MutableLiveData<String>(null)
     val userClass: LiveData<String>
         get() = _userClass
 

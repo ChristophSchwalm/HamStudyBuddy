@@ -44,10 +44,10 @@ class HomeFragment : Fragment() {
                 findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
             } else {
                 Log.d("DEBUG", "currentUser!=0: ${sharedViewModel.currentUser.value.toString()}")
-                sharedViewModel.userClass.observe(viewLifecycleOwner) {
-                    Log.d("DEBUG", "Vor der If-Abfrage: userClass: $it")
-                    if (sharedViewModel.userClass.value == "0") {
-                        Log.d("DEBUG", "Nach der If-Abfrage: userClass: ${sharedViewModel.userClass.value.toString()}")
+                sharedViewModel.userClass.observe(viewLifecycleOwner) { userClass ->
+                    Log.d("DEBUG", "Vor der If-Abfrage: userClass: $userClass")
+                    if (userClass != null) {
+                        Log.d("DEBUG", "Nach der If-Abfrage: userClass: ${userClass}")
                         findNavController().navigate(R.id.onboardingFragment)
                     }
                 }
