@@ -2,7 +2,6 @@ package com.mlm4u.hamstudybuddy.ui
 
 import com.mlm4u.hamstudybuddy.R
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,16 +31,37 @@ class GameFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         vb.tvAlleFragen.setOnClickListener {
-            Log.d("CSChecker", "Alle Fragen")
             sharedViewModel.allGameQuestions()
+            vb.tvAlleFragen.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
+            vb.tvNeueFragen.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+            vb.tvNurFalscheFragen.setTextColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.white
+                )
+            )
         }
         vb.tvNurFalscheFragen.setOnClickListener {
-            Log.d("CSChecker", "Nur falsche Fragen")
             sharedViewModel.gameQuestionsWrongAnswers()
+            vb.tvNurFalscheFragen.setTextColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.red
+                )
+            )
+            vb.tvNeueFragen.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+            vb.tvAlleFragen.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
         }
         vb.tvNeueFragen.setOnClickListener {
-            Log.d("CSChecker", "Neue Fragen")
             sharedViewModel.gameQuestionsNew()
+            vb.tvNeueFragen.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
+            vb.tvAlleFragen.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+            vb.tvNurFalscheFragen.setTextColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.white
+                )
+            )
         }
 
 
