@@ -49,28 +49,28 @@ class Repository(
         return database.gameQuestionsDao.countGameQuestions(classQuestion)
     }
 
-    suspend fun countRightAnswers(classQuestion: String): LiveData<Int> {
+    fun countRightAnswers(classQuestion: String): LiveData<Int> {
         return database.gameQuestionsDao.countRightAnswers(classQuestion)
     }
 
-    suspend fun countWrongAnswers(classQuestion: String): LiveData<Int> {
+    fun countWrongAnswers(classQuestion: String): LiveData<Int> {
         return database.gameQuestionsDao.countWrongAnswers(classQuestion)
     }
 
-    suspend fun allGameQuestions(userClass: String): LiveData<List<GameQuestions>> {
+    fun allGameQuestions(userClass: String): LiveData<List<GameQuestions>> {
         return database.gameQuestionsDao.allGameQuestions(userClass)
     }
 
-    suspend fun gameQuestionsNew(userClass: String): LiveData<List<GameQuestions>> {
+    fun gameQuestionsNew(userClass: String): LiveData<List<GameQuestions>> {
         Log.d("CSChecker", "gameQuestionsNew() called in Repository")
         return database.gameQuestionsDao.gameQuestionsNew(userClass)
     }
 
-    suspend fun gameQuestionsWrongAnswers(userClass: String): LiveData<List<GameQuestions>> {
+    fun gameQuestionsWrongAnswers(userClass: String): LiveData<List<GameQuestions>> {
         return database.gameQuestionsDao.gameQuestionsWrongAnswers(userClass)
     }
 
-    suspend fun gameQuestionsRightAnswers(userClass: String): LiveData<List<GameQuestions>> {
+    fun gameQuestionsRightAnswers(userClass: String): LiveData<List<GameQuestions>> {
         return database.gameQuestionsDao.gameQuestionsRightAnswers(userClass)
     }
 

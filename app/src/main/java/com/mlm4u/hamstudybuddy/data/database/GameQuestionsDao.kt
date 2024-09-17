@@ -23,7 +23,7 @@ interface GameQuestionsDao {
     @Query("SELECT COUNT(*) FROM game_questions WHERE classQuestion = :classQuestion AND gameCorrectAnswer = 1")
     fun countRightAnswers(classQuestion: String): LiveData<Int>
 
-    @Query("SELECT * FROM game_questions WHERE classQuestion = :classQuestion AND gameCorrectAnswer is null")
+    @Query("SELECT * FROM game_questions WHERE classQuestion = :classQuestion")
     fun allGameQuestions(classQuestion: String): LiveData<List<GameQuestions>>
 
     @Query("SELECT * FROM game_questions WHERE classQuestion = :classQuestion AND gameCorrectAnswer is null")

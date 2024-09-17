@@ -57,9 +57,8 @@ class SharedViewModel(
 
     init {
         Log.d("CSChecker", "SharedViewModel init")
-        getVersionApi()
         getUserSettings()
-        allGameQuestions()
+        getVersionApi()
     }
 
     val allTitle: LiveData<List<Questions>> = userClass.switchMap { it ->
@@ -185,7 +184,9 @@ class SharedViewModel(
                     }
                 }
         }
-        _gameQuestions.value = result.value
+        result.observeForever {
+            _gameQuestions.value = it
+        }
     }
 
     fun gameQuestionsNew() {
@@ -202,7 +203,9 @@ class SharedViewModel(
                 }
         }
         Log.d("CSChecker", "gameQuestionsNew: ${result.value}")
-        _gameQuestions.value = result.value
+        result.observeForever {
+            _gameQuestions.value = it
+        }
     }
 
     fun gameQuestionsWrongAnswers() {
@@ -218,7 +221,9 @@ class SharedViewModel(
                     }
                 }
         }
-        _gameQuestions.value = result.value
+        result.observeForever {
+            _gameQuestions.value = it
+        }
     }
 
     fun gameQuestionsRightAnswers() {
@@ -234,7 +239,9 @@ class SharedViewModel(
                     }
                 }
         }
-        _gameQuestions.value = result.value
+        result.observeForever {
+            _gameQuestions.value = it
+        }
     }
 
 

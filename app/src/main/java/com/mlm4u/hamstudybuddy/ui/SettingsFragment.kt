@@ -70,6 +70,7 @@ class SettingsFragment : Fragment() {
 
         vb.btUpdate.setOnClickListener {
             sharedViewModel.getQuestionsApi()
+            countQuestions()
         }
 
         vb.btGameReset.setOnClickListener {
@@ -78,7 +79,7 @@ class SettingsFragment : Fragment() {
 
     }
 
-    fun countQuestions() {
+    private fun countQuestions() {
 
         sharedViewModel.countQuestions {
             vb.tvQuestionsInDB.text = "Fragen in der Datenbank: $it"
