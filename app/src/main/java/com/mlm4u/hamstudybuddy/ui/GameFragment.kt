@@ -2,6 +2,7 @@ package com.mlm4u.hamstudybuddy.ui
 
 import com.mlm4u.hamstudybuddy.R
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,10 +31,22 @@ class GameFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        vb.tvAlleFragen.setOnClickListener {
+            Log.d("CSChecker", "Alle Fragen")
+            sharedViewModel.allGameQuestions()
+        }
+        vb.tvNurFalscheFragen.setOnClickListener {
+            Log.d("CSChecker", "Nur falsche Fragen")
+            sharedViewModel.gameQuestionsWrongAnswers()
+        }
+        vb.tvNeueFragen.setOnClickListener {
+            Log.d("CSChecker", "Neue Fragen")
+            sharedViewModel.gameQuestionsNew()
+        }
 
 
-        sharedViewModel.allGameQuestions().observe(viewLifecycleOwner) { gameQuestions ->
-            if (gameQuestions.isNotEmpty()) {
+        sharedViewModel.gameQuestions.observe(viewLifecycleOwner) { gameQuestions ->
+            if (gameQuestions != null && gameQuestions.isNotEmpty()) {
                 resetView()
                 val qSize = gameQuestions.size
                 sharedViewModel.setGameQuestion(gameQuestions.random())

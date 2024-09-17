@@ -1,5 +1,6 @@
 package com.mlm4u.hamstudybuddy.data
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import com.mlm4u.hamstudybuddy.data.database.GameQuestions
 import com.mlm4u.hamstudybuddy.data.database.Questions
@@ -58,6 +59,19 @@ class Repository(
 
     suspend fun allGameQuestions(userClass: String): LiveData<List<GameQuestions>> {
         return database.gameQuestionsDao.allGameQuestions(userClass)
+    }
+
+    suspend fun gameQuestionsNew(userClass: String): LiveData<List<GameQuestions>> {
+        Log.d("CSChecker", "gameQuestionsNew() called in Repository")
+        return database.gameQuestionsDao.gameQuestionsNew(userClass)
+    }
+
+    suspend fun gameQuestionsWrongAnswers(userClass: String): LiveData<List<GameQuestions>> {
+        return database.gameQuestionsDao.gameQuestionsWrongAnswers(userClass)
+    }
+
+    suspend fun gameQuestionsRightAnswers(userClass: String): LiveData<List<GameQuestions>> {
+        return database.gameQuestionsDao.gameQuestionsRightAnswers(userClass)
     }
 
     suspend fun resetGame() {

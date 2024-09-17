@@ -26,6 +26,15 @@ interface GameQuestionsDao {
     @Query("SELECT * FROM game_questions WHERE classQuestion = :classQuestion AND gameCorrectAnswer is null")
     fun allGameQuestions(classQuestion: String): LiveData<List<GameQuestions>>
 
+    @Query("SELECT * FROM game_questions WHERE classQuestion = :classQuestion AND gameCorrectAnswer is null")
+    fun gameQuestionsNew(classQuestion: String): LiveData<List<GameQuestions>>
+
+    @Query("SELECT * FROM game_questions WHERE classQuestion = :classQuestion AND gameCorrectAnswer = 0")
+    fun gameQuestionsWrongAnswers(classQuestion: String): LiveData<List<GameQuestions>>
+
+    @Query("SELECT * FROM game_questions WHERE classQuestion = :classQuestion AND gameCorrectAnswer = 1")
+    fun gameQuestionsRightAnswers(classQuestion: String): LiveData<List<GameQuestions>>
+
     @Query("UPDATE game_questions SET gameCorrectAnswer = null")
     suspend fun resetGame()
 

@@ -89,7 +89,7 @@
             android:backgroundTint="#18FFFF"
             android:text="Registrierung"
             android:textColor="#000000"
-            app:layout_constraintStart_toStartOf="@+id/textInputLayout5"
+            app:layout_constraintEnd_toEndOf="@+id/textInputLayout5"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout5" />
 
         <Button
@@ -98,9 +98,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:backgroundTint="#1DF5F5"
-            android:text="Login"
+            android:text="zurück"
             android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="@+id/textInputLayout5"
+            app:layout_constraintStart_toStartOf="@+id/textInputLayout5"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout5" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

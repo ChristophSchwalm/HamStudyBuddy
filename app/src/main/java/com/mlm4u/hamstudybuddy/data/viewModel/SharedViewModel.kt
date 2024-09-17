@@ -51,10 +51,15 @@ class SharedViewModel(
     val gameQuestion: LiveData<GameQuestions>
         get() = _gameQuestion
 
+    private val _gameQuestions = MutableLiveData<List<GameQuestions>>()
+    val gameQuestions: LiveData<List<GameQuestions>>
+        get() = _gameQuestions
+
     init {
         Log.d("CSChecker", "SharedViewModel init")
         getVersionApi()
         getUserSettings()
+        allGameQuestions()
     }
 
     val allTitle: LiveData<List<Questions>> = userClass.switchMap { it ->
@@ -167,27 +172,71 @@ class SharedViewModel(
         }
     }
 
-    fun allGameQuestions(): LiveData<List<GameQuestions>> {
+    fun allGameQuestions() {
         val result = MutableLiveData<List<GameQuestions>>()
         viewModelScope.launch {
-            repository.allGameQuestions(userClass.value ?: "default")
+            repository.allGameQuestions(userClass.value ?: "")
                 .observeForever { gameQuestions ->
                     if (gameQuestions != null) {
                         result.postValue(gameQuestions)
-                        Log.d("ViewModel", "GameQuestions gefunden: ${gameQuestions.size}")
-                        Log.d(
-                            "ViewModel",
-                            "GameQuestions gefunden userClass: ${userClass.value.toString()}"
-                        )
                     } else {
                         // Fehlerbehandlung: z.B. leere Liste setzen oder Fehlermeldung anzeigen
                         result.postValue(emptyList())
-                        Log.e("ViewModel", "Keine GameQuestions gefunden")
                     }
                 }
         }
-        return result
+        _gameQuestions.value = result.value
     }
+
+    fun gameQuestionsNew() {
+        val result = MutableLiveData<List<GameQuestions>>()
+        viewModelScope.launch {
+            repository.gameQuestionsNew(userClass.value ?: "")
+                .observeForever { gameQuestionsNew ->
+                    if (gameQuestionsNew != null) {
+                        result.postValue(gameQuestionsNew)
+                    } else {
+                        // Fehlerbehandlung: z.B. leere Liste setzen oder Fehlermeldung anzeigen
+                        result.postValue(emptyList())
+                    }
+                }
+        }
+        Log.d("CSChecker", "gameQuestionsNew: ${result.value}")
+        _gameQuestions.value = result.value
+    }
+
+    fun gameQuestionsWrongAnswers() {
+        val result = MutableLiveData<List<GameQuestions>>()
+        viewModelScope.launch {
+            repository.gameQuestionsWrongAnswers(userClass.value ?: "")
+                .observeForever { gameQuestionsWrongAnswers ->
+                    if (gameQuestionsWrongAnswers != null) {
+                        result.postValue(gameQuestionsWrongAnswers)
+                    } else {
+                        // Fehlerbehandlung: z.B. leere Liste setzen oder Fehlermeldung anzeigen
+                        result.postValue(emptyList())
+                    }
+                }
+        }
+        _gameQuestions.value = result.value
+    }
+
+    fun gameQuestionsRightAnswers() {
+        val result = MutableLiveData<List<GameQuestions>>()
+        viewModelScope.launch {
+            repository.gameQuestionsRightAnswers(userClass.value ?: "")
+                .observeForever { gameQuestionsRightAnswers ->
+                    if (gameQuestionsRightAnswers != null) {
+                        result.postValue(gameQuestionsRightAnswers)
+                    } else {
+                        // Fehlerbehandlung: z.B. leere Liste setzen oder Fehlermeldung anzeigen
+                        result.postValue(emptyList())
+                    }
+                }
+        }
+        _gameQuestions.value = result.value
+    }
+
 
     fun resetGame() {
         viewModelScope.launch {
