@@ -20,7 +20,7 @@ class HomeFragment : Fragment() {
 
     private lateinit var vb: FragmentHomeBinding
     private val authenticationViewModel: AuthenticationViewModel by activityViewModels()
-    //private val sharedViewModel: SharedViewModel by activityViewModels()
+    private val sharedViewModel: SharedViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
