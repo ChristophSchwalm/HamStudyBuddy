@@ -30,43 +30,21 @@ class GameFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        sharedViewModel.gameQuestionsNew()
+
         vb.btAlleFragen.setOnClickListener {
-            sharedViewModel.allGameQuestions()
-            vb.btAlleFragen.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
-            vb.btNeueFragen.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-            vb.btNurFalscheFragen.setTextColor(
-                ContextCompat.getColor(
-                    requireContext(),
-                    R.color.white
-                )
-            )
+            allGameQuestions()
         }
         vb.btNurFalscheFragen.setOnClickListener {
-            sharedViewModel.gameQuestionsWrongAnswers()
-            vb.btNurFalscheFragen.setTextColor(
-                ContextCompat.getColor(
-                    requireContext(),
-                    R.color.red
-                )
-            )
-            vb.btNeueFragen.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-            vb.btAlleFragen.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+            gameQuestionsWrongAnswers()
         }
         vb.btNeueFragen.setOnClickListener {
-            sharedViewModel.gameQuestionsNew()
-            vb.btNeueFragen.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
-            vb.btAlleFragen.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-            vb.btNurFalscheFragen.setTextColor(
-                ContextCompat.getColor(
-                    requireContext(),
-                    R.color.white
-                )
-            )
+            gameQuestionsNew()
         }
 
 
         sharedViewModel.gameQuestions.observe(viewLifecycleOwner) { gameQuestions ->
-            if (gameQuestions != null && gameQuestions.isNotEmpty()) {
+            if (gameQuestions.isNotEmpty()) {
                 resetView()
                 val qSize = gameQuestions.size
                 sharedViewModel.setGameQuestion(gameQuestions.random())
@@ -223,5 +201,26 @@ class GameFragment : Fragment() {
 
         }
 
+
     }
+
+    fun allGameQuestions() {
+        sharedViewModel.allGameQuestions()
+        vb.btAlleFragen.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
+        vb.btNeueFragen.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+        vb.btNurFalscheFragen.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+    }
+
+    fun gameQuestionsWrongAnswers() {
+        sharedViewModel.gameQuestionsWrongAnswers()
+        vb.btNurFalscheFragen.setTextColor(ContextCompat.getColor(requireContext(),R.color.red))
+        vb.btNeueFragen.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+        vb.btAlleFragen.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+    }
+
+    fun gameQuestionsNew() {
+        sharedViewModel.gameQuestionsNew()
+        vb.btNeueFragen.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
+        vb.btAlleFragen.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+        vb.btNurFalscheFragen.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))    }
 }

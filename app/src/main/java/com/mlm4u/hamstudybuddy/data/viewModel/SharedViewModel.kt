@@ -172,7 +172,7 @@ class SharedViewModel(
     }
 
     fun allGameQuestions() {
-        val result = MutableLiveData<List<GameQuestions>>()
+        val result = MutableLiveData<List<GameQuestions>?>()
         viewModelScope.launch {
             repository.allGameQuestions(userClass.value ?: "")
                 .observeForever { gameQuestions ->
@@ -190,7 +190,7 @@ class SharedViewModel(
     }
 
     fun gameQuestionsNew() {
-        val result = MutableLiveData<List<GameQuestions>>()
+        val result = MutableLiveData<List<GameQuestions>?>()
         viewModelScope.launch {
             repository.gameQuestionsNew(userClass.value ?: "")
                 .observeForever { gameQuestionsNew ->
@@ -209,7 +209,7 @@ class SharedViewModel(
     }
 
     fun gameQuestionsWrongAnswers() {
-        val result = MutableLiveData<List<GameQuestions>>()
+        val result = MutableLiveData<List<GameQuestions>?>()
         viewModelScope.launch {
             repository.gameQuestionsWrongAnswers(userClass.value ?: "")
                 .observeForever { gameQuestionsWrongAnswers ->
@@ -227,7 +227,7 @@ class SharedViewModel(
     }
 
     fun gameQuestionsRightAnswers() {
-        val result = MutableLiveData<List<GameQuestions>>()
+        val result = MutableLiveData<List<GameQuestions>?>()
         viewModelScope.launch {
             repository.gameQuestionsRightAnswers(userClass.value ?: "")
                 .observeForever { gameQuestionsRightAnswers ->
