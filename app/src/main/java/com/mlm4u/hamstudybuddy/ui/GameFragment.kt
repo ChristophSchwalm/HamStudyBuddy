@@ -30,33 +30,33 @@ class GameFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        vb.tvAlleFragen.setOnClickListener {
+        vb.btAlleFragen.setOnClickListener {
             sharedViewModel.allGameQuestions()
-            vb.tvAlleFragen.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
-            vb.tvNeueFragen.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-            vb.tvNurFalscheFragen.setTextColor(
+            vb.btAlleFragen.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
+            vb.btNeueFragen.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+            vb.btNurFalscheFragen.setTextColor(
                 ContextCompat.getColor(
                     requireContext(),
                     R.color.white
                 )
             )
         }
-        vb.tvNurFalscheFragen.setOnClickListener {
+        vb.btNurFalscheFragen.setOnClickListener {
             sharedViewModel.gameQuestionsWrongAnswers()
-            vb.tvNurFalscheFragen.setTextColor(
+            vb.btNurFalscheFragen.setTextColor(
                 ContextCompat.getColor(
                     requireContext(),
                     R.color.red
                 )
             )
-            vb.tvNeueFragen.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-            vb.tvAlleFragen.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+            vb.btNeueFragen.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+            vb.btAlleFragen.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
         }
-        vb.tvNeueFragen.setOnClickListener {
+        vb.btNeueFragen.setOnClickListener {
             sharedViewModel.gameQuestionsNew()
-            vb.tvNeueFragen.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
-            vb.tvAlleFragen.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-            vb.tvNurFalscheFragen.setTextColor(
+            vb.btNeueFragen.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
+            vb.btAlleFragen.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+            vb.btNurFalscheFragen.setTextColor(
                 ContextCompat.getColor(
                     requireContext(),
                     R.color.white

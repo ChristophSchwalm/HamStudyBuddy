@@ -82,7 +82,7 @@ class SettingsFragment : Fragment() {
     private fun countQuestions() {
 
         sharedViewModel.countQuestions {
-            vb.tvQuestionsInDB.text = "Fragen in der Datenbank: $it"
+            vb.tvQuestionsInDB.text = "Verbleibende Fragen: $it"
         }
         sharedViewModel.countGameQuestions {
             vb.tvGameQuestions.text = "Fragen im Spiel: $it"

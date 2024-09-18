@@ -90,6 +90,7 @@
             android:id="@+id/imageView8"
             android:layout_width="match_parent"
             android:layout_height="280dp"
+            android:contentDescription="TODO"
             android:scaleType="fitXY"
             android:src="@drawable/hsbbg"
             app:layout_constraintTop_toTopOf="parent"

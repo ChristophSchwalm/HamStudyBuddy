@@ -18,13 +18,15 @@
             android:id="@+id/teLayoutEmail"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             app:boxBackgroundColor="#18FFFF"
             app:boxCornerRadiusBottomEnd="20dp"
             app:boxCornerRadiusBottomStart="20dp"
             app:boxCornerRadiusTopEnd="20dp"
             app:boxCornerRadiusTopStart="20dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/teEmail"
@@ -109,6 +111,7 @@
         android:id="@+id/imageView9"
         android:layout_width="match_parent"
         android:layout_height="280sp"
+        android:contentDescription="TODO"
         android:scaleType="fitXY"
         android:src="@drawable/hsbbg"
         app:layout_constraintEnd_toEndOf="parent"

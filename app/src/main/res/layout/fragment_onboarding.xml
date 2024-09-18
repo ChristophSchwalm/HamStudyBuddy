@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
     tools:context=".ui.OnboardingFragment">
 
     <TextView
@@ -21,6 +22,7 @@
         android:id="@+id/imageView10"
         android:layout_width="match_parent"
         android:layout_height="280sp"
+        android:contentDescription="TODO"
         android:scaleType="fitXY"
         android:src="@drawable/hsbbg"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,6 +37,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
         android:contentDescription="@string/onboarding_1"
+        android:gravity="center"
         android:text="@string/onboarding_1"
         android:textColor="@color/white"
         android:textSize="16sp"
@@ -46,12 +49,14 @@
         android:id="@+id/etName"
         android:layout_width="wrap_content"
         android:layout_height="45dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:ems="10"
+        android:foregroundGravity="clip_horizontal"
         android:inputType="text"
         android:text="Name"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
@@ -62,6 +67,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
+        android:gravity="center"
         android:text="@string/onboarding_2"
         android:textColor="@color/white"
         android:textSize="16sp"
