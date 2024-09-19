@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.mlm4u.hamstudybuddy.data.model.GameStatus
 import com.mlm4u.hamstudybuddy.data.viewModel.SharedViewModel
 import com.mlm4u.hamstudybuddy.databinding.FragmentGameBinding
 import java.util.Timer
@@ -30,18 +31,29 @@ class GameFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        sharedViewModel.gameQuestionsNew()
+        gameQuestionsNew()
 
         vb.btAlleFragen.setOnClickListener {
             allGameQuestions()
+            sharedViewModel.setGameStatus(GameStatus.ALL)
         }
         vb.btNurFalscheFragen.setOnClickListener {
             gameQuestionsWrongAnswers()
+            sharedViewModel.setGameStatus(GameStatus.WRONG)
         }
         vb.btNeueFragen.setOnClickListener {
             gameQuestionsNew()
+            sharedViewModel.setGameStatus(GameStatus.NULL)
         }
 
+        sharedViewModel.gameStatus.observe(viewLifecycleOwner) { status ->
+            when (status) {
+                GameStatus.NULL -> sharedViewModel.gameQuestionsNew()
+                GameStatus.WRONG -> sharedViewModel.gameQuestionsWrongAnswers()
+                GameStatus.ALL -> sharedViewModel.allGameQuestions()
+                else -> {}
+            }
+        }
 
         sharedViewModel.gameQuestions.observe(viewLifecycleOwner) { gameQuestions ->
             if (gameQuestions.isNotEmpty()) {
@@ -66,7 +78,7 @@ class GameFragment : Fragment() {
                 vb.tvGameAnswerD.text = shuffledAnswers[3]
 
             } else {
-                vb.tvGameQuestion.text = "Es gibt noch keine Fragen im Game!"
+                vb.tvGameQuestion.text = "Es gibt keine Fragen!"
                 vb.tvQuestionSize.text = ""
                 resetView()
             }
@@ -205,22 +217,23 @@ class GameFragment : Fragment() {
     }
 
     fun allGameQuestions() {
-        sharedViewModel.allGameQuestions()
+        sharedViewModel.setGameStatus(GameStatus.ALL)
         vb.btAlleFragen.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
         vb.btNeueFragen.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
         vb.btNurFalscheFragen.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
     }
 
     fun gameQuestionsWrongAnswers() {
-        sharedViewModel.gameQuestionsWrongAnswers()
-        vb.btNurFalscheFragen.setTextColor(ContextCompat.getColor(requireContext(),R.color.red))
+        sharedViewModel.setGameStatus(GameStatus.WRONG)
+        vb.btNurFalscheFragen.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
         vb.btNeueFragen.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
         vb.btAlleFragen.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
     }
 
     fun gameQuestionsNew() {
-        sharedViewModel.gameQuestionsNew()
+        sharedViewModel.setGameStatus(GameStatus.NULL)
         vb.btNeueFragen.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
         vb.btAlleFragen.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-        vb.btNurFalscheFragen.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))    }
+        vb.btNurFalscheFragen.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+    }
 }

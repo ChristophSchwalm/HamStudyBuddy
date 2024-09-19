@@ -12,6 +12,7 @@ import com.mlm4u.hamstudybuddy.data.Repository
 import com.mlm4u.hamstudybuddy.data.database.GameQuestions
 import com.mlm4u.hamstudybuddy.data.database.Questions
 import com.mlm4u.hamstudybuddy.data.database.QuestionsDatabase.Companion.getDatabase
+import com.mlm4u.hamstudybuddy.data.model.GameStatus
 import com.mlm4u.hamstudybuddy.data.model.Root
 import com.mlm4u.hamstudybuddy.data.remote.QuestionApi
 import kotlinx.coroutines.launch
@@ -47,6 +48,10 @@ class SharedViewModel(
     val selectedTitle: LiveData<String>
         get() = _selectedTitle
 
+    private val _gameStatus = MutableLiveData(GameStatus.NULL)
+    val gameStatus: LiveData<GameStatus>
+        get() = _gameStatus
+
     private var _gameQuestion = MutableLiveData<GameQuestions>()
     val gameQuestion: LiveData<GameQuestions>
         get() = _gameQuestion
@@ -54,6 +59,7 @@ class SharedViewModel(
     private val _gameQuestions = MutableLiveData<List<GameQuestions>>()
     val gameQuestions: LiveData<List<GameQuestions>>
         get() = _gameQuestions
+
 
     init {
         Log.d("CSChecker", "SharedViewModel init")
@@ -249,6 +255,10 @@ class SharedViewModel(
         viewModelScope.launch {
             repository.resetGame()
         }
+    }
+
+    fun setGameStatus(status: GameStatus) {
+        _gameStatus.value = status
     }
 
 //**************************************************************************************************

@@ -55,6 +55,7 @@ class OnboardingFragment : Fragment() {
             vb.btOnboardingSave.setOnClickListener {
                 if (vb.rgOnboardingKlassen.checkedRadioButtonId != -1) {
                     sharedViewModel.saveUserSettings(vb.etName.text.toString())
+                    sharedViewModel.getQuestionsApi()
                     findNavController().navigate(R.id.action_onboardingFragment_to_homeFragment)
                 } else {
                     Toast.makeText(

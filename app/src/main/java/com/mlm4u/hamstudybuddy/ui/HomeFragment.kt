@@ -33,6 +33,9 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        sharedViewModel.loading.observe(viewLifecycleOwner) {
+            vb.linearProgressIndicatorHome.visibility = if (it) View.VISIBLE else View.GONE
+        }
 
         val bottomNavigationView =
             (activity as MainActivity).findViewById<BottomNavigationView>(R.id.bottomNavigationView)

@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.progressindicator.LinearProgressIndicator
-        android:id="@+id/linearProgressIndicator"
+        android:id="@+id/linearProgressIndicatorSettings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:indeterminate="true"

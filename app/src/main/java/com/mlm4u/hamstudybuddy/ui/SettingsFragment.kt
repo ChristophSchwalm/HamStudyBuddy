@@ -27,7 +27,7 @@ class SettingsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         sharedViewModel.loading.observe(viewLifecycleOwner) {
-            vb.linearProgressIndicator.visibility = if (it) View.VISIBLE else View.GONE
+            vb.linearProgressIndicatorSettings.visibility = if (it) View.VISIBLE else View.GONE
         }
 
         sharedViewModel.userSettings.observe(viewLifecycleOwner) {
