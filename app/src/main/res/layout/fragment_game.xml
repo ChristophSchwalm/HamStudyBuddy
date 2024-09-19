@@ -20,37 +20,37 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView4">
 
         <Button
-            android:id="@+id/btNeueFragen"
+            android:id="@+id/btNewAnswers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:layout_weight="1"
             android:gravity="center_horizontal|center_vertical"
-            android:text="Neue Fragen"
+            android:text="New Answers"
             android:textColor="@color/white"
             android:textSize="12sp"
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/btNurFalscheFragen"
+            android:id="@+id/btWrongAnswers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:layout_weight="1"
             android:gravity="center_horizontal|center_vertical"
-            android:text="Nur Falsche"
+            android:text="Wrong Answers"
             android:textColor="@color/white"
             android:textSize="12sp"
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/btAlleFragen"
+            android:id="@+id/btRightAnswers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:layout_weight="1"
             android:gravity="center_horizontal|center_vertical"
-            android:text="Alle Fragen"
+            android:text="Right Answers"
             android:textColor="@color/white"
             android:textSize="12sp"
             android:textStyle="bold" />
