@@ -36,7 +36,7 @@ interface QuestionRemoteApi {
     @GET("hamstudybuddy/fragenkatalog3b.json")
     suspend fun getQuestionsApi(): Root
 
-    @GET("hamstuddybuddy/version.json")
+    @GET("hamstudybuddy/version.json")
     suspend fun getVersionApi(): VersionResponse
 }
 

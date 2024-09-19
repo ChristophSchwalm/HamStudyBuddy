@@ -267,18 +267,20 @@ class SharedViewModel(
     fun getUserSettings() {
         Log.d("CSChecker", "getUserSettings() called")
         viewModelScope.launch {
-            val userSettings = firebaseRepository.getUserSettings()
-            Log.d("CSChecker", "getUserSettings() finished")
-            Log.d("CSChecker", "ViewModel userSettings: $userSettings")
-            if (userSettings != null) {
-                _userSettings.value = userSettings!!
-                _userClass.value = userSettings["UserClass"] as? String
-                userSettings["Name"] as? String
-                // Rufe allGameQuestions erst auf, nachdem userClass geladen wurde
-                allGameQuestions()
-                Log.d("CSChecker", "ViewModel UserSettings gefunden: ${userSettings["UserClass"]}")
-            } else {
-                // Handle den Fall, dass keine User Settings gefunden wurden
+            try {
+                val userSettings = firebaseRepository.getUserSettings()
+                Log.d("CSChecker", "getUserSettings() finished")
+                Log.d("CSChecker", "ViewModel userSettings: $userSettings")
+                if (userSettings != null) {
+                    _userSettings.value = userSettings
+                    _userClass.value = userSettings["UserClass"] as? String
+                    // Rufe allGameQuestions erst auf, nachdem userClass geladen wurde
+                    allGameQuestions()
+                } else {
+                    Log.w("CSChecker", "No User Settings found")
+                }
+            } catch (e: Exception) {
+                Log.e("CSChecker", "Error fetching user settings: ${e.message}")
             }
         }
     }
@@ -294,8 +296,12 @@ class SharedViewModel(
 
     fun getVersionApi() {
         viewModelScope.launch {
-            _version.value = api.retrofitService.getVersionApi().version // Wert zurückgeben
-            Log.d("CSChecker", "Version: ${_version.value}")
+            try {
+                _version.value = api.retrofitService.getVersionApi().version
+                Log.d("CSChecker", "Version: ${_version.value}")
+            } catch (e: Exception) {
+                Log.e("CSChecker", "Error fetching version: ${e.message}")
+            }
         }
     }
 
@@ -321,6 +327,9 @@ class SharedViewModel(
             _loading.value = false
         }
     }
+
+
+
 }
 
 

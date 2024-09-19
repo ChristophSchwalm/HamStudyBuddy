@@ -118,9 +118,7 @@ class GameFragment : Fragment() {
             vb.cvGameAnswerC.isClickable = false
             vb.cvGameAnswerC.alpha = 0.5f
         }
-
     }
-
 
     private fun resetView() {
         vb.tvGameAnswerA.text = ""
@@ -176,21 +174,18 @@ class GameFragment : Fragment() {
                 vb.cvGameAnswerA.setCardBackgroundColor(
                     cardBackgroundColor
                 )
-
             }
 
             vb.tvGameAnswerB.text.toString() -> {
                 vb.cvGameAnswerB.setCardBackgroundColor(
                     cardBackgroundColor
                 )
-
             }
 
             vb.tvGameAnswerC.text.toString() -> {
                 vb.cvGameAnswerC.setCardBackgroundColor(
                     cardBackgroundColor
                 )
-
             }
 
             vb.tvGameAnswerD.text.toString() -> {
@@ -209,10 +204,21 @@ class GameFragment : Fragment() {
             Timer().schedule(timerTask {
                 sharedViewModel.addWrongFlag()
             }, 2000)
-
         }
 
+    }
+    fun gameQuestionsNew() {
+        sharedViewModel.gameQuestionsNew()
+        vb.btNewAnswers.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
+        vb.btWrongAnswers.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+        vb.btRightAnswers.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+    }
 
+    fun gameQuestionsWrongAnswers() {
+        sharedViewModel.gameQuestionsWrongAnswers()
+        vb.btWrongAnswers.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
+        vb.btNewAnswers.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+        vb.btRightAnswers.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
     }
 
     fun gameQuestionsRightAnswers() {
@@ -222,17 +228,4 @@ class GameFragment : Fragment() {
         vb.btWrongAnswers.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
     }
 
-    fun gameQuestionsWrongAnswers() {
-        sharedViewModel.gameQuestionsWrongAnswers()
-        vb.btWrongAnswers.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
-        vb.btNewAnswers.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-        vb.btNewAnswers.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-    }
-
-    fun gameQuestionsNew() {
-        sharedViewModel.gameQuestionsNew()
-        vb.btNewAnswers.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
-        vb.btWrongAnswers.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-        vb.btRightAnswers.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-    }
 }
