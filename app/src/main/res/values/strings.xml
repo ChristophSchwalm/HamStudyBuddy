@@ -10,7 +10,7 @@ Stell dir vor: Ein Stromausfall legt das Handynetz lahm, und die nächste Katast
 Unsere App hat alles, was du brauchst: interaktive Lernmodule, die dir spielerisch die Welt des Amateurfunks näherbringen, und Prüfungsfragen, mit denen du dein Wissen auf die Probe stellst.
 
 Also, worauf wartest du? Starte jetzt und werde zum Funk-Hero, der im Ernstfall die Welt (oder zumindest seine Nachbarschaft) rettet!</string>
-    <string name="Teil3"></string>
+    <string name="Teil3" />
     <string name="Teil1">Willkommen zu\nHamStudyBuddy!</string>
     <string name="onboarding_1">Es sieht so aus, als ob du zum ersten Mal in unserer App unterwegs bist.\n Wie dürfen wir dich nennen?</string>
     <string name="onboarding_2">Für welche Klasse möchtest du die Fragen lernen?</string>

@@ -72,7 +72,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="280dp">
+            app:layout_constraintTop_toBottomOf="@+id/imageView5">
 
         </ScrollView>
 
@@ -94,7 +94,7 @@
             android:indeterminate="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imageView7"
+            app:layout_constraintTop_toTopOf="parent"
             app:trackThickness="10dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
