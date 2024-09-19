@@ -2,6 +2,7 @@ package com.mlm4u.hamstudybuddy.ui
 
 import com.mlm4u.hamstudybuddy.R
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,26 +32,23 @@ class GameFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        gameQuestionsNew()
 
         vb.btAlleFragen.setOnClickListener {
-            allGameQuestions()
             sharedViewModel.setGameStatus(GameStatus.ALL)
         }
         vb.btNurFalscheFragen.setOnClickListener {
-            gameQuestionsWrongAnswers()
             sharedViewModel.setGameStatus(GameStatus.WRONG)
         }
         vb.btNeueFragen.setOnClickListener {
-            gameQuestionsNew()
             sharedViewModel.setGameStatus(GameStatus.NULL)
         }
 
         sharedViewModel.gameStatus.observe(viewLifecycleOwner) { status ->
+            Log.d("CSChecker", "GameStatus: $status")
             when (status) {
-                GameStatus.NULL -> sharedViewModel.gameQuestionsNew()
-                GameStatus.WRONG -> sharedViewModel.gameQuestionsWrongAnswers()
-                GameStatus.ALL -> sharedViewModel.allGameQuestions()
+                GameStatus.NULL -> gameQuestionsNew()
+                GameStatus.WRONG -> gameQuestionsWrongAnswers()
+                GameStatus.ALL -> allGameQuestions()
                 else -> {}
             }
         }
@@ -217,21 +215,21 @@ class GameFragment : Fragment() {
     }
 
     fun allGameQuestions() {
-        sharedViewModel.setGameStatus(GameStatus.ALL)
+        sharedViewModel.allGameQuestions()
         vb.btAlleFragen.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
         vb.btNeueFragen.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
         vb.btNurFalscheFragen.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
     }
 
     fun gameQuestionsWrongAnswers() {
-        sharedViewModel.setGameStatus(GameStatus.WRONG)
+        sharedViewModel.gameQuestionsWrongAnswers()
         vb.btNurFalscheFragen.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
         vb.btNeueFragen.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
         vb.btAlleFragen.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
     }
 
     fun gameQuestionsNew() {
-        sharedViewModel.setGameStatus(GameStatus.NULL)
+        sharedViewModel.gameQuestionsNew()
         vb.btNeueFragen.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
         vb.btAlleFragen.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
         vb.btNurFalscheFragen.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
