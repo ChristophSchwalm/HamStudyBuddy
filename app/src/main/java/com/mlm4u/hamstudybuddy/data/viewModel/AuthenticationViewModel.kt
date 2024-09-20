@@ -30,9 +30,9 @@ class AuthenticationViewModel : ViewModel() {
     }
 
     fun signInWithGoogle(account: GoogleSignInAccount) {
-        // Use the account object to authenticate with your backend (e.g., Firebase)
-        val credential = GoogleAuthProvider.getCredential(account.idToken, null)
-        // ... your authentication logic using the credential ...
+        viewModelScope.launch {
+            firebaseRepository.signInWithGoogle(account)
+        }
     }
 
 }

@@ -25,7 +25,6 @@ class LoginFragment : Fragment() {
     private val authenticationViewModel: AuthenticationViewModel by activityViewModels()
     private lateinit var googleSignInClient: GoogleSignInClient
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,7 +40,9 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // GoogleSignInOptions so konfigurieren, dass das ID-Token angefordert wird
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))  // Hole das ID-Token für Firebase
             .requestEmail()
             .build()
 
@@ -59,10 +60,12 @@ class LoginFragment : Fragment() {
         }
 
         vb.btGoogleSignIn.setOnClickListener {
-            val signInIntent = googleSignInClient.signInIntent
-            startActivityForResult(signInIntent, RC_SIGN_IN)
+            googleSignInClient.signOut().addOnCompleteListener {
+                // Starte den Sign-In-Prozess erneut
+                val signInIntent = googleSignInClient.signInIntent
+                startActivityForResult(signInIntent, RC_SIGN_IN)
+            }
         }
-
 
         authenticationViewModel.logout()
 
@@ -92,14 +95,13 @@ class LoginFragment : Fragment() {
             try {
                 val account = task.getResult(ApiException::class.java)
                 account?.let {
-                    authenticationViewModel.signInWithGoogle(account)
+                    // Übergebe das komplette GoogleSignInAccount-Objekt
+                    authenticationViewModel.signInWithGoogle(it)
                 }
             } catch (e: ApiException) {
-                // Handle sign-in failure
+                // Fehler bei der Anmeldung behandeln
                 Log.e("LoginFragment", "signInResult:failed code=" + e.statusCode)
             }
         }
     }
-
-
 }
