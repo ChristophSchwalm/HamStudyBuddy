@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.mlm4u.hamstudybuddy" />
+                  <option name="mobileSdkAppId" value="1:535043367814:android:51d91d2a2a94689b1ac207" />
+                  <option name="projectId" value="hamstudybuddy" />
+                  <option name="projectNumber" value="535043367814" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

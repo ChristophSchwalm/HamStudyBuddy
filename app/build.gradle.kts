@@ -56,6 +56,7 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     kapt("androidx.room:room-compiler:2.6.1")
+    implementation("com.google.android.gms:play-services-auth:20.6.0")
 
     //Retrofit und Moshi
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
@@ -66,6 +67,7 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:33.3.0"))
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-firestore")
+    implementation("com.google.firebase:firebase-analytics")
 
 
 }

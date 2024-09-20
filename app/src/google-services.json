@@ -12,7 +12,20 @@
           "package_name": "com.mlm4u.hamstudybuddy"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "535043367814-0tsd30d3fobp9mi6u8qmrir6fnqs6aqd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mlm4u.hamstudybuddy",
+            "certificate_hash": "d5d10aa9202f4ff7c1b25e559bc7b72fd94952fd"
+          }
+        },
+        {
+          "client_id": "535043367814-q98d6r7glcuegug8hhh1uff7qn5nv4ac.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBOgn_Rh7asaPTkp9vlrfTgz6UcXa0YLvo"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "535043367814-q98d6r7glcuegug8hhh1uff7qn5nv4ac.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
