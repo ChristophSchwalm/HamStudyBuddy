@@ -40,11 +40,9 @@ class OnboardingFragment : Fragment() {
                 vb.rbOnboardingClassN.id -> {
                     sharedViewModel.changeUserClass("1")
                 }
-
                 vb.rbOnboardingClassE.id -> {
                     sharedViewModel.changeUserClass("2")
                 }
-
                 vb.rbOnboardingClassA.id -> {
                     sharedViewModel.changeUserClass("3")
                 }
@@ -52,21 +50,17 @@ class OnboardingFragment : Fragment() {
         }
 
         vb.btOnboardingSave.setOnClickListener {
-            vb.btOnboardingSave.setOnClickListener {
-                if (vb.rgOnboardingKlassen.checkedRadioButtonId != -1) {
-                    sharedViewModel.saveUserSettings(vb.etName.text.toString())
-                    sharedViewModel.getQuestionsApi()
-                    findNavController().navigate(R.id.action_onboardingFragment_to_homeFragment)
-                } else {
-                    Toast.makeText(
-                        requireContext(),
-                        "Bitte wähle eine Klasse aus",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
+            if (vb.rgOnboardingKlassen.checkedRadioButtonId != -1) {
+                sharedViewModel.saveUserSettings(vb.etName.text.toString())
+                sharedViewModel.getQuestionsApi()
+                findNavController().navigate(R.id.action_onboardingFragment_to_homeFragment)
+            } else {
+                Toast.makeText(
+                    requireContext(),
+                    "Bitte wähle eine Klasse aus",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
-
-
     }
 }
