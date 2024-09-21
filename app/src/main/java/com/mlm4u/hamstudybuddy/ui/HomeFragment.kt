@@ -43,6 +43,12 @@ class HomeFragment : Fragment() {
         authenticationViewModel.currentUser.observe(viewLifecycleOwner) {
             if (it == null) {
                 findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
+            } else {
+                sharedViewModel.userClass.observe(viewLifecycleOwner) { userClass ->
+                    if (userClass == "") {
+                        findNavController().navigate(R.id.onboardingFragment)
+                    }
+                }
             }
         }
 

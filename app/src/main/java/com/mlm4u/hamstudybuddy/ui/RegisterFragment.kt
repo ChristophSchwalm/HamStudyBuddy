@@ -36,7 +36,7 @@ class RegisterFragment : Fragment() {
             val passwordRepeated = vb.tePassword2.text.toString()
             if (password == passwordRepeated) {
                 authenticationViewModel.register(email, password)
-                findNavController().navigate(R.id.action_registerFragment_to_onboardingFragment)
+                findNavController().navigate(R.id.action_registerFragment_to_homeFragment)
             } else {
                 Toast.makeText(context, "Passwörter stimmen nicht überein", Toast.LENGTH_SHORT)
                     .show()

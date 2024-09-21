@@ -3,7 +3,6 @@ package com.mlm4u.hamstudybuddy.data.viewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.google.firebase.auth.GoogleAuthProvider
 import com.mlm4u.hamstudybuddy.data.FirebaseRepository
 import kotlinx.coroutines.launch
 
