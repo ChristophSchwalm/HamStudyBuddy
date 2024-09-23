@@ -31,88 +31,113 @@
             android:orientation="vertical"
             android:textAlignment="center">
 
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Onboarding"
-                android:textColor="#FFFFFF"
-                android:textSize="60sp" />
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="24dp"
-                android:contentDescription="@string/onboarding_1"
-                android:gravity="center"
-                android:text="@string/onboarding_1"
-                android:textColor="@color/white"
-                android:textSize="16sp" />
-
-            <EditText
-                android:id="@+id/etName"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="4dp"
-                android:ems="10"
-                android:foregroundGravity="clip_horizontal"
-                android:hint="Dein Name"
-                android:inputType="text"
-                android:textAlignment="center"
-                android:textColor="@color/white" />
-
-            <TextView
-                android:id="@+id/textView9"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="24dp"
-                android:gravity="center"
-                android:text="@string/onboarding_2"
-                android:textColor="@color/white"
-                android:textSize="16sp" />
-
-            <RadioGroup
-                android:id="@+id/rgOnboardingKlassen"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:textAlignment="center">
+                android:layout_height="wrap_content">
 
-                <RadioButton
-                    android:id="@+id/rbOnboardingClassN"
+                <TextView
+                    android:id="@+id/textView2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Klasse N"
-                    android:textColor="@color/white" />
+                    android:text="Onboarding"
+                    android:textAlignment="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="60sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                <RadioButton
-                    android:id="@+id/rbOnboardingClassE"
+                <TextView
+                    android:id="@+id/textView6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Klasse E"
-                    android:textColor="@color/white" />
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:contentDescription="@string/onboarding_1"
+                    android:gravity="center"
+                    android:text="@string/onboarding_1"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
-                <RadioButton
-                    android:id="@+id/rbOnboardingClassA"
+                <EditText
+                    android:id="@+id/etName"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="4dp"
+                    android:ems="10"
+                    android:foregroundGravity="clip_horizontal"
+                    android:hint="Dein Name"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+                <TextView
+                    android:id="@+id/textView9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Klasse A"
-                    android:textColor="@color/white" />
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:text="@string/onboarding_2"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/etName" />
 
-                ...
-            </RadioGroup>
+                <RadioGroup
+                    android:id="@+id/rgOnboardingKlassen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:textAlignment="center"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView9">
 
-            <Button
-                android:id="@+id/btOnboardingSave"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="WEITER" />
+                    <RadioButton
+                        android:id="@+id/rbOnboardingClassN"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Klasse N"
+                        android:textColor="@color/white" />
+
+                    <RadioButton
+                        android:id="@+id/rbOnboardingClassE"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Klasse E"
+                        android:textColor="@color/white" />
+
+                    <RadioButton
+                        android:id="@+id/rbOnboardingClassA"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Klasse A"
+                        android:textColor="@color/white" />
+
+                    ...
+                </RadioGroup>
+
+                <Button
+                    android:id="@+id/btOnboardingSave"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="600dp"
+                    android:text="WEITER"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rgOnboardingKlassen" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
