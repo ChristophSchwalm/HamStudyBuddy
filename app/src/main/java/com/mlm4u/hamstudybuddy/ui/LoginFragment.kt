@@ -17,6 +17,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mlm4u.hamstudybuddy.MainActivity
 import com.mlm4u.hamstudybuddy.R
+import com.mlm4u.hamstudybuddy.R.string
 import com.mlm4u.hamstudybuddy.data.viewModel.AuthenticationViewModel
 import com.mlm4u.hamstudybuddy.databinding.FragmentLoginBinding
 
@@ -43,7 +44,7 @@ class LoginFragment : Fragment() {
 
         // GoogleSignInOptions so konfigurieren, dass das ID-Token angefordert wird
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))  // Hole das ID-Token für Firebase
+            .requestIdToken(getString(string.default_web_client_id))  // Hole das ID-Token für Firebase
             .requestEmail()
             .build()
 
@@ -105,14 +106,20 @@ class LoginFragment : Fragment() {
                     GoogleSignInStatusCodes.SIGN_IN_CANCELLED -> {
                         Log.w("LoginFragment", "Anmeldung abgebrochen.")
                     }
+
                     GoogleSignInStatusCodes.SIGN_IN_FAILED -> {
                         Log.e("LoginFragment", "Anmeldung fehlgeschlagen: ${e.message}")
                     }
+
                     GoogleSignInStatusCodes.NETWORK_ERROR -> {
                         Log.e("LoginFragment", "Netzwerkfehler: Überprüfe die Internetverbindung.")
                     }
+
                     else -> {
-                        Log.e("LoginFragment", "Unbekannter Fehler bei der Anmeldung: Code=${e.statusCode}, Nachricht=${e.message}")
+                        Log.e(
+                            "LoginFragment",
+                            "Unbekannter Fehler bei der Anmeldung: Code=${e.statusCode}, Nachricht=${e.message}"
+                        )
                     }
                 }
             } catch (e: Exception) {

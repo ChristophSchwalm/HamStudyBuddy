@@ -41,7 +41,7 @@ class SharedViewModel(
         get() = _version
 
     private val _userClass = MutableLiveData("")
-    val userClass: LiveData<String?>
+    val userClass: LiveData<String>
         get() = _userClass
 
     private val _selectedTitle = MutableLiveData<String>()
@@ -327,7 +327,6 @@ class SharedViewModel(
             _loading.value = false
         }
     }
-
 
 
 }

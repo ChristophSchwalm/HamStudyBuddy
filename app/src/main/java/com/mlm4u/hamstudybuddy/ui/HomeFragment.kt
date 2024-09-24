@@ -1,6 +1,7 @@
 package com.mlm4u.hamstudybuddy.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -45,6 +46,7 @@ class HomeFragment : Fragment() {
                 findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
             } else {
                 sharedViewModel.userClass.observe(viewLifecycleOwner) { userClass ->
+                    Log.d("CSChecker", "Home Fragment: userClass: $userClass")
                     if (userClass == "") {
                         findNavController().navigate(R.id.onboardingFragment)
                     }
