@@ -31,6 +31,10 @@ class OnboardingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        sharedViewModel.loading.observe(viewLifecycleOwner) {
+            vb.linearProgressIndicatorOnboarding.visibility = if (it) View.VISIBLE else View.GONE
+        }
+
         val bottomNavigationView =
             (activity as MainActivity).findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         bottomNavigationView.visibility = View.INVISIBLE
@@ -40,9 +44,11 @@ class OnboardingFragment : Fragment() {
                 vb.rbOnboardingClassN.id -> {
                     sharedViewModel.changeUserClass("1")
                 }
+
                 vb.rbOnboardingClassE.id -> {
                     sharedViewModel.changeUserClass("2")
                 }
+
                 vb.rbOnboardingClassA.id -> {
                     sharedViewModel.changeUserClass("3")
                 }

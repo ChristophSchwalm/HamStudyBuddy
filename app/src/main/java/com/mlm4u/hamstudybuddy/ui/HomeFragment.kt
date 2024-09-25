@@ -33,7 +33,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        Log.d("CSChecker", "Home Fragment: onViewCreated")
         sharedViewModel.loading.observe(viewLifecycleOwner) {
             vb.linearProgressIndicatorHome.visibility = if (it) View.VISIBLE else View.GONE
         }
@@ -43,13 +43,24 @@ class HomeFragment : Fragment() {
         bottomNavigationView.visibility = View.VISIBLE
 
         authenticationViewModel.currentUser.observe(viewLifecycleOwner) { curentUser ->
+            Log.d("CSChecker", "Home Fragment: currentUser vor IF: $curentUser")
             if (curentUser == null) {
                 findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
-            } else if (sharedViewModel.userClass.value != "") {
-                Log.d("CSChecker", "Home Fragment: userClass: ${sharedViewModel.userClass.value}")
-                findNavController().navigate(R.id.onboardingFragment)
+            } else {
+                sharedViewModel.loading.observe(viewLifecycleOwner) {
+                    Log.d("CSChecker", "Home Fragment: loading: $it")
+                    if (!it) {
+                        if (sharedViewModel.userClass.value.isNullOrEmpty()) {
+                            findNavController().navigate(R.id.onboardingFragment)
+                        }
+                    }
+                }
             }
         }
+
+
+
+
 
         vb.btLogout.setOnClickListener {
             authenticationViewModel.logout()

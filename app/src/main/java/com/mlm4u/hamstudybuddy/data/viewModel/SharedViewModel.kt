@@ -267,6 +267,9 @@ class SharedViewModel(
     fun getUserSettings() {
         Log.d("CSChecker", "getUserSettings() called")
         viewModelScope.launch {
+            _loading.value = true
+            Log.d("CSChecker", "Loading auf true im Api Call")
+            Log.d("CSChecker", "${_loading.value}")
             try {
                 val userSettings = firebaseRepository.getUserSettings()
                 Log.d("CSChecker", "getUserSettings() finished")
@@ -282,7 +285,9 @@ class SharedViewModel(
             } catch (e: Exception) {
                 Log.e("CSChecker", "Error fetching user settings: ${e.message}")
             }
+            _loading.value = false
         }
+
     }
 
     fun saveUserSettings(name: String) {
