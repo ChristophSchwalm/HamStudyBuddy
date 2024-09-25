@@ -8,14 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mlm4u.hamstudybuddy.MainActivity
 import com.mlm4u.hamstudybuddy.R
 import com.mlm4u.hamstudybuddy.data.viewModel.AuthenticationViewModel
 import com.mlm4u.hamstudybuddy.data.viewModel.SharedViewModel
 import com.mlm4u.hamstudybuddy.databinding.FragmentHomeBinding
-import kotlinx.coroutines.delay
 
 class HomeFragment : Fragment() {
 
@@ -57,9 +55,6 @@ class HomeFragment : Fragment() {
                 }
             }
         }
-
-
-
 
 
         vb.btLogout.setOnClickListener {
