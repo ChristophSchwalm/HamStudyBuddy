@@ -15,6 +15,7 @@ import com.mlm4u.hamstudybuddy.R
 import com.mlm4u.hamstudybuddy.data.viewModel.AuthenticationViewModel
 import com.mlm4u.hamstudybuddy.data.viewModel.SharedViewModel
 import com.mlm4u.hamstudybuddy.databinding.FragmentHomeBinding
+import kotlinx.coroutines.delay
 
 class HomeFragment : Fragment() {
 
@@ -41,16 +42,12 @@ class HomeFragment : Fragment() {
             (activity as MainActivity).findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         bottomNavigationView.visibility = View.VISIBLE
 
-        authenticationViewModel.currentUser.observe(viewLifecycleOwner) {
-            if (it == null) {
+        authenticationViewModel.currentUser.observe(viewLifecycleOwner) { curentUser ->
+            if (curentUser == null) {
                 findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
-            } else {
-                sharedViewModel.userClass.observe(viewLifecycleOwner) { userClass ->
-                    Log.d("CSChecker", "Home Fragment: userClass: $userClass")
-                    if (userClass == "") {
-                        findNavController().navigate(R.id.onboardingFragment)
-                    }
-                }
+            } else if (sharedViewModel.userClass.value != "") {
+                Log.d("CSChecker", "Home Fragment: userClass: ${sharedViewModel.userClass.value}")
+                findNavController().navigate(R.id.onboardingFragment)
             }
         }
 
@@ -59,3 +56,7 @@ class HomeFragment : Fragment() {
         }
     }
 }
+
+
+
+
