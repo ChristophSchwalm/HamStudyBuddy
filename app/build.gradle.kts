@@ -13,8 +13,8 @@ android {
         applicationId = "com.mlm4u.hamstudybuddy"
         minSdk = 24
         targetSdk = 34
-        versionCode = 7
-        versionName = "1.1"
+        versionCode = 9
+        versionName = "1.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -57,7 +57,8 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     kapt("androidx.room:room-compiler:2.6.1")
-    implementation("com.google.android.gms:play-services-auth:20.6.0")
+    implementation("com.google.android.gms:play-services-auth:21.2.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
 
     //Retrofit und Moshi
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
