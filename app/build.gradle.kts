@@ -13,8 +13,8 @@ android {
         applicationId = "com.mlm4u.hamstudybuddy"
         minSdk = 24
         targetSdk = 34
-        versionCode = 11
-        versionName = "1.4"
+        versionCode = 12
+        versionName = "1.5"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
