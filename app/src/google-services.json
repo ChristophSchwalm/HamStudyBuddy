@@ -22,6 +22,14 @@
           }
         },
         {
+          "client_id": "535043367814-3ekn8vksb26uthsg0nidv8lspbn554un.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mlm4u.hamstudybuddy",
+            "certificate_hash": "d8e21a66cb36998560560a3a0ae46204fde628d1"
+          }
+        },
+        {
           "client_id": "535043367814-q98d6r7glcuegug8hhh1uff7qn5nv4ac.apps.googleusercontent.com",
           "client_type": 3
         }
