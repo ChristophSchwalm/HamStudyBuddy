@@ -1,5 +1,6 @@
 package com.mlm4u.hamstudybuddy.ui
 
+import android.content.res.ColorStateList
 import com.mlm4u.hamstudybuddy.R
 import android.os.Bundle
 import android.util.Log
@@ -75,9 +76,18 @@ class GameFragment : Fragment() {
                 vb.tvGameAnswerC.text = shuffledAnswers[2]
                 vb.tvGameAnswerD.text = shuffledAnswers[3]
 
+                vb.cvGameAnswerA.visibility = View.VISIBLE
+                vb.cvGameAnswerB.visibility = View.VISIBLE
+                vb.cvGameAnswerC.visibility = View.VISIBLE
+                vb.cvGameAnswerD.visibility = View.VISIBLE
+
             } else {
                 vb.tvGameQuestion.text = "Es gibt keine Fragen!"
                 vb.tvQuestionSize.text = ""
+                vb.cvGameAnswerA.visibility = View.GONE
+                vb.cvGameAnswerB.visibility = View.GONE
+                vb.cvGameAnswerC.visibility = View.GONE
+                vb.cvGameAnswerD.visibility = View.GONE
                 resetView()
             }
         }
@@ -136,25 +146,25 @@ class GameFragment : Fragment() {
         vb.cvGameAnswerA.setCardBackgroundColor(
             ContextCompat.getColor(
                 requireContext(),
-                R.color.white
+                R.color.cvAnswer
             )
         )
         vb.cvGameAnswerB.setCardBackgroundColor(
             ContextCompat.getColor(
                 requireContext(),
-                R.color.white
+                R.color.cvAnswer
             )
         )
         vb.cvGameAnswerC.setCardBackgroundColor(
             ContextCompat.getColor(
                 requireContext(),
-                R.color.white
+                R.color.cvAnswer
             )
         )
         vb.cvGameAnswerD.setCardBackgroundColor(
             ContextCompat.getColor(
                 requireContext(),
-                R.color.white
+                R.color.cvAnswer
             )
         )
     }
@@ -207,25 +217,44 @@ class GameFragment : Fragment() {
         }
 
     }
+
     fun gameQuestionsNew() {
         sharedViewModel.gameQuestionsNew()
-        vb.btNewAnswers.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
-        vb.btWrongAnswers.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-        vb.btRightAnswers.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+        vb.btNewAnswers.backgroundTintList =
+            ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.gameActive))
+        vb.btWrongAnswers.backgroundTintList =
+            ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.gameInactive))
+        vb.btRightAnswers.backgroundTintList =
+            ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.gameInactive))
+        vb.btNewAnswers.setTextColor(ContextCompat.getColor(requireContext(), R.color.gameBtText))
+        vb.btWrongAnswers.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+        vb.btRightAnswers.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
     }
 
     fun gameQuestionsWrongAnswers() {
         sharedViewModel.gameQuestionsWrongAnswers()
-        vb.btWrongAnswers.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
-        vb.btNewAnswers.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-        vb.btRightAnswers.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+        vb.btWrongAnswers.backgroundTintList =
+            ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.gameActive))
+        vb.btNewAnswers.backgroundTintList =
+            ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.gameInactive))
+        vb.btRightAnswers.backgroundTintList =
+            ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.gameInactive))
+        vb.btWrongAnswers.setTextColor(ContextCompat.getColor(requireContext(), R.color.gameBtText))
+        vb.btNewAnswers.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+        vb.btRightAnswers.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
     }
 
     fun gameQuestionsRightAnswers() {
         sharedViewModel.gameQuestionsRightAnswers()
-        vb.btRightAnswers.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
-        vb.btNewAnswers.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-        vb.btWrongAnswers.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+        vb.btRightAnswers.backgroundTintList =
+            ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.gameActive))
+        vb.btNewAnswers.backgroundTintList =
+            ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.gameInactive))
+        vb.btWrongAnswers.backgroundTintList =
+            ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.gameInactive))
+        vb.btRightAnswers.setTextColor(ContextCompat.getColor(requireContext(), R.color.gameBtText))
+        vb.btNewAnswers.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+        vb.btWrongAnswers.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
     }
 
 }

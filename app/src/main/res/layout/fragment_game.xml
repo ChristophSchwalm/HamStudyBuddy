@@ -24,9 +24,10 @@
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:layout_weight="1"
+            android:backgroundTint="@color/gameActive"
             android:gravity="center_horizontal|center_vertical"
             android:text="New Answers"
-            android:textColor="@color/white"
+            android:textColor="#113104"
             android:textSize="12sp"
             android:textStyle="bold" />
 
@@ -36,6 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:layout_weight="1"
+            android:backgroundTint="#51627F"
             android:gravity="center_horizontal|center_vertical"
             android:text="Wrong Answers"
             android:textColor="@color/white"
@@ -48,6 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:layout_weight="1"
+            android:backgroundTint="#51627F"
             android:gravity="center_horizontal|center_vertical"
             android:text="Right Answers"
             android:textColor="@color/white"
@@ -63,6 +66,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
+        app:cardBackgroundColor="@color/cvAnswer"
         app:cardCornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -92,6 +96,7 @@
                     android:layout_height="wrap_content"
                     android:text="Frage Nr.:"
                     android:textAlignment="center"
+                    android:textColor="#000000"
                     android:textStyle="bold" />
 
                 <TextView
@@ -103,6 +108,7 @@
                     android:gravity="center_horizontal|center_vertical"
                     android:text="tvGameQuestion"
                     android:textAlignment="center"
+                    android:textColor="#000000"
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
@@ -121,6 +127,7 @@
                     android:layout_height="wrap_content"
                     android:text="Question Size"
                     android:textAlignment="center"
+                    android:textColor="#000000"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -150,6 +157,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
+                app:cardBackgroundColor="@color/cvAnswer"
                 app:cardCornerRadius="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -169,6 +177,7 @@
                         android:gravity="center_horizontal|center_vertical"
                         android:text="tvGameAnswerA"
                         android:textAlignment="center"
+                        android:textColor="#000000"
                         android:textSize="14sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -188,6 +197,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
+                app:cardBackgroundColor="@color/cvAnswer"
                 app:cardCornerRadius="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -206,6 +216,7 @@
                         android:layout_marginBottom="8dp"
                         android:gravity="center_horizontal|center_vertical"
                         android:text="tvGameAnswerB"
+                        android:textColor="#000000"
                         android:textSize="14sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -226,6 +237,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
+                app:cardBackgroundColor="@color/cvAnswer"
                 app:cardCornerRadius="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -245,6 +257,7 @@
                         android:gravity="center_horizontal|center_vertical"
                         android:text="tvGameAnswerC"
                         android:textAlignment="center"
+                        android:textColor="#000000"
                         android:textSize="14sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -264,8 +277,11 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
+                android:layout_marginBottom="600dp"
                 android:textAlignment="center"
+                app:cardBackgroundColor="@color/cvAnswer"
                 app:cardCornerRadius="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cvGameAnswerC">
@@ -284,6 +300,7 @@
                         android:gravity="center_horizontal|center_vertical"
                         android:text="tvGameAnswerD"
                         android:textAlignment="center"
+                        android:textColor="#000000"
                         android:textSize="14sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -316,8 +333,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Game"
-        android:textColor="#FFFFFF"
-        android:textSize="96sp"
+        android:textColor="@color/cvAnswer"
+        android:textSize="60dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/imageView4"
         app:layout_constraintStart_toStartOf="@+id/imageView4"
