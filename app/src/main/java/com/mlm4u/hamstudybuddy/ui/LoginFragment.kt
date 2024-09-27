@@ -19,6 +19,7 @@ import com.mlm4u.hamstudybuddy.MainActivity
 import com.mlm4u.hamstudybuddy.R
 import com.mlm4u.hamstudybuddy.R.string
 import com.mlm4u.hamstudybuddy.data.viewModel.AuthenticationViewModel
+import com.mlm4u.hamstudybuddy.data.viewModel.SharedViewModel
 import com.mlm4u.hamstudybuddy.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment() {
@@ -26,6 +27,7 @@ class LoginFragment : Fragment() {
     private lateinit var vb: FragmentLoginBinding
     private val authenticationViewModel: AuthenticationViewModel by activityViewModels()
     private lateinit var googleSignInClient: GoogleSignInClient
+    private val sharedViewModel: SharedViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -73,6 +75,8 @@ class LoginFragment : Fragment() {
 
         authenticationViewModel.currentUser.observe(viewLifecycleOwner) {
             it?.let {
+                sharedViewModel.getUserSettings()
+                Log.d("CSChecker", "User ist eingeloggt")
                 findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
             }
         }

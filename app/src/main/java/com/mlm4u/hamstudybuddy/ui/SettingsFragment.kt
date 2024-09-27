@@ -28,6 +28,7 @@ class SettingsFragment : Fragment() {
 
         sharedViewModel.loading.observe(viewLifecycleOwner) {
             vb.linearProgressIndicatorSettings.visibility = if (it) View.VISIBLE else View.GONE
+            countQuestions()
         }
 
         sharedViewModel.userSettings.observe(viewLifecycleOwner) {
