@@ -9,4 +9,5 @@
     <color name="gameActive">#6CB620</color>
     <color name="gameInactive">#51627F</color>
     <color name="gameBtText">#113104</color>
+    <color name="siteName">#C6F4FB</color>
 </resources>
