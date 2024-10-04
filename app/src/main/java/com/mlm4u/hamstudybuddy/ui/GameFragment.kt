@@ -143,6 +143,8 @@ class GameFragment : Fragment() {
         vb.cvGameAnswerB.alpha = 1f
         vb.cvGameAnswerC.alpha = 1f
         vb.cvGameAnswerD.alpha = 1f
+
+
         vb.cvGameAnswerA.setCardBackgroundColor(
             ContextCompat.getColor(
                 requireContext(),

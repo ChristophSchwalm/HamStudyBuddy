@@ -8,7 +8,7 @@ import com.squareup.moshi.Json
 data class Root(
     val sections: List<Section>,
     val metadata: Metadata
-){
+) {
     // Diese Funktion durchsucht rekursiv alle Sektionen nach Fragen und setzt den Titel der letzten Section als titleQuestion.
     fun getAllQuestions(): List<Question> {
         val allQuestions = mutableListOf<Question>()
@@ -17,8 +17,8 @@ data class Root(
         fun traverseSections(sections: List<Section>?, currentTitle: String? = null) {
             sections?.forEach { section ->
                 val titleToUse = section.title
-                val questions = section.questions  // Lokale Variable, um die Fragen zwischenzuspeichern
-
+                val questions =
+                    section.questions  // Lokale Variable, um die Fragen zwischenzuspeichern
                 questions?.forEach { question ->
                     // Setzt den Titel der Section als titleQuestion in der Frage
                     question.titleQuestion = titleToUse
@@ -78,7 +78,7 @@ data class Question(
         return Questions(
             number = this.number,
             classQuestion = this.classQuestion,
-            titleQuestion = this.titleQuestion?: "",
+            titleQuestion = this.titleQuestion ?: "",
             question = this.question,
             answerA = this.answerA,
             answerB = this.answerB,
