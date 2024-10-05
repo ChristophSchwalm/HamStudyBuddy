@@ -57,7 +57,7 @@ class SharedViewModel(
         get() = _gameQuestion
 
     private val _gameQuestions = MutableLiveData<List<GameQuestions>>()
-    val gameQuestions: LiveData<List<GameQuestions>>
+    val gameQuestions: MutableLiveData<List<GameQuestions>>
         get() = _gameQuestions
 
 
@@ -250,7 +250,6 @@ class SharedViewModel(
         }
     }
 
-
     fun resetGame() {
         viewModelScope.launch {
             repository.resetGame()
@@ -260,6 +259,7 @@ class SharedViewModel(
     fun setGameStatus(status: GameStatus) {
         _gameStatus.value = status
     }
+
 
 //**************************************************************************************************
 //Firebase

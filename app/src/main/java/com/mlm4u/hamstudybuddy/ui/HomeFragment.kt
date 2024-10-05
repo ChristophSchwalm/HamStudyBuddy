@@ -54,12 +54,20 @@ class HomeFragment : Fragment() {
                                 "CSChecker",
                                 "Home Fragment: userClass: ${sharedViewModel.userClass.value}"
                             )
-                            findNavController().navigate(R.id.onboardingFragment)
+                            findNavController().navigate(R.id.startFragment)
                         }
                     }
                 }
             }
         }
+
+        sharedViewModel.userSettings.observe(viewLifecycleOwner) {
+            Log.d("CSChecker", "Im Observer: $it")
+            vb.tvUserName.text = "Hallo, " + it["Name"] as? String + " !"
+
+        }
+
+
 
 
         vb.btLogout.setOnClickListener {

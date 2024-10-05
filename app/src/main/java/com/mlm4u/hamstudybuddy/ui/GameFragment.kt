@@ -57,7 +57,7 @@ class GameFragment : Fragment() {
         sharedViewModel.gameQuestions.observe(viewLifecycleOwner) { gameQuestions ->
             if (gameQuestions.isNotEmpty()) {
                 resetView()
-                val qSize = gameQuestions.size
+                val qSize = gameQuestions?.size
                 sharedViewModel.setGameQuestion(gameQuestions.random())
                 vb.tvQuestionSize.text = "Du spielst mit ${qSize} Fragen"
                 val answers = listOf(
@@ -90,6 +90,7 @@ class GameFragment : Fragment() {
                 vb.cvGameAnswerD.visibility = View.GONE
                 resetView()
             }
+
         }
 
         vb.cvGameAnswerA.setOnClickListener {
@@ -220,7 +221,7 @@ class GameFragment : Fragment() {
 
     }
 
-    fun gameQuestionsNew() {
+    private fun gameQuestionsNew() {
         sharedViewModel.gameQuestionsNew()
         vb.btNewAnswers.backgroundTintList =
             ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.gameActive))
@@ -233,7 +234,7 @@ class GameFragment : Fragment() {
         vb.btRightAnswers.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
     }
 
-    fun gameQuestionsWrongAnswers() {
+    private fun gameQuestionsWrongAnswers() {
         sharedViewModel.gameQuestionsWrongAnswers()
         vb.btWrongAnswers.backgroundTintList =
             ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.gameActive))
@@ -246,7 +247,7 @@ class GameFragment : Fragment() {
         vb.btRightAnswers.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
     }
 
-    fun gameQuestionsRightAnswers() {
+    private fun gameQuestionsRightAnswers() {
         sharedViewModel.gameQuestionsRightAnswers()
         vb.btRightAnswers.backgroundTintList =
             ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.gameActive))
