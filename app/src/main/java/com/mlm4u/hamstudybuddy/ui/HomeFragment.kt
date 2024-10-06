@@ -40,6 +40,14 @@ class HomeFragment : Fragment() {
             (activity as MainActivity).findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         bottomNavigationView.visibility = View.VISIBLE
 
+
+        sharedViewModel.gameQuestions.observe(viewLifecycleOwner) {
+            countQuestions() // TextViews aktualisieren
+            vb.pbRightAnswer.max = 100
+            //vb.pbRightAnswer.progress = (vb.tvCountGameRight.text.toString().toInt() /
+            //        vb.tvCountGame.text.toString().toInt() * 100).coerceAtMost(100)
+        }
+
         authenticationViewModel.currentUser.observe(viewLifecycleOwner) { curentUser ->
             Log.d("CSChecker", "Home Fragment: currentUser vor IF: ${curentUser?.email}")
             if (curentUser == null) {
@@ -64,8 +72,9 @@ class HomeFragment : Fragment() {
         sharedViewModel.userSettings.observe(viewLifecycleOwner) {
             Log.d("CSChecker", "Im Observer: $it")
             vb.tvUserName.text = "Hallo, " + it["Name"] as? String + " !"
-
         }
+
+
 
 
 
@@ -73,6 +82,36 @@ class HomeFragment : Fragment() {
         vb.btLogout.setOnClickListener {
             authenticationViewModel.logout()
         }
+    }
+
+    private fun countQuestions() {
+        //count All Questions in DB
+        sharedViewModel.countAllQuestions {
+            vb.tvAllQuestionDB.text = it.toString()
+        }
+
+        //count Questions in DB by Class
+        sharedViewModel.countQuestions {
+            vb.tvQuestionClass.text = it.toString()
+        }
+        //count Questions in Game
+        sharedViewModel.countGameQuestionsClass {
+            vb.tvCountGame.text = it.toString()
+        }
+        //count Right Answers in Game
+        sharedViewModel.countRightAnswers {
+            vb.tvCountGameRight.text = it.toString()
+        }
+        //count Wrong Answers in Game
+        sharedViewModel.countWrongAnswers {
+            vb.tvCountGameWrong.text = it.toString()
+        }
+
+        //count New Questions in Game
+        sharedViewModel.countNewQuestions {
+            vb.tvCountGameNew.text = it.toString()
+        }
+
     }
 }
 

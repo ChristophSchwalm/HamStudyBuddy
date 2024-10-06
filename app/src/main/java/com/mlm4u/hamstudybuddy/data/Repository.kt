@@ -45,8 +45,16 @@ class Repository(
         database.gameQuestionsDao.insertGameQuestion(gameQuestions)
     }
 
-    suspend fun countGameQuestions(classQuestion: String): Int {
-        return database.gameQuestionsDao.countGameQuestions(classQuestion)
+    suspend fun countAllQuestions(): Int {
+        return database.questionsDao.countAllQuestions()
+    }
+
+    suspend fun countGameQuestionsClass(classQuestion: String): Int {
+        return database.gameQuestionsDao.countGameQuestionsClass(classQuestion)
+    }
+
+    fun countNewQuestions(classQuestion: String): LiveData<Int> {
+        return database.gameQuestionsDao.countNewQuestions(classQuestion)
     }
 
     fun countRightAnswers(classQuestion: String): LiveData<Int> {
