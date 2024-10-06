@@ -121,48 +121,6 @@
                     app:layout_constraintTop_toBottomOf="@+id/rgKlassen"
                     app:layout_constraintVertical_bias="1.0" />
 
-                <TextView
-                    android:id="@+id/tvQuestionsInDB"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="16dp"
-                    android:text="Questions in DB"
-                    android:textAlignment="textEnd"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/rgKlassen" />
-
-                <TextView
-                    android:id="@+id/tvGameQuestions"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:text="Questions in Game"
-                    android:textAlignment="textEnd"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvQuestionsInDB" />
-
-                <TextView
-                    android:id="@+id/tvRightAnswers"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:text="RightAnswers"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvGameQuestions" />
-
-                <TextView
-                    android:id="@+id/tvWrongAnswers"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:text="WrongAswers"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvRightAnswers" />
-
                 <Button
                     android:id="@+id/btGameReset"
                     android:layout_width="130dp"

@@ -28,6 +28,7 @@ class SharedViewModel(
 
     val currentUser = firebaseRepository.currentUser
 
+
     private val _loading = MutableLiveData(false)
     val loading: LiveData<Boolean>
         get() = _loading
@@ -61,6 +62,30 @@ class SharedViewModel(
         get() = _gameQuestions
 
 
+    val countAllQuestions: LiveData<Int> = userClass.switchMap { userClassValue ->
+        repository.countAllQuestions()
+    }
+
+    val countQuestionsClass: LiveData<Int> = userClass.switchMap { userClassValue ->
+        repository.countQuestionsClass(userClassValue)
+    }
+
+    val countQuestionsGame: LiveData<Int> = userClass.switchMap { userClassValue ->
+        repository.countQuestionsGame(userClassValue) // Assuming you have this function in your repository
+    }
+
+    val countRightAnswers: LiveData<Int> = userClass.switchMap { userClassValue ->
+        repository.countRightAnswers(userClassValue)
+    }
+
+    val countWrongAnswers: LiveData<Int> = userClass.switchMap { userClassValue ->
+        repository.countWrongAnswers(userClassValue)
+    }
+
+    val countNewQuestions: LiveData<Int> = userClass.switchMap { userClassValue ->
+        repository.countNewQuestions(userClassValue)
+    }
+
     init {
         Log.d("CSChecker", "SharedViewModel init")
         getUserSettings()
@@ -89,20 +114,20 @@ class SharedViewModel(
         }
     }
 
-    //Closure <- anschauen !!!
-    fun countQuestions(onCompletion: (Int) -> (Unit)) {
-        viewModelScope.launch {
-            val result = repository.countQuestions(_userClass.value.toString())
-            onCompletion(result)
-        }
-    }
+//    //Closure <- anschauen !!!
+//    fun countQuestions(onCompletion: (Int) -> (Unit)) {
+//        viewModelScope.launch {
+//            val result = repository.countQuestions(_userClass.value.toString())
+//            onCompletion(result)
+//        }
+//    }
 
-    fun countAllQuestions(onCompletion: (Int) -> (Unit)) {
-        viewModelScope.launch {
-            val result = repository.countAllQuestions()
-            onCompletion(result)
-        }
-    }
+//    fun countAllQuestions(onCompletion: (Int) -> (Unit)) {
+//        viewModelScope.launch {
+//            val result = repository.countAllQuestions()
+//            onCompletion(result)
+//        }
+//    }
 
     fun deleteNumber(number: String) {
         viewModelScope.launch {
@@ -137,13 +162,13 @@ class SharedViewModel(
         }
     }
 
-    //Closure <- anschauen !!!
-    fun countGameQuestionsClass(onCompletion: (Int) -> (Unit)) {
-        viewModelScope.launch {
-            val result = repository.countGameQuestionsClass(_userClass.value.toString())
-            onCompletion(result)
-        }
-    }
+//    //Closure <- anschauen !!!
+//    fun countGameQuestionsClass(onCompletion: (Int) -> (Unit)) {
+//        viewModelScope.launch {
+//            val result = repository.countGameQuestionsClass(_userClass.value.toString())
+//            onCompletion(result)
+//        }
+//    }
 
     fun countNewQuestions(onCompletion: (Int) -> (Unit)) {
         viewModelScope.launch {

@@ -21,6 +21,7 @@ class HomeFragment : Fragment() {
     private val authenticationViewModel: AuthenticationViewModel by activityViewModels()
     private val sharedViewModel: SharedViewModel by activityViewModels()
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,12 +42,11 @@ class HomeFragment : Fragment() {
         bottomNavigationView.visibility = View.VISIBLE
 
 
-        sharedViewModel.gameQuestions.observe(viewLifecycleOwner) {
-            countQuestions() // TextViews aktualisieren
-            vb.pbRightAnswer.max = 100
-            //vb.pbRightAnswer.progress = (vb.tvCountGameRight.text.toString().toInt() /
-            //        vb.tvCountGame.text.toString().toInt() * 100).coerceAtMost(100)
-        }
+//        sharedViewModel.gameQuestions.observe(viewLifecycleOwner) {
+//            vb.pbRightAnswer.max = 100
+//            //vb.pbRightAnswer.progress = (vb.tvCountGameRight.text.toString().toInt() /
+//            //        vb.tvCountGame.text.toString().toInt() * 100).coerceAtMost(100)
+//        }
 
         authenticationViewModel.currentUser.observe(viewLifecycleOwner) { curentUser ->
             Log.d("CSChecker", "Home Fragment: currentUser vor IF: ${curentUser?.email}")
@@ -70,11 +70,40 @@ class HomeFragment : Fragment() {
         }
 
         sharedViewModel.userSettings.observe(viewLifecycleOwner) {
-            Log.d("CSChecker", "Im Observer: $it")
             vb.tvUserName.text = "Hallo, " + it["Name"] as? String + " !"
         }
 
+        sharedViewModel.countQuestionsClass.observe(viewLifecycleOwner) { count ->
+            vb.tvQuestionClass.text = count.toString()
+        }
 
+        sharedViewModel.countQuestionsGame.observe(viewLifecycleOwner) { count ->
+            vb.tvCountGame.text = count.toString()
+            sharedViewModel.countAllQuestions.observe(viewLifecycleOwner) { allCount ->
+                vb.tvAllQuestionDB.text = (count + allCount).toString()
+            }
+        }
+
+        sharedViewModel.countRightAnswers.observe(viewLifecycleOwner) { count ->
+            vb.tvCountGameRight.text = count.toString()
+            vb.pbRightAnswer.progress =
+                (count * 100 / sharedViewModel.countQuestionsGame.value!!).coerceAtMost(100)
+            vb.tvRightProzent.text = "${vb.pbRightAnswer.progress}%"
+        }
+
+        sharedViewModel.countWrongAnswers.observe(viewLifecycleOwner) { count ->
+            vb.tvCountGameWrong.text = count.toString()
+            vb.pbWrongAnswer.progress =
+                (count * 100 / sharedViewModel.countQuestionsGame.value!!).coerceAtMost(100)
+            vb.tvWrongProzent.text = "${vb.pbWrongAnswer.progress}%"
+        }
+
+        sharedViewModel.countNewQuestions.observe(viewLifecycleOwner) { count ->
+            vb.tvCountGameNew.text = count.toString()
+            vb.pbNewInGame.progress =
+                (count * 100 / sharedViewModel.countQuestionsGame.value!!).coerceAtMost(100)
+            vb.tvNewProzent.text = "${vb.pbNewInGame.progress}%"
+        }
 
 
 
@@ -84,35 +113,6 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun countQuestions() {
-        //count All Questions in DB
-        sharedViewModel.countAllQuestions {
-            vb.tvAllQuestionDB.text = it.toString()
-        }
-
-        //count Questions in DB by Class
-        sharedViewModel.countQuestions {
-            vb.tvQuestionClass.text = it.toString()
-        }
-        //count Questions in Game
-        sharedViewModel.countGameQuestionsClass {
-            vb.tvCountGame.text = it.toString()
-        }
-        //count Right Answers in Game
-        sharedViewModel.countRightAnswers {
-            vb.tvCountGameRight.text = it.toString()
-        }
-        //count Wrong Answers in Game
-        sharedViewModel.countWrongAnswers {
-            vb.tvCountGameWrong.text = it.toString()
-        }
-
-        //count New Questions in Game
-        sharedViewModel.countNewQuestions {
-            vb.tvCountGameNew.text = it.toString()
-        }
-
-    }
 }
 
 

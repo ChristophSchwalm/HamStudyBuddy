@@ -15,7 +15,7 @@ interface GameQuestionsDao {
     suspend fun insertGameQuestion(gameQuestions: GameQuestions)
 
     @Query("SELECT COUNT(*) FROM game_questions WHERE classQuestion = :classQuestion")
-    suspend fun countGameQuestionsClass(classQuestion: String): Int
+    fun countGameQuestionsClass(classQuestion: String): LiveData<Int>
 
     @Query("SELECT COUNT(*) FROM game_questions WHERE classQuestion = :classQuestion AND gameCorrectAnswer is NULL")
     fun countNewQuestions(classQuestion: String): LiveData<Int>

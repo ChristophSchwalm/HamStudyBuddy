@@ -30,7 +30,6 @@ class SettingsFragment : Fragment() {
 
         sharedViewModel.loading.observe(viewLifecycleOwner) {
             vb.linearProgressIndicatorSettings.visibility = if (it) View.VISIBLE else View.GONE
-            countQuestions()
         }
 
         sharedViewModel.userSettings.observe(viewLifecycleOwner) {
@@ -44,7 +43,7 @@ class SettingsFragment : Fragment() {
                 "2" -> vb.rbClassE.isChecked = true
                 "3" -> vb.rbClassA.isChecked = true
             }
-            countQuestions()
+            //countQuestions()
         }
 
         sharedViewModel.version.observe(viewLifecycleOwner) {
@@ -73,7 +72,6 @@ class SettingsFragment : Fragment() {
 
         vb.btUpdate.setOnClickListener {
             sharedViewModel.getQuestionsApi()
-            countQuestions()
         }
 
         vb.btGameReset.setOnClickListener {
@@ -86,22 +84,4 @@ class SettingsFragment : Fragment() {
 
     }
 
-    private fun countQuestions() {
-
-        sharedViewModel.countQuestions {
-            vb.tvQuestionsInDB.text = "Verbleibende Fragen: $it"
-        }
-        sharedViewModel.countGameQuestionsClass {
-            vb.tvGameQuestions.text = "Fragen im Spiel: $it"
-        }
-
-        sharedViewModel.countRightAnswers {
-            vb.tvRightAnswers.text = "Richtige Antworten: $it"
-        }
-
-        sharedViewModel.countWrongAnswers {
-            vb.tvWrongAnswers.text = "Falsche Antworten: $it"
-        }
-
-    }
 }

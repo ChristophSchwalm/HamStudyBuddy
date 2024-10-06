@@ -25,10 +25,10 @@ interface QuestionsDao {
     fun getQuestionsByTitle(classQuestion: String, selectedTitle: String): LiveData<List<Questions>>
 
     @Query("SELECT COUNT(*) FROM table_questions")
-    suspend fun countAllQuestions(): Int
+    fun countAllQuestions(): LiveData<Int>
 
     @Query("SELECT COUNT(*) FROM table_questions WHERE classQuestion = :classQuestion")
-    suspend fun countQuestions(classQuestion: String): Int
+    fun countQuestionsClass(classQuestion: String): LiveData<Int>
 
     @Query("DELETE FROM table_questions WHERE number = :number")
     suspend fun deleteNumber(number: String)

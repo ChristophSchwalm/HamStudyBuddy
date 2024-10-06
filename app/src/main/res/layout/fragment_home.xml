@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".ui.HomeFragment">
 
     <ImageView
@@ -70,6 +70,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="32dp"
                     android:layout_marginEnd="16dp"
+                    android:backgroundTint="@color/cvAnswer"
                     app:cardCornerRadius="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -77,7 +78,7 @@
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="match_parent">
 
                         <TextView
                             android:id="@+id/textView3"
@@ -85,6 +86,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
                             android:text="Das sind deine Stats:"
+                            android:textColor="#000000"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.5"
                             app:layout_constraintStart_toStartOf="parent"
@@ -97,6 +101,8 @@
                             android:layout_marginStart="8dp"
                             android:layout_marginTop="16dp"
                             android:text="Fragen in DB:"
+                            android:textColor="#000000"
+                            android:textStyle="bold"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
@@ -107,6 +113,8 @@
                             android:layout_marginStart="8dp"
                             android:layout_marginTop="8dp"
                             android:text="Fragen verbleiben:"
+                            android:textColor="#000000"
+                            android:textStyle="bold"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
@@ -117,6 +125,8 @@
                             android:layout_marginStart="8dp"
                             android:layout_marginTop="8dp"
                             android:text="Fragen im Game:"
+                            android:textColor="#000000"
+                            android:textStyle="bold"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
@@ -127,6 +137,8 @@
                             android:layout_marginStart="8dp"
                             android:layout_marginTop="8dp"
                             android:text="Richtig beantwortet:"
+                            android:textColor="#000000"
+                            android:textStyle="bold"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
@@ -137,6 +149,8 @@
                             android:layout_marginStart="8dp"
                             android:layout_marginTop="8dp"
                             android:text="Falsch beantwortet:"
+                            android:textColor="#000000"
+                            android:textStyle="bold"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
@@ -147,6 +161,8 @@
                             android:layout_marginStart="8dp"
                             android:layout_marginTop="8dp"
                             android:text="Neu im Game:"
+                            android:textColor="#000000"
+                            android:textStyle="bold"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
@@ -157,6 +173,8 @@
                             android:layout_marginTop="16dp"
                             android:layout_marginEnd="8dp"
                             android:text="tvQuestionDB"
+                            android:textColor="#000000"
+                            android:textStyle="bold"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
@@ -167,6 +185,8 @@
                             android:layout_marginTop="8dp"
                             android:layout_marginEnd="8dp"
                             android:text="tvQuestionClass"
+                            android:textColor="#000000"
+                            android:textStyle="bold"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/tvAllQuestionDB" />
 
@@ -177,6 +197,8 @@
                             android:layout_marginTop="8dp"
                             android:layout_marginEnd="8dp"
                             android:text="tvCountGame"
+                            android:textColor="#000000"
+                            android:textStyle="bold"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/tvQuestionClass" />
 
@@ -187,6 +209,8 @@
                             android:layout_marginTop="8dp"
                             android:layout_marginEnd="8dp"
                             android:text="tvCountGameRight"
+                            android:textColor="#000000"
+                            android:textStyle="bold"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/tvCountGame" />
 
@@ -197,6 +221,8 @@
                             android:layout_marginTop="8dp"
                             android:layout_marginEnd="8dp"
                             android:text="tvCountGameWrong"
+                            android:textColor="#000000"
+                            android:textStyle="bold"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/tvCountGameRight" />
 
@@ -207,6 +233,8 @@
                             android:layout_marginTop="8dp"
                             android:layout_marginEnd="8dp"
                             android:text="tvCountGameNew"
+                            android:textColor="#000000"
+                            android:textStyle="bold"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/tvCountGameWrong" />
 
@@ -215,10 +243,68 @@
                             style="?android:attr/progressBarStyleHorizontal"
                             android:layout_width="100dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
                             android:maxWidth="100dp"
-                            app:layout_constraintStart_toEndOf="@+id/textView17"
+                            android:maxHeight="16dip"
+                            app:layout_constraintBottom_toBottomOf="@+id/textView17"
+                            app:layout_constraintEnd_toEndOf="@+id/textView3"
+                            app:layout_constraintStart_toStartOf="@+id/textView3"
                             app:layout_constraintTop_toTopOf="@+id/textView17" />
+
+                        <ProgressBar
+                            android:id="@+id/pbWrongAnswer"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintBottom_toBottomOf="@+id/textView18"
+                            app:layout_constraintEnd_toEndOf="@+id/pbRightAnswer"
+                            app:layout_constraintStart_toStartOf="@+id/pbRightAnswer"
+                            app:layout_constraintTop_toTopOf="@+id/textView18" />
+
+                        <ProgressBar
+                            android:id="@+id/pbNewInGame"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintBottom_toBottomOf="@+id/textView19"
+                            app:layout_constraintEnd_toEndOf="@+id/pbWrongAnswer"
+                            app:layout_constraintStart_toStartOf="@+id/pbWrongAnswer"
+                            app:layout_constraintTop_toTopOf="@+id/textView19" />
+
+                        <TextView
+                            android:id="@+id/tvRightProzent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:text="%"
+                            android:textColor="#000000"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@+id/pbRightAnswer"
+                            app:layout_constraintStart_toEndOf="@+id/pbRightAnswer"
+                            app:layout_constraintTop_toTopOf="@+id/pbRightAnswer" />
+
+                        <TextView
+                            android:id="@+id/tvWrongProzent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:text="%"
+                            android:textColor="#000000"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@+id/pbWrongAnswer"
+                            app:layout_constraintStart_toEndOf="@+id/pbWrongAnswer"
+                            app:layout_constraintTop_toTopOf="@+id/pbWrongAnswer" />
+
+                        <TextView
+                            android:id="@+id/tvNewProzent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:text="%"
+                            android:textColor="#000000"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@+id/pbNewInGame"
+                            app:layout_constraintStart_toEndOf="@+id/pbNewInGame"
+                            app:layout_constraintTop_toTopOf="@+id/pbNewInGame" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </androidx.cardview.widget.CardView>

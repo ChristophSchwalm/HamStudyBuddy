@@ -30,8 +30,8 @@ class Repository(
         database.questionsDao.setReady4Game(number)
     }
 
-    suspend fun countQuestions(classQuestion: String): Int {
-        return database.questionsDao.countQuestions(classQuestion)
+    fun countQuestionsClass(classQuestion: String): LiveData<Int> {
+        return database.questionsDao.countQuestionsClass(classQuestion)
     }
 
     suspend fun deleteNumber(number: String) {
@@ -45,11 +45,11 @@ class Repository(
         database.gameQuestionsDao.insertGameQuestion(gameQuestions)
     }
 
-    suspend fun countAllQuestions(): Int {
+    fun countAllQuestions(): LiveData<Int> {
         return database.questionsDao.countAllQuestions()
     }
 
-    suspend fun countGameQuestionsClass(classQuestion: String): Int {
+    fun countQuestionsGame(classQuestion: String): LiveData<Int> {
         return database.gameQuestionsDao.countGameQuestionsClass(classQuestion)
     }
 
