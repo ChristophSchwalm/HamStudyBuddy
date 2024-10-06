@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
@@ -17,8 +18,8 @@ class FirebaseRepository {
     private val firebaseAuth = FirebaseAuth.getInstance()
     private val firebaseFirestore = FirebaseFirestore.getInstance()
 
-    private val _currentUser = MutableLiveData<FirebaseUser>(firebaseAuth.currentUser)
-    val currentUser: LiveData<FirebaseUser> = _currentUser
+    private val _currentUser = MutableLiveData<FirebaseUser?>(firebaseAuth.currentUser)
+    val currentUser: LiveData<FirebaseUser?> = _currentUser
 
     suspend fun loginUser(email: String, password: String) {
         try {
@@ -42,6 +43,7 @@ class FirebaseRepository {
         firebaseAuth.signOut()
         _currentUser.value = firebaseAuth.currentUser
     }
+
 
     suspend fun signInWithGoogle(account: GoogleSignInAccount) {
         val idToken = account.idToken

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.mlm4u.hamstudybuddy.data.viewModel.AuthenticationViewModel
 import com.mlm4u.hamstudybuddy.data.viewModel.SharedViewModel
 import com.mlm4u.hamstudybuddy.databinding.FragmentSettingsBinding
 
@@ -14,6 +15,7 @@ class SettingsFragment : Fragment() {
 
     private lateinit var vb: FragmentSettingsBinding
     private val sharedViewModel: SharedViewModel by activityViewModels()
+    private val authenticationViewModel: AuthenticationViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -76,6 +78,10 @@ class SettingsFragment : Fragment() {
 
         vb.btGameReset.setOnClickListener {
             sharedViewModel.resetGame()
+        }
+
+        vb.btnDeleteAccount.setOnClickListener {
+
         }
 
     }

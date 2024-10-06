@@ -33,5 +33,10 @@ class StartFragment : Fragment() {
             vb.linearProgressIndicatorHome.visibility = if (it) View.VISIBLE else View.GONE
         }
 
+        vb.btnWeiter.setOnClickListener {
+            findNavController().navigate(R.id.action_startFragment_to_onboardingFragment)
+        }
+
+
     }
 }

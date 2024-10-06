@@ -28,6 +28,7 @@ class AuthenticationViewModel : ViewModel() {
         firebaseRepository.logoutUser()
     }
 
+
     fun signInWithGoogle(account: GoogleSignInAccount) {
         viewModelScope.launch {
             firebaseRepository.signInWithGoogle(account)
