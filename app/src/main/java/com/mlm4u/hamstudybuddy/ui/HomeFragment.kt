@@ -86,23 +86,40 @@ class HomeFragment : Fragment() {
 
         sharedViewModel.countRightAnswers.observe(viewLifecycleOwner) { count ->
             vb.tvCountGameRight.text = count.toString()
-            vb.pbRightAnswer.progress =
-                (count * 100 / sharedViewModel.countQuestionsGame.value!!).coerceAtMost(100)
-            vb.tvRightProzent.text = "${vb.pbRightAnswer.progress}%"
+            val countQuestionsGameValue = sharedViewModel.countQuestionsGame.value
+            if (countQuestionsGameValue != null && countQuestionsGameValue != 0) {
+                vb.pbRightAnswer.progress =
+                    (count * 100 / countQuestionsGameValue).coerceAtMost(100)
+                vb.tvRightProzent.text = "${vb.pbRightAnswer.progress}%"
+            } else {
+                vb.pbRightAnswer.progress = 0
+                vb.tvRightProzent.text = "0%"
+            }
         }
 
         sharedViewModel.countWrongAnswers.observe(viewLifecycleOwner) { count ->
             vb.tvCountGameWrong.text = count.toString()
-            vb.pbWrongAnswer.progress =
-                (count * 100 / sharedViewModel.countQuestionsGame.value!!).coerceAtMost(100)
-            vb.tvWrongProzent.text = "${vb.pbWrongAnswer.progress}%"
+            val countQuestionsGameValue = sharedViewModel.countQuestionsGame.value
+            if (countQuestionsGameValue != null && countQuestionsGameValue != 0) {
+                vb.pbWrongAnswer.progress =
+                    (count * 100 / countQuestionsGameValue).coerceAtMost(100)
+                vb.tvWrongProzent.text = "${vb.pbWrongAnswer.progress}%"
+            } else {
+                vb.pbWrongAnswer.progress = 0
+                vb.tvWrongProzent.text = "0%"
+            }
         }
 
         sharedViewModel.countNewQuestions.observe(viewLifecycleOwner) { count ->
             vb.tvCountGameNew.text = count.toString()
-            vb.pbNewInGame.progress =
-                (count * 100 / sharedViewModel.countQuestionsGame.value!!).coerceAtMost(100)
-            vb.tvNewProzent.text = "${vb.pbNewInGame.progress}%"
+            val countQuestionsGameValue = sharedViewModel.countQuestionsGame.value
+            if (countQuestionsGameValue != null && countQuestionsGameValue != 0) {
+                vb.pbNewInGame.progress = (count * 100 / countQuestionsGameValue).coerceAtMost(100)
+                vb.tvNewProzent.text = "${vb.pbNewInGame.progress}%"
+            } else {
+                vb.pbNewInGame.progress = 0
+                vb.tvNewProzent.text = "0%"
+            }
         }
 
 
