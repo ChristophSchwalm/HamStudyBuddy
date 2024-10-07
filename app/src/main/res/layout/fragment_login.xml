@@ -17,7 +17,7 @@
             android:layout_marginTop="16dp"
             android:gravity="center"
             android:hint="E-Mail"
-            app:boxBackgroundColor="#18FFFF"
+            app:boxBackgroundColor="@color/cvAnswer"
             app:boxCornerRadiusBottomEnd="20dp"
             app:boxCornerRadiusBottomStart="20dp"
             app:boxCornerRadiusTopEnd="20dp"
@@ -34,7 +34,8 @@
                 android:gravity="center"
                 android:hint="E-Mail"
                 android:inputType="textEmailAddress"
-                android:textColor="#000000"
+                android:textColor="@color/siteName"
+                android:textColorHint="@color/siteName"
                 android:textSize="16sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -46,7 +47,7 @@
             android:layout_marginTop="16dp"
             android:gravity="center"
             android:hint="Password"
-            app:boxBackgroundColor="#18FFFF"
+            app:boxBackgroundColor="@color/cvAnswer"
             app:boxCornerRadiusBottomEnd="20dp"
             app:boxCornerRadiusBottomStart="20dp"
             app:boxCornerRadiusTopEnd="20dp"
@@ -63,7 +64,8 @@
                 android:gravity="center"
                 android:hint="Password"
                 android:inputType="textPassword"
-                android:textColor="#000000" />
+                android:textColor="@color/siteName"
+                android:textColorHint="@color/siteName" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
@@ -71,9 +73,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:backgroundTint="#18FFFF"
+            android:backgroundTint="@color/cvAnswer"
             android:text="Registrieren"
-            android:textColor="#000000"
+            android:textColor="@color/siteName"
             app:layout_constraintStart_toStartOf="@+id/textInputLayout2"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
 
@@ -82,9 +84,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:backgroundTint="#18FFFF"
+            android:backgroundTint="@color/cvAnswer"
             android:text="Anmelden"
-            android:textColor="#000000"
+            android:textColor="@color/siteName"
             app:layout_constraintEnd_toEndOf="@+id/textInputLayout2"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
 

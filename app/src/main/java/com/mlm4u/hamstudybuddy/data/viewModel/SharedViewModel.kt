@@ -61,36 +61,37 @@ class SharedViewModel(
     val gameQuestions: MutableLiveData<List<GameQuestions>>
         get() = _gameQuestions
 
-
-    val countAllQuestions: LiveData<Int> = userClass.switchMap { userClassValue ->
-        repository.countAllQuestions()
-    }
-
-    val countQuestionsClass: LiveData<Int> = userClass.switchMap { userClassValue ->
-        repository.countQuestionsClass(userClassValue)
-    }
-
-    val countQuestionsGame: LiveData<Int> = userClass.switchMap { userClassValue ->
-        repository.countQuestionsGame(userClassValue)
-    }
-
-    val countRightAnswers: LiveData<Int> = userClass.switchMap { userClassValue ->
-        repository.countRightAnswers(userClassValue)
-    }
-
-    val countWrongAnswers: LiveData<Int> = userClass.switchMap { userClassValue ->
-        repository.countWrongAnswers(userClassValue)
-    }
-
-    val countNewQuestions: LiveData<Int> = userClass.switchMap { userClassValue ->
-        repository.countNewQuestions(userClassValue)
-    }
-
     init {
         Log.d("CSChecker", "SharedViewModel init")
         getUserSettings()
         getVersionApi()
+        allGameQuestions()
     }
+
+    val countAllQuestions: LiveData<Int> = _loading.switchMap {
+        repository.countAllQuestions()
+    }
+
+    val countQuestionsClass: LiveData<Int> = _loading.switchMap {
+        repository.countQuestionsClass(_userClass.value.toString())
+    }
+
+    val countQuestionsGame: LiveData<Int> = _loading.switchMap {
+        repository.countQuestionsGame(_userClass.value.toString())
+    }
+
+    val countRightAnswers: LiveData<Int> = _loading.switchMap {
+        repository.countRightAnswers(_userClass.value.toString())
+    }
+
+    val countWrongAnswers: LiveData<Int> = _loading.switchMap {
+        repository.countWrongAnswers(_userClass.value.toString())
+    }
+
+    val countNewQuestions: LiveData<Int> = _loading.switchMap {
+        repository.countNewQuestions(_userClass.value.toString())
+    }
+
 
     val allTitle: LiveData<List<Questions>> = userClass.switchMap { it ->
         it?.let { repository.getAllTitle(it) }
@@ -144,34 +145,6 @@ class SharedViewModel(
             )
             repository.insertGameQuestion(gameQuestions)
             _loading.value = false
-        }
-    }
-
-
-    fun countNewQuestions(onCompletion: (Int) -> (Unit)) {
-        viewModelScope.launch {
-            val result = repository.countNewQuestions(_userClass.value.toString())
-            result.observeForever {
-                onCompletion(it)
-            }
-        }
-    }
-
-    fun countRightAnswers(onCompletion: (Int) -> (Unit)) {
-        viewModelScope.launch {
-            val result = repository.countRightAnswers(_userClass.value.toString())
-            result.observeForever {
-                onCompletion(it)
-            }
-        }
-    }
-
-    fun countWrongAnswers(onCompletion: (Int) -> (Unit)) {
-        viewModelScope.launch {
-            val result = repository.countWrongAnswers(_userClass.value.toString())
-            result.observeForever {
-                onCompletion(it)
-            }
         }
     }
 

@@ -19,7 +19,7 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            app:boxBackgroundColor="#18FFFF"
+            app:boxBackgroundColor="@color/cvAnswer"
             app:boxCornerRadiusBottomEnd="20dp"
             app:boxCornerRadiusBottomStart="20dp"
             app:boxCornerRadiusTopEnd="20dp"
@@ -34,7 +34,10 @@
                 android:layout_height="wrap_content"
                 android:hint="E-Mail"
                 android:inputType="textEmailAddress"
-                android:textColor="#000000" />
+                android:textColor="@color/siteName"
+                android:textColorHighlight="@color/white"
+                android:textColorHint="@color/white"
+                android:textColorLink="#FFFFFF" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -42,7 +45,7 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            app:boxBackgroundColor="#18FFFF"
+            app:boxBackgroundColor="@color/cvAnswer"
             app:boxCornerRadiusBottomEnd="20dp"
             app:boxCornerRadiusBottomStart="20dp"
             app:boxCornerRadiusTopEnd="20dp"
@@ -57,7 +60,9 @@
                 android:layout_height="wrap_content"
                 android:hint="Password"
                 android:inputType="textPassword"
-                android:textColor="#000000" />
+                android:textColor="@color/siteName"
+                android:textColorHint="@color/siteName"
+                android:textColorLink="@color/white" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -65,7 +70,7 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            app:boxBackgroundColor="#18FFFF"
+            app:boxBackgroundColor="@color/cvAnswer"
             app:boxCornerRadiusBottomEnd="20dp"
             app:boxCornerRadiusBottomStart="20dp"
             app:boxCornerRadiusTopEnd="20dp"
@@ -80,28 +85,32 @@
                 android:layout_height="wrap_content"
                 android:hint="Password wiederholen"
                 android:inputType="textPassword"
-                android:textColor="#000000" />
+                android:textColor="@color/siteName"
+                android:textColorHint="@color/white"
+                android:textColorLink="@color/white" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/btRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textFontWeight="1"
             android:layout_marginTop="16dp"
-            android:backgroundTint="#18FFFF"
+            android:backgroundTint="@color/cvAnswer"
             android:text="Registrierung"
-            android:textColor="#000000"
+            android:textColor="@color/siteName"
             app:layout_constraintEnd_toEndOf="@+id/textInputLayout5"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout5" />
 
         <Button
             android:id="@+id/btBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="135dp"
+            android:layout_height="47dp"
+            android:layout_marginStart="4dp"
             android:layout_marginTop="16dp"
-            android:backgroundTint="#1DF5F5"
+            android:backgroundTint="@color/cvAnswer"
             android:text="zurück"
-            android:textColor="@color/black"
+            android:textColor="@color/siteName"
             app:layout_constraintStart_toStartOf="@+id/textInputLayout5"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout5" />
 

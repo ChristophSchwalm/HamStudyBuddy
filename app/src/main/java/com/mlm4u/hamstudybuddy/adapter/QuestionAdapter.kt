@@ -15,12 +15,14 @@ import com.mlm4u.hamstudybuddy.databinding.QuestionViewBinding
 class QuestionAdapter(
     private val dataset: List<Questions>,
     private val sharedViewModel: SharedViewModel
-) : RecyclerView.Adapter<QuestionAdapter.QuestionViewHolder>(){
+) : RecyclerView.Adapter<QuestionAdapter.QuestionViewHolder>() {
 
-    inner class QuestionViewHolder(val binding: QuestionViewBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class QuestionViewHolder(val binding: QuestionViewBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): QuestionViewHolder {
-        val binding = QuestionViewBinding.inflate(LayoutInflater.from(parent.context),parent, false)
+        val binding =
+            QuestionViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return QuestionViewHolder(binding)
     }
 
@@ -33,10 +35,30 @@ class QuestionAdapter(
 
         holder.binding.cvReadyForGame.visibility = View.GONE
         holder.binding.imageView2.visibility = View.GONE
-        holder.binding.cvAnswerA.setCardBackgroundColor(ContextCompat.getColor(holder.itemView.context, R.color.white))
-        holder.binding.cvAnswerB.setCardBackgroundColor(ContextCompat.getColor(holder.itemView.context, R.color.white))
-        holder.binding.cvAnswerC.setCardBackgroundColor(ContextCompat.getColor(holder.itemView.context, R.color.white))
-        holder.binding.cvAnswerD.setCardBackgroundColor(ContextCompat.getColor(holder.itemView.context, R.color.white))
+        holder.binding.cvAnswerA.setCardBackgroundColor(
+            ContextCompat.getColor(
+                holder.itemView.context,
+                R.color.cvAnswer
+            )
+        )
+        holder.binding.cvAnswerB.setCardBackgroundColor(
+            ContextCompat.getColor(
+                holder.itemView.context,
+                R.color.cvAnswer
+            )
+        )
+        holder.binding.cvAnswerC.setCardBackgroundColor(
+            ContextCompat.getColor(
+                holder.itemView.context,
+                R.color.cvAnswer
+            )
+        )
+        holder.binding.cvAnswerD.setCardBackgroundColor(
+            ContextCompat.getColor(
+                holder.itemView.context,
+                R.color.cvAnswer
+            )
+        )
     }
 
     override fun onBindViewHolder(holder: QuestionViewHolder, position: Int) {
@@ -69,12 +91,36 @@ class QuestionAdapter(
         holder.binding.tvAnswerC.text = shuffledAnswers[2]
         holder.binding.tvAnswerD.text = shuffledAnswers[3]
 
-        holder.binding.cvAnswerA.setOnClickListener{ checkAnswer(holder.binding.tvAnswerA.text.toString(), item, holder) }
-        holder.binding.cvAnswerB.setOnClickListener{ checkAnswer(holder.binding.tvAnswerB.text.toString(), item, holder) }
-        holder.binding.cvAnswerC.setOnClickListener{ checkAnswer(holder.binding.tvAnswerC.text.toString(), item, holder) }
-        holder.binding.cvAnswerD.setOnClickListener{ checkAnswer(holder.binding.tvAnswerD.text.toString(), item, holder) }
+        holder.binding.cvAnswerA.setOnClickListener {
+            checkAnswer(
+                holder.binding.tvAnswerA.text.toString(),
+                item,
+                holder
+            )
+        }
+        holder.binding.cvAnswerB.setOnClickListener {
+            checkAnswer(
+                holder.binding.tvAnswerB.text.toString(),
+                item,
+                holder
+            )
+        }
+        holder.binding.cvAnswerC.setOnClickListener {
+            checkAnswer(
+                holder.binding.tvAnswerC.text.toString(),
+                item,
+                holder
+            )
+        }
+        holder.binding.cvAnswerD.setOnClickListener {
+            checkAnswer(
+                holder.binding.tvAnswerD.text.toString(),
+                item,
+                holder
+            )
+        }
 
-        holder.binding.cvReadyForGame.setOnClickListener{
+        holder.binding.cvReadyForGame.setOnClickListener {
             sharedViewModel.deleteNumber(item.number)
             sharedViewModel.insertGameQuestion(item)
         }
@@ -92,25 +138,44 @@ class QuestionAdapter(
         when (answer) {
             holder.binding.tvAnswerA.text.toString() -> {
                 holder.binding.cvAnswerA.setCardBackgroundColor(cardBackgroundColor)
-                if (cardBackgroundColor == ContextCompat.getColor(holder.itemView.context, R.color.green)) {
+                if (cardBackgroundColor == ContextCompat.getColor(
+                        holder.itemView.context,
+                        R.color.green
+                    )
+                ) {
                     isCorrectAnswer = true
                 }
             }
+
             holder.binding.tvAnswerB.text.toString() -> {
                 holder.binding.cvAnswerB.setCardBackgroundColor(cardBackgroundColor)
-                if (cardBackgroundColor == ContextCompat.getColor(holder.itemView.context, R.color.green)) {
+                if (cardBackgroundColor == ContextCompat.getColor(
+                        holder.itemView.context,
+                        R.color.green
+                    )
+                ) {
                     isCorrectAnswer = true
                 }
             }
+
             holder.binding.tvAnswerC.text.toString() -> {
                 holder.binding.cvAnswerC.setCardBackgroundColor(cardBackgroundColor)
-                if (cardBackgroundColor == ContextCompat.getColor(holder.itemView.context, R.color.green)) {
+                if (cardBackgroundColor == ContextCompat.getColor(
+                        holder.itemView.context,
+                        R.color.green
+                    )
+                ) {
                     isCorrectAnswer = true
                 }
             }
+
             holder.binding.tvAnswerD.text.toString() -> {
                 holder.binding.cvAnswerD.setCardBackgroundColor(cardBackgroundColor)
-                if (cardBackgroundColor == ContextCompat.getColor(holder.itemView.context, R.color.green)) {
+                if (cardBackgroundColor == ContextCompat.getColor(
+                        holder.itemView.context,
+                        R.color.green
+                    )
+                ) {
                     isCorrectAnswer = true
                 }
             }

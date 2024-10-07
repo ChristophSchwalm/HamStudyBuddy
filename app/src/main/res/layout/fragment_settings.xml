@@ -96,9 +96,10 @@
                             android:id="@+id/rgKlassen"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
                             android:layout_marginTop="16dp"
-                            app:layout_constraintStart_toStartOf="parent"
+                            android:orientation="horizontal"
+                            app:layout_constraintEnd_toEndOf="@+id/teName"
+                            app:layout_constraintStart_toStartOf="@+id/teName"
                             app:layout_constraintTop_toBottomOf="@+id/teName">
 
                             <RadioButton
@@ -146,14 +147,13 @@
                             android:id="@+id/btSave"
                             android:layout_width="130dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
                             android:layout_marginTop="16dp"
                             android:layout_marginBottom="32dp"
                             android:backgroundTint="@color/gameActive"
                             android:text="SAVE"
                             android:textColor="@color/gameBtText"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/rgKlassen"
                             app:layout_constraintTop_toBottomOf="@+id/rgKlassen"
                             app:layout_constraintVertical_bias="1.0" />
 
@@ -161,13 +161,12 @@
                             android:id="@+id/btGameReset"
                             android:layout_width="130dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginEnd="16dp"
                             android:layout_marginBottom="32dp"
                             android:backgroundTint="@color/gameActive"
                             android:text="GameReset"
                             android:textColor="@color/gameBtText"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent" />
+                            app:layout_constraintEnd_toEndOf="@+id/rgKlassen" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
