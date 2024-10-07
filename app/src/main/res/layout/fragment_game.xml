@@ -19,40 +19,40 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView4">
 
         <Button
-            android:id="@+id/btNewAnswers"
+            android:id="@+id/btNewQuestions"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:layout_weight="1"
             android:backgroundTint="@color/gameActive"
             android:gravity="center_horizontal|center_vertical"
-            android:text="New Answers"
+            android:text="Neue Fragen"
             android:textColor="#113104"
             android:textSize="12sp"
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/btWrongAnswers"
+            android:id="@+id/btWrongQuestions"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:layout_weight="1"
             android:backgroundTint="#51627F"
             android:gravity="center_horizontal|center_vertical"
-            android:text="Wrong Answers"
+            android:text="Richtige Fragen"
             android:textColor="@color/white"
             android:textSize="12sp"
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/btRightAnswers"
+            android:id="@+id/btRightQuestions"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:layout_weight="1"
             android:backgroundTint="#51627F"
             android:gravity="center_horizontal|center_vertical"
-            android:text="Right Answers"
+            android:text="Falsche Fragen"
             android:textColor="@color/white"
             android:textSize="12sp"
             android:textStyle="bold" />

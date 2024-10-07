@@ -34,13 +34,13 @@ class GameFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        vb.btNewAnswers.setOnClickListener {
+        vb.btNewQuestions.setOnClickListener {
             sharedViewModel.setGameStatus(GameStatus.NULL)
         }
-        vb.btWrongAnswers.setOnClickListener {
+        vb.btWrongQuestions.setOnClickListener {
             sharedViewModel.setGameStatus(GameStatus.WRONG)
         }
-        vb.btRightAnswers.setOnClickListener {
+        vb.btRightQuestions.setOnClickListener {
             sharedViewModel.setGameStatus(GameStatus.RIGHT)
         }
 
@@ -223,41 +223,51 @@ class GameFragment : Fragment() {
 
     private fun gameQuestionsNew() {
         sharedViewModel.gameQuestionsNew()
-        vb.btNewAnswers.backgroundTintList =
+        vb.btNewQuestions.backgroundTintList =
             ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.gameActive))
-        vb.btWrongAnswers.backgroundTintList =
+        vb.btWrongQuestions.backgroundTintList =
             ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.gameInactive))
-        vb.btRightAnswers.backgroundTintList =
+        vb.btRightQuestions.backgroundTintList =
             ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.gameInactive))
-        vb.btNewAnswers.setTextColor(ContextCompat.getColor(requireContext(), R.color.gameBtText))
-        vb.btWrongAnswers.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
-        vb.btRightAnswers.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+        vb.btNewQuestions.setTextColor(ContextCompat.getColor(requireContext(), R.color.gameBtText))
+        vb.btWrongQuestions.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+        vb.btRightQuestions.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
     }
 
     private fun gameQuestionsWrongAnswers() {
         sharedViewModel.gameQuestionsWrongAnswers()
-        vb.btWrongAnswers.backgroundTintList =
+        vb.btWrongQuestions.backgroundTintList =
             ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.gameActive))
-        vb.btNewAnswers.backgroundTintList =
+        vb.btNewQuestions.backgroundTintList =
             ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.gameInactive))
-        vb.btRightAnswers.backgroundTintList =
+        vb.btRightQuestions.backgroundTintList =
             ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.gameInactive))
-        vb.btWrongAnswers.setTextColor(ContextCompat.getColor(requireContext(), R.color.gameBtText))
-        vb.btNewAnswers.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
-        vb.btRightAnswers.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+        vb.btWrongQuestions.setTextColor(
+            ContextCompat.getColor(
+                requireContext(),
+                R.color.gameBtText
+            )
+        )
+        vb.btNewQuestions.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+        vb.btRightQuestions.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
     }
 
     private fun gameQuestionsRightAnswers() {
         sharedViewModel.gameQuestionsRightAnswers()
-        vb.btRightAnswers.backgroundTintList =
+        vb.btRightQuestions.backgroundTintList =
             ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.gameActive))
-        vb.btNewAnswers.backgroundTintList =
+        vb.btNewQuestions.backgroundTintList =
             ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.gameInactive))
-        vb.btWrongAnswers.backgroundTintList =
+        vb.btWrongQuestions.backgroundTintList =
             ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.gameInactive))
-        vb.btRightAnswers.setTextColor(ContextCompat.getColor(requireContext(), R.color.gameBtText))
-        vb.btNewAnswers.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
-        vb.btWrongAnswers.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+        vb.btRightQuestions.setTextColor(
+            ContextCompat.getColor(
+                requireContext(),
+                R.color.gameBtText
+            )
+        )
+        vb.btNewQuestions.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+        vb.btWrongQuestions.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
     }
 
 }

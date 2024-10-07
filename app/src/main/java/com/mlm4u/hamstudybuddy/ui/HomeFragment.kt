@@ -41,13 +41,6 @@ class HomeFragment : Fragment() {
             (activity as MainActivity).findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         bottomNavigationView.visibility = View.VISIBLE
 
-
-//        sharedViewModel.gameQuestions.observe(viewLifecycleOwner) {
-//            vb.pbRightAnswer.max = 100
-//            //vb.pbRightAnswer.progress = (vb.tvCountGameRight.text.toString().toInt() /
-//            //        vb.tvCountGame.text.toString().toInt() * 100).coerceAtMost(100)
-//        }
-
         authenticationViewModel.currentUser.observe(viewLifecycleOwner) { curentUser ->
             Log.d("CSChecker", "Home Fragment: currentUser vor IF: ${curentUser?.email}")
             if (curentUser == null) {
@@ -70,7 +63,8 @@ class HomeFragment : Fragment() {
         }
 
         sharedViewModel.userSettings.observe(viewLifecycleOwner) {
-            vb.tvUserName.text = "Hallo, " + it["Name"] as? String + " !"
+            vb.tvUserName.text = "Hallo, " + it["Name"] as? String + " ! \n" +
+                    "Willkommen bei HAM Study Buddy!"
         }
 
         sharedViewModel.countQuestionsClass.observe(viewLifecycleOwner) { count ->

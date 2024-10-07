@@ -71,7 +71,7 @@ class SharedViewModel(
     }
 
     val countQuestionsGame: LiveData<Int> = userClass.switchMap { userClassValue ->
-        repository.countQuestionsGame(userClassValue) // Assuming you have this function in your repository
+        repository.countQuestionsGame(userClassValue)
     }
 
     val countRightAnswers: LiveData<Int> = userClass.switchMap { userClassValue ->
@@ -114,21 +114,6 @@ class SharedViewModel(
         }
     }
 
-//    //Closure <- anschauen !!!
-//    fun countQuestions(onCompletion: (Int) -> (Unit)) {
-//        viewModelScope.launch {
-//            val result = repository.countQuestions(_userClass.value.toString())
-//            onCompletion(result)
-//        }
-//    }
-
-//    fun countAllQuestions(onCompletion: (Int) -> (Unit)) {
-//        viewModelScope.launch {
-//            val result = repository.countAllQuestions()
-//            onCompletion(result)
-//        }
-//    }
-
     fun deleteNumber(number: String) {
         viewModelScope.launch {
             repository.deleteNumber(number)
@@ -162,13 +147,6 @@ class SharedViewModel(
         }
     }
 
-//    //Closure <- anschauen !!!
-//    fun countGameQuestionsClass(onCompletion: (Int) -> (Unit)) {
-//        viewModelScope.launch {
-//            val result = repository.countGameQuestionsClass(_userClass.value.toString())
-//            onCompletion(result)
-//        }
-//    }
 
     fun countNewQuestions(onCompletion: (Int) -> (Unit)) {
         viewModelScope.launch {
