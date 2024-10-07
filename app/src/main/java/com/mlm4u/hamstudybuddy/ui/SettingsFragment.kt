@@ -77,10 +77,7 @@ class SettingsFragment : Fragment() {
         vb.btGameReset.setOnClickListener {
             sharedViewModel.resetGame()
         }
-
-        vb.btnDeleteAccount.setOnClickListener {
-
-        }
+        
 
     }
 
