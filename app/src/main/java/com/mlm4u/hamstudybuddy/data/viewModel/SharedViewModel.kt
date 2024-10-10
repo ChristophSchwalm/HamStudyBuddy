@@ -29,38 +29,47 @@ class SharedViewModel(
     val currentUser = firebaseRepository.currentUser
 
 
+    //Ein sich bewegender Balken ;)
     private val _loading = MutableLiveData(false)
     val loading: LiveData<Boolean>
         get() = _loading
 
+    //Speichert die Daten die aus Firestore geladen werden
     private val _userSettings = MutableLiveData<Map<String, Any>>()
     val userSettings: LiveData<Map<String, Any>>
         get() = _userSettings
 
+    //Hält die Version und auf Updates zu prüfen
     private val _version = MutableLiveData(0.0)
     val version: LiveData<Double>
         get() = _version
 
+    //Wird benutzt um die richtigen Fragen für den User anzuzeigen
     private val _userClass = MutableLiveData("")
     val userClass: LiveData<String>
         get() = _userClass
 
+    //Wird benutzt zur Übergabe beim wechseln der Fragmente
     private val _selectedTitle = MutableLiveData<String>()
     val selectedTitle: LiveData<String>
         get() = _selectedTitle
 
+    //Filtert die Fragen fürs Game
     private val _gameStatus = MutableLiveData(GameStatus.NULL)
     val gameStatus: LiveData<GameStatus>
         get() = _gameStatus
 
+    //Hält die aktuelle Frage für das Game
     private var _gameQuestion = MutableLiveData<GameQuestions>()
     val gameQuestion: LiveData<GameQuestions>
         get() = _gameQuestion
 
+    //Hällt die Fragen für das Game
     private val _gameQuestions = MutableLiveData<List<GameQuestions>>()
     val gameQuestions: MutableLiveData<List<GameQuestions>>
         get() = _gameQuestions
 
+    //Iniziallisierung einzelner LiveDatas
     init {
         Log.d("CSChecker", "SharedViewModel init")
         getUserSettings()
@@ -68,6 +77,7 @@ class SharedViewModel(
         allGameQuestions()
     }
 
+    //Count tut was der Name sagt ;)
     val countAllQuestions: LiveData<Int> = _loading.switchMap {
         repository.countAllQuestions()
     }

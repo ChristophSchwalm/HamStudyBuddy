@@ -30,6 +30,7 @@ class RegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //Registriert den User und navigiert zum HomeFragment
         vb.btRegister.setOnClickListener {
             val email = vb.teEmail.text.toString()
             val password = vb.tePassword.text.toString()

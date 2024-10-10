@@ -74,6 +74,7 @@ class SettingsFragment : Fragment() {
             sharedViewModel.getQuestionsApi()
         }
 
+        //Setzt die Fragen im Game wieder zurück
         vb.btGameReset.setOnClickListener {
             sharedViewModel.resetGame()
         }

@@ -33,6 +33,7 @@ class PoolAdapter(
 
         holder.binding.tvTitle.text = title.titleQuestion
 
+        //Wechselt auf QuestionFragment nachdem der Observer sein OK gibt
         holder.binding.cvTitle.setOnClickListener {
             sharedViewModel.changeSelectedTitle(title.titleQuestion)
             sharedViewModel.questionsByTitle.observe(lifecycleOwner) { questionsByTitle ->

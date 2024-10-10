@@ -39,6 +39,7 @@ class OnboardingFragment : Fragment() {
             (activity as MainActivity).findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         bottomNavigationView.visibility = View.INVISIBLE
 
+        //Überwacht die Eingabe und ändert die UserClass im ViewModel
         vb.rgOnboardingKlassen.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
                 vb.rbOnboardingClassN.id -> {
@@ -55,6 +56,7 @@ class OnboardingFragment : Fragment() {
             }
         }
 
+        //Speichert die ausgewählte Klasse und navigiert zum HomeFragment
         vb.btOnboardingSave.setOnClickListener {
             if (vb.rgOnboardingKlassen.checkedRadioButtonId != -1) {
                 sharedViewModel.saveUserSettings(vb.etName.text.toString())

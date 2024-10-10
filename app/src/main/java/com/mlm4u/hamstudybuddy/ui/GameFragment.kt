@@ -44,6 +44,7 @@ class GameFragment : Fragment() {
             sharedViewModel.setGameStatus(GameStatus.RIGHT)
         }
 
+        //GameStatus wird beobachtet und bei Änderung Funktionen ausgeführt
         sharedViewModel.gameStatus.observe(viewLifecycleOwner) { status ->
             Log.d("CSChecker", "GameStatus: $status")
             when (status) {
@@ -54,6 +55,8 @@ class GameFragment : Fragment() {
             }
         }
 
+        //GameQuestion wird überwacht und bei Änderung werden die Questions gesetzt
+        //Wenn es keine Fragen gibt, wird dieses auch angezeigt
         sharedViewModel.gameQuestions.observe(viewLifecycleOwner) { gameQuestions ->
             if (gameQuestions.isNotEmpty()) {
                 resetView()
@@ -92,7 +95,7 @@ class GameFragment : Fragment() {
             }
 
         }
-
+        //Set on ClickListener prüfen ob die Frage richtig ist verändern die Anzeige der CardViews
         vb.cvGameAnswerA.setOnClickListener {
             checkAnswer(vb.tvGameAnswerA.text.toString())
             vb.cvGameAnswerB.isClickable = false
@@ -131,6 +134,7 @@ class GameFragment : Fragment() {
         }
     }
 
+    //Cardviews werden resetet
     private fun resetView() {
         vb.tvGameAnswerA.text = ""
         vb.tvGameAnswerB.text = ""
@@ -172,6 +176,7 @@ class GameFragment : Fragment() {
         )
     }
 
+    //In dieser Funktion wird die Antwort überprüft und die Cardviews demensprechend angepasst
     fun checkAnswer(answer: String) {
         val correctAnswer = sharedViewModel.gameQuestion.value?.answerA
         val isCorrectAnswer = answer == correctAnswer
@@ -207,7 +212,7 @@ class GameFragment : Fragment() {
                 )
             }
         }
-
+        //Wenn die Antwort richtig oder falsch ist wird ein Flag in Room gesetzt.
         if (isCorrectAnswer) {
             Timer().schedule(timerTask {
                 sharedViewModel.addCorrectFlag()
@@ -221,6 +226,7 @@ class GameFragment : Fragment() {
 
     }
 
+    //Beim klicken werden die Fragen in den Adapter geladen. Also über das ViewModel
     private fun gameQuestionsNew() {
         sharedViewModel.gameQuestionsNew()
         vb.btNewQuestions.backgroundTintList =
@@ -234,6 +240,7 @@ class GameFragment : Fragment() {
         vb.btRightQuestions.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
     }
 
+    //Beim klicken werden die Fragen in den Adapter geladen. Also über das ViewModel
     private fun gameQuestionsWrongAnswers() {
         sharedViewModel.gameQuestionsWrongAnswers()
         vb.btWrongQuestions.backgroundTintList =
@@ -252,6 +259,7 @@ class GameFragment : Fragment() {
         vb.btRightQuestions.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
     }
 
+    //Beim klicken werden die Fragen in den Adapter geladen. Also über das ViewModel
     private fun gameQuestionsRightAnswers() {
         sharedViewModel.gameQuestionsRightAnswers()
         vb.btRightQuestions.backgroundTintList =

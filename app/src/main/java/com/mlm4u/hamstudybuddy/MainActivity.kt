@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         handleOnBackPressed()
         window.statusBarColor = ContextCompat.getColor(this, R.color.black)
 
+        //Setzt den NavGraphen und die BotomView
         val navHost =
             supportFragmentManager.findFragmentById(fragmentContainerView) as NavHostFragment
         val navController: NavController = navHost.navController

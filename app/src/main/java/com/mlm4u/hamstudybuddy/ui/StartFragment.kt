@@ -26,6 +26,7 @@ class StartFragment : Fragment() {
         return vb.root
     }
 
+    //Zeigt einfach eine Info beim ersten Start an
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

@@ -37,10 +37,14 @@ class HomeFragment : Fragment() {
             vb.linearProgressIndicatorHome.visibility = if (it) View.VISIBLE else View.GONE
         }
 
+        //Hier wird die BottomNav gesetzt und auf Visible gestellt
         val bottomNavigationView =
             (activity as MainActivity).findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         bottomNavigationView.visibility = View.VISIBLE
 
+        //Wenn es einen User gibt, bleibt er hier ansonsten wird auf das Login Fragment navigiert
+        //Im Observer gibt es eine weitere Prüfung auf Userdaten, wenn keine vorhanden,
+        //wird der Onboarding prozess gestartet.
         authenticationViewModel.currentUser.observe(viewLifecycleOwner) { curentUser ->
             Log.d("CSChecker", "Home Fragment: currentUser vor IF: ${curentUser?.email}")
             if (curentUser == null) {
@@ -61,12 +65,14 @@ class HomeFragment : Fragment() {
                 }
             }
         }
-
+        //User Settings werden gesetzt
         sharedViewModel.userSettings.observe(viewLifecycleOwner) {
             vb.tvUserName.text = "Hallo, " + it["Name"] as? String + " ! \n" +
                     "Willkommen bei HAM Study Buddy!"
         }
 
+        //Ab hier werden mehrere Funktionen gestartet die die Fragen für die Stats zählen
+        //******************************************************************************************
         sharedViewModel.countQuestionsClass.observe(viewLifecycleOwner) { count ->
             vb.tvQuestionClass.text = count.toString()
         }

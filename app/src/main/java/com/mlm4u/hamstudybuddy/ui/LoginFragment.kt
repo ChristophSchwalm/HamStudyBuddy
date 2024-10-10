@@ -52,6 +52,7 @@ class LoginFragment : Fragment() {
 
         googleSignInClient = GoogleSignIn.getClient(requireActivity(), gso)
 
+        //BottomNav auf Invisible da nicht gebraucht
         val bottomNavigationView =
             (activity as MainActivity).findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         bottomNavigationView.visibility = View.INVISIBLE

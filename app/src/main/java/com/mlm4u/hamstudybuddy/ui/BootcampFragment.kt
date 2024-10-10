@@ -26,6 +26,7 @@ class BootcampFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+    //Hier wird eine WebView gestartet die Videos auf Youtube zeigt
         val webView: WebView = vb.wvYoutube
         webView.settings.javaScriptEnabled = true
         webView.webViewClient = object : WebViewClient() {

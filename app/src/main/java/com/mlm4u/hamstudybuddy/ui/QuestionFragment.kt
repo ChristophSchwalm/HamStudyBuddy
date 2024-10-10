@@ -40,7 +40,7 @@ class QuestionFragment : Fragment() {
         val snapHelper = LinearSnapHelper()
         snapHelper.attachToRecyclerView(vb.rvQuestions)
 
-        // Beobachte die LiveData
+        // Beobachte die LiveData und füllt den Adapter
         sharedViewModel.questionsByTitle.observe(viewLifecycleOwner) { questionsByTitle ->
             if (questionsByTitle.isNotEmpty()) {
                 adapter = QuestionAdapter(questionsByTitle, sharedViewModel)
