@@ -13,8 +13,8 @@ android {
         applicationId = "com.mlm4u.hamstudybuddy"
         minSdk = 24
         targetSdk = 34
-        versionCode = 17
-        versionName = "2.0"
+        versionCode = 18
+        versionName = "2.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -67,5 +67,9 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore")
     implementation("com.google.firebase:firebase-analytics")
 
-
+    //AdMob
+    implementation("com.google.android.gms:play-services-ads:23.3.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.6.1")
+    implementation("com.russhwolf:multiplatform-settings:1.1.1")
+    implementation("androidx.lifecycle:lifecycle-process:2.8.6")
 }

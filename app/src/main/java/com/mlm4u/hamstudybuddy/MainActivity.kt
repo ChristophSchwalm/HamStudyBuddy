@@ -1,16 +1,21 @@
 package com.mlm4u.hamstudybuddy
 
+import android.app.Application
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.gms.ads.MobileAds
 import com.mlm4u.hamstudybuddy.R.id.fragmentContainerView
 import com.mlm4u.hamstudybuddy.databinding.ActivityMainBinding
+import com.mlm4u.hamstudybuddy.utils.AdStart.AdStart
 
 class MainActivity : AppCompatActivity() {
 
@@ -43,4 +48,17 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+}
+
+class AppStartAdApp : Application() {
+    @RequiresApi(Build.VERSION_CODES.Q)
+    override fun onCreate() {
+        super.onCreate()
+        try {
+            MobileAds.initialize(this) {}
+            AdStart(this)
+        } catch (e:Exception){
+            e.printStackTrace()
+        }
+    }
 }
